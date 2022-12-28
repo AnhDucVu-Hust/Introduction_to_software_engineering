@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="430.0" prefWidth="726.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.login.FamilySplit">
+   <children>
+      <AnchorPane fx:id="FamilySplit" layoutX="10.0" layoutY="10.0" prefHeight="418.0" prefWidth="814.0">
+         <children>
+            <Button layoutX="358.0" layoutY="379.0" mnemonicParsing="false" text="Hoàn thành" />
+            <Text layoutX="31.0" layoutY="87.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CMND/CCCD của chủ hộ mới" />
+            <TextField layoutX="204.0" layoutY="70.0" prefHeight="25.0" prefWidth="156.0" />
+            <Text layoutX="31.0" layoutY="136.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Địa chỉ đăng ký hộ khẩu mới" />
+            <TextField layoutX="202.0" layoutY="119.0" prefHeight="25.0" prefWidth="602.0" />
+            <TableView layoutY="165.0" prefHeight="200.0" prefWidth="397.0">
+              <columns>
+                <TableColumn prefWidth="142.33334350585938" text="Họ tên nhân khẩu" />
+                <TableColumn prefWidth="82.3333740234375" text="CMND/CCCD" />
+                  <TableColumn prefWidth="116.66668701171875" text="Quan hệ với chủ hộ" />
+                  <TableColumn prefWidth="53.0" text="Thêm" />
+              </columns>
+            </TableView>
+            <TableView layoutX="407.0" layoutY="165.0" prefHeight="200.0" prefWidth="397.0">
+               <columns>
+                  <TableColumn prefWidth="142.33334350585938" text="Họ tên nhân khẩu" />
+                  <TableColumn prefWidth="82.3333740234375" text="CMND/CCCD" />
+                  <TableColumn prefWidth="116.66668701171875" text="Quan hệ với chủ hộ" />
+                  <TableColumn prefWidth="53.0" text="Thêm" />
+               </columns>
+            </TableView>
+         </children>
+      </AnchorPane>
+      <AnchorPane prefHeight="59.0" prefWidth="824.0" style="-fx-background-color: #0598ff;">
+         <children>
+            <Text fill="WHITE" layoutX="315.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tách hộ khẩu">
+               <font>
+                  <Font name="Arial" size="32.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
