@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox prefHeight="400.0" prefWidth="235.0" style="-fx-background-color: #3F2B63;">
+         <children>
+            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="63.0" prefWidth="235.0" style="-fx-background-color: #3F2B63;" text="Nhân khẩu" textFill="WHITE">
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <graphic>
+                  <FontAwesomeIconView fill="#f7f7f7" glyphName="group" selectionFill="#fcfcfc" text="" />
+               </graphic>
+               <font>
+                  <Font size="8.0" />
+               </font>
+            </Button>
+            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="63.0" prefWidth="235.0" style="-fx-background-color: #3F2B63;" text="Hộ khẩu" textFill="WHITE">
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <graphic>
+                  <FontAwesomeIconView fill="#f7f7f7" glyphName="group" selectionFill="#fcfcfc" text="" />
+               </graphic>
+            </Button>
+            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="63.0" prefWidth="235.0" style="-fx-background-color: #3F2B63;" text="Phần thưởng" textFill="WHITE">
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <graphic>
+                  <FontAwesomeIconView fill="#f7f7f7" glyphName="group" selectionFill="#fcfcfc" text="" />
+               </graphic>
+            </Button>
+            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="63.0" prefWidth="235.0" style="-fx-background-color: #3F2B63;" text="Thống kê" textFill="WHITE">
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <graphic>
+                  <FontAwesomeIconView fill="#f7f7f7" glyphName="group" selectionFill="#fcfcfc" text="" />
+               </graphic>
+            </Button>
+            <Pane prefHeight="72.0" prefWidth="235.0" style="-fx-border-color: #transparent;">
+               <children>
+                  <Button layoutX="80.0" layoutY="36.0" mnemonicParsing="false" style="-fx-background-image: #bc11d7;" text="Đăng xuất" />
+               </children>
+            </Pane>
+         </children>
+      </VBox>
+      <GridPane layoutX="237.0" layoutY="127.0" prefHeight="274.0" prefWidth="358.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="182.8" minHeight="10.0" prefHeight="29.599981689453124" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="251.99999999999997" minHeight="10.0" prefHeight="244.80001831054685" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <TableView prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #3;" GridPane.rowIndex="1">
+              <columns>
+                <TableColumn prefWidth="75.0" text="ID" />
+                <TableColumn prefWidth="105.5999755859375" text="Họ và tên" />
+                  <TableColumn text="Trạng thái" />
+                  <TableColumn prefWidth="95.2000732421875" text="Ghi chú" />
+              </columns>
+            </TableView>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <TextField prefHeight="17.0" prefWidth="158.0" promptText="Search">
+                     <HBox.margin>
+                        <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+                     </HBox.margin>
+                  </TextField>
+                  <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="86.0" style="-fx-background-color: #3F2B63;" text="Thêm " />
+                  <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="86.0" style="-fx-background-color: #3F2B63;" text="Xóa" />
+               </children>
+            </HBox>
+         </children>
+      </GridPane>
+      <Pane layoutX="233.0" layoutY="33.0" prefHeight="70.0" prefWidth="366.0" style="-fx-background-color: #3F2B63;">
+         <children>
+            <Text fill="WHITE" layoutX="24.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nhân Khẩu" wrappingWidth="107.74607315063486">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
