@@ -10,11 +10,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="399.0" prefWidth="601.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.login.Controller">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="549.0" prefWidth="790.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.login.LoginController">
    <left>
-      <AnchorPane prefHeight="400.0" prefWidth="298.0" style="-fx-background-color: #0598ff;" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="400.0" prefWidth="298.0" style="-fx-background-color: #3F2B63;" BorderPane.alignment="CENTER">
          <children>
-            <Text fill="#fcfcfc" layoutX="69.0" layoutY="207.0" strokeType="OUTSIDE" strokeWidth="0.0" text="WELCOME" wrappingWidth="159.6458282470703">
+            <Text fill="#fcfcfc" layoutX="58.0" layoutY="269.0" strokeType="OUTSIDE" strokeWidth="0.0" text="WELCOME" wrappingWidth="194.04580688476562">
                <font>
                   <Font name="Goudy Stout" size="17.0" />
                </font>
@@ -25,10 +25,10 @@
    <center>
       <AnchorPane prefHeight="399.0" prefWidth="306.0" style="-fx-background-color: transparent; -fx-border-color: #0598ff;" BorderPane.alignment="CENTER">
          <children>
-            <PasswordField fx:id="txtPass" layoutX="74.0" layoutY="164.0" promptText="Password" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
-            <TextField fx:id="txtUser" layoutX="76.0" layoutY="91.0" promptText="User name" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
-            <Button id="logininto" fx:id="btnLogin" layoutX="123.0" layoutY="243.0" mnemonicParsing="false" onMouseClicked="#handleButtonAction" text="Login" />
-            <Hyperlink layoutX="76.0" layoutY="286.0" text="Forget your password ?" />
+            <PasswordField fx:id="txtPass" layoutX="72.0" layoutY="196.0" prefHeight="30.0" prefWidth="379.0" promptText="Password" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
+            <TextField fx:id="txtUser" layoutX="74.0" layoutY="134.0" prefHeight="28.0" prefWidth="376.0" promptText="User name" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
+            <Button id="logininto" fx:id="btnLogin" layoutX="224.0" layoutY="275.0" mnemonicParsing="false" onMouseClicked="#handleButtonAction" text="Đăng nhập" />
+            <Hyperlink layoutX="214.0" layoutY="322.0" text="Quên mật khẩu?" />
             <Label fx:id="iblError" layoutX="74.0" layoutY="211.0" prefHeight="18.0" prefWidth="155.0" textAlignment="CENTER" textFill="#f21010" />
          </children>
       </AnchorPane>
