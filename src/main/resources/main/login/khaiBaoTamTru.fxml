@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane prefHeight="524.0" prefWidth="537.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.login.KhaiBaoThuongTru">
+   <top>
+      <AnchorPane prefHeight="70.0" prefWidth="639.0" style="-fx-background-color: #0598ff;" BorderPane.alignment="CENTER">
+         <Text fill="WHITE" layoutX="191.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="KHAI BÁO TẠM TRÚ" wrappingWidth="222.54302978515625">
+            <font>
+               <Font size="15.0" />
+            </font>
+         </Text>
+      </AnchorPane>
+   </top>
+   <center>
+      <AnchorPane prefHeight="457.0" prefWidth="585.0" BorderPane.alignment="CENTER">
+         <TextField id="name" fx:id="txtName" layoutX="123.0" layoutY="29.0" />
+         <TextField id="contactname" fx:id="txtContactNo" layoutX="313.0" layoutY="29.0" />
+         <TextField id="nationalid" fx:id="txtNationalID" layoutX="133.0" layoutY="172.0" prefHeight="26.0" prefWidth="129.0" />
+         <TextField id="job" fx:id="txtJob" layoutX="109.0" layoutY="214.0" />
+         <TextArea id="reason" fx:id="txtReason" layoutX="65.0" layoutY="309.0" prefHeight="61.0" prefWidth="446.0" />
+         <RadioButton fx:id="khaiHo" layoutX="440.0" layoutY="96.0" mnemonicParsing="false" text="Khai hộ" />
+         <RadioButton fx:id="chinhChu" layoutX="440.0" layoutY="70.0" mnemonicParsing="false" text="Chính chủ" />
+         <DatePicker id="start" fx:id="start" layoutX="347.0" layoutY="214.0" />
+         <DatePicker id="end" fx:id="end" layoutX="347.0" layoutY="254.0" />
+         <DatePicker id="dob" fx:id="dob" layoutX="347.0" layoutY="173.0" />
+         <Label layoutX="29.0" layoutY="33.0" text="Họ và tên" />
+         <ChoiceBox id="gender" fx:id="gender" layoutX="392.0" layoutY="130.0" prefHeight="26.0" prefWidth="85.0" />
+         <Label layoutX="340.0" layoutY="134.0" prefHeight="18.0" prefWidth="51.0" text="Giới tính" />
+         <Label layoutX="31.0" layoutY="83.0" text="Nơi thường trú" />
+         <Label layoutX="288.0" layoutY="33.0" text="SĐT" />
+         <Label layoutX="286.0" layoutY="177.0" text="Ngày sinh" />
+         <Label layoutX="29.0" layoutY="177.0" text="CCCD hoặc CMND" />
+         <Label layoutX="378.0" layoutY="83.0" text="Tùy chọn" />
+         <Label layoutX="28.0" layoutY="218.0" text="Nghề nghiệp" />
+         <Label layoutX="263.0" layoutY="218.0" text="Ngày tạm trú" />
+         <Label layoutX="239.0" layoutY="258.0" text="Ngày thôi tạm trú" />
+         <Label layoutX="31.0" layoutY="291.0" prefHeight="13.0" prefWidth="30.0" text="Lý do" />
+         <Button fx:id="btnCancel" layoutX="324.0" layoutY="388.0" mnemonicParsing="false" onMouseClicked="#handleCancelButton" style="-fx-background-color: #0598ff;" text="Hủy bỏ" textFill="WHITE" />
+         <Button fx:id="btnComplete" layoutX="400.0" layoutY="388.0" mnemonicParsing="false" onMouseClicked="#handleCompleteButton" style="-fx-background-color: #0598ff;" text="Hoàn thành" textFill="WHITE" />
+         <TextField fx:id="txtAdd" layoutX="124.0" layoutY="79.0" prefHeight="26.0" prefWidth="203.0" />
+         <TextField fx:id="txtTamtru" layoutX="124.0" layoutY="130.0" prefHeight="26.0" prefWidth="202.0" />
+         <Text layoutX="32.0" layoutY="148.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nơi tạm trú" />
+      </AnchorPane>
+   </center>
+</BorderPane>
