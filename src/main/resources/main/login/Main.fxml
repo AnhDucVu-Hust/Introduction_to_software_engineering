@@ -19,7 +19,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="549.0" prefWidth="790.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.login.ManHinh">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="549.0" prefWidth="790.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.login.ManHinh">
    <children>
       <VBox fx:id="menuPane" prefHeight="549.0" prefWidth="176.0" style="-fx-background-color: #3F2B63;">
          <children>
@@ -96,14 +96,6 @@
                         <Text layoutX="177.0" layoutY="315.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Các trường có dấu (*) là không được để trống!" />
                      </children>
                   </Pane>
-                  <TableView fx:id="tableNhanKhau" prefHeight="374.0" prefWidth="608.0" style="-fx-background-color: #3;">
-                    <columns>
-                      <TableColumn prefWidth="75.0" text="ID" />
-                      <TableColumn prefWidth="222.4000244140625" text="Họ và tên" />
-                        <TableColumn minWidth="0.0" prefWidth="113.5999755859375" text="Trạng thái" />
-                        <TableColumn minWidth="0.0" prefWidth="197.5999755859375" text="Ghi chú" />
-                    </columns>
-                  </TableView>
                   <Pane fx:id="khaiTu" prefHeight="151.0" prefWidth="608.0" visible="false">
                      <children>
                         <TextField fx:id="hoTenKhaiTu" layoutX="94.0" layoutY="16.0" prefHeight="25.0" prefWidth="502.0" promptText="NGUYỄN VĂN A" />
@@ -136,6 +128,14 @@
                         <Text layoutX="169.0" layoutY="315.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Các trường có dấu (*) là không được để trống!" />
                      </children>
                   </Pane>
+                  <TableView fx:id="tableNhanKhau" prefHeight="374.0" prefWidth="608.0" style="-fx-background-color: #3;">
+                    <columns>
+                      <TableColumn prefWidth="75.0" text="ID" />
+                      <TableColumn prefWidth="222.4000244140625" text="Họ và tên" />
+                        <TableColumn minWidth="0.0" prefWidth="113.5999755859375" text="Trạng thái" />
+                        <TableColumn minWidth="0.0" prefWidth="197.5999755859375" text="Ghi chú" />
+                    </columns>
+                  </TableView>
                </children>
             </StackPane>
             <HBox fx:id="barHK" prefHeight="51.0" prefWidth="608.0" spacing="10.0" visible="false">
@@ -155,7 +155,7 @@
                      </font></Button>
                </children>
             </HBox>
-            <TextField prefHeight="26.0" prefWidth="608.0" promptText="Search" GridPane.rowIndex="1" />
+            <TextField fx:id="searchNhanKhau" onKeyPressed="#searchKeyPressed" prefHeight="26.0" prefWidth="608.0" promptText="Search" GridPane.rowIndex="1" />
             <HBox fx:id="barNK" prefHeight="51.0" prefWidth="608.0" spacing="10.0">
                <children>
                   <Button fx:id="btnThemNK1" mnemonicParsing="false" onMouseClicked="#themNhanKhauClicked" prefHeight="28.0" prefWidth="102.0" style="-fx-background-color: #3F2B63; -fx-font-size: 12;" text="Thêm mới" textFill="WHITE">

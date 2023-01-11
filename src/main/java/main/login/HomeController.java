@@ -67,7 +67,7 @@ public class HomeController implements Initializable {
                 UserInfo user = new UserInfo(resultSet.getInt("ID"),
                                              resultSet.getString("FirstName"),
                                              resultSet.getString("LastName"),
-                                             resultSet.getInt("Age"));
+                                             resultSet.getDate("Age"));
                 System.out.println(resultSet.getInt("Age"));
                 users.add(user);
                 table.setItems(users);

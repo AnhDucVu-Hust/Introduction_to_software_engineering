@@ -57,7 +57,7 @@ public class LoginController {
             iblError.setText("Enter correct username/password");
         }
         else {
-            String sql = "SELECT * FROM userinfo WHERE username = ? and password = ?";
+            String sql = "SELECT * FROM taikhoan WHERE taiKhoan = ? and matKhau = ?";
             status = "Success";
             try {
                 preparedStatement = conn.prepareStatement(sql);

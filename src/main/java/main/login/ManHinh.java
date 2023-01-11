@@ -1,17 +1,24 @@
 package main.login;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
+
+import java.sql.*;
+import java.time.LocalDate;
+
 public class ManHinh {
     @FXML
     private VBox menuPane;
@@ -43,8 +50,9 @@ public class ManHinh {
     private Button btnXoa;
     @FXML
     private Pane themNhanKhau;
+
     @FXML
-    private TableView<?> tableNhanKhau;
+    private TableView<UserInfo> tableNhanKhau;
 
     @FXML
     private Button thongKe;
@@ -95,6 +103,13 @@ public class ManHinh {
     @FXML
     private TextField nguyenQuan;
 
+    @FXML
+    private TextField hoTen;
+
+    @FXML
+    private TextField biDanh;
+    @FXML
+    private TextField searchNhanKhau;
     @FXML
     private TextField nguyenQuanKhaiTu;
     @FXML
@@ -188,8 +203,93 @@ public class ManHinh {
         }
         themNhanKhau.setVisible(true);
     }
+
     @FXML
-    void guiThongTinClicked(MouseEvent event){
+    void searchKeyPressed(KeyEvent event) {
+        System.out.println("event!");
+        if (event.getCode().equals(KeyCode.ENTER)) {
+            System.out.println("entered");
+            String searchSeq = searchNhanKhau.getText().toString();
+            searchSeq = "%" + searchSeq + "%";
+            Connection conn = MyConnection.conDB();
+            String query = "SELCT idNhanKhau, hoTen, trangThai, ngaySinh FROM NhanKhau WHERE hoTen LIKE " + searchSeq;
+            try {
+                PreparedStatement pstmt = conn.prepareStatement(query);
+                ResultSet resultSet = pstmt.executeQuery();
+                ObservableList<UserInfo> users = tableNhanKhau.getItems();
+                while(resultSet.next()){
+                    UserInfo user = new UserInfo(resultSet.getInt("idNhanKhau"),
+                            resultSet.getString("hoTen"),
+                            resultSet.getString("trangThai"),
+                            resultSet.getDate("ngaySinh"));
+                    System.out.println(resultSet.getInt("Age"));
+                    users.add(user);
+                    tableNhanKhau.setItems(users);
+                    tableNhanKhau.refresh();
+                }
+            } catch(Exception e){
+                System.err.println(e.getMessage());
+            }
+        }
+    }
+
+    @FXML
+    void guiThongTinClicked(MouseEvent event) {
+        System.out.println("Clicked");
+        try {
+            Connection conn = MyConnection.conDB();
+            String query = "INSERT INTO NhanKhau(hoTen, biDanh, ngaySinh, noiSinh, gioiTinh, nguyenQuan, danToc, tonGiao, quocTich, ngheNghiep, noiLamViec, cmnd_cccd, chuyenDenNgay, noiThuongTruTruoc, trangThai)\n" +
+                    "\tVALUES\t(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, N'Thường trú');\n";
+            PreparedStatement pstmt = conn.prepareStatement(query);
+
+            String hoTenStr = hoTen.getText().toString();
+            String biDanhStr = biDanh.getText().toString();
+            LocalDate ngaySinhDate = ngaySinh.getValue();
+            String noiSinhStr = noiSinh.getText().toString();
+            String nguyenQuanStr = nguyenQuan.getText().toString();
+            String danTocStr = danToc.getText().toString();
+//            String gioiTinhStr = gioiTinh.getValue().toString();
+            String tonGiaoStr = tonGiao.getText().toString();
+            String quocTichStr = quocTich.getText().toString();
+            String cmndCccdStr = cmndCccd.getText().toString();
+            String ngheNghiepStr = ngheNghiep.getText().toString();
+            String noiLamViecStr = noiLamViec.getText().toString();
+            LocalDate ngayChuyenDenDate = ngayChuyenDen.getValue();
+            String noiThuongTruTruocStr = noiThuongTruTruoc.getText().toString();
+
+            pstmt.setString(1, hoTenStr);
+            if(biDanhStr != "")
+                pstmt.setString(2, biDanhStr);
+            else
+                pstmt.setNull(2, Types.NULL);
+            pstmt.setDate(3, Date.valueOf(ngaySinhDate));
+            pstmt.setString(4, noiSinhStr);
+            pstmt.setString(5, "Nam");
+            pstmt.setString(6, nguyenQuanStr);
+            pstmt.setString(7, danTocStr);
+            pstmt.setString(8, tonGiaoStr);
+            pstmt.setString(9, quocTichStr);
+            if(ngheNghiepStr != "")
+                pstmt.setString(10, ngheNghiepStr);
+            else
+                pstmt.setNull(10, Types.NULL);
+            if(noiLamViecStr != "")
+                pstmt.setString(11, noiLamViecStr);
+            else
+                pstmt.setNull(11, Types.NULL);
+            if(cmndCccdStr != "")
+                pstmt.setString(12, cmndCccdStr);
+            else
+                pstmt.setNull(12, Types.NULL);
+
+            pstmt.setDate(13, Date.valueOf(ngayChuyenDenDate));
+            pstmt.setString(14, noiThuongTruTruocStr);
+            pstmt.execute();
+            System.out.println("them thanh cong!");
+        } catch(SQLException e){
+            System.err.println(e.getMessage());
+//            status = "Exception";
+        }
 
     }
     @FXML
