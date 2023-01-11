@@ -1,47 +1,49 @@
 package main.login;
 
+import java.sql.Date;
+
 public class UserInfo {
-    private int id;
-    private String firstname;
-    private String lastname;
-    private int age;
+    private int idNhanKhau;
+    private String hoTen;
+    private String trangThai;
+    private Date ngaySinh;
 
-    public int getId() {
-        return id;
+    public UserInfo(int idNhanKhau, String hoTen, String trangThai, Date ngaySinh) {
+        this.idNhanKhau = idNhanKhau;
+        this.hoTen = hoTen;
+        this.trangThai = trangThai;
+        this.ngaySinh = ngaySinh;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public int getIdNhanKhau() {
+        return idNhanKhau;
     }
 
-    public String getFirstname() {
-        return firstname;
+    public void setIdNhanKhau(int idNhanKhau) {
+        this.idNhanKhau = idNhanKhau;
     }
 
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
+    public String getHoTen() {
+        return hoTen;
     }
 
-    public String getLastname() {
-        return lastname;
+    public void setHoTen(String hoTen) {
+        this.hoTen = hoTen;
     }
 
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
+    public String getTrangThai() {
+        return trangThai;
     }
 
-    public int getAge() {
-        return age;
+    public void setTrangThai(String trangThai) {
+        this.trangThai = trangThai;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public Date getNgaySinh() {
+        return ngaySinh;
     }
 
-    public UserInfo(int id, String firstname, String lastname, int age){
-        this.id = id;
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.age = age;
+    public void setNgaySinh(Date ngaySinh) {
+        this.ngaySinh = ngaySinh;
     }
 }

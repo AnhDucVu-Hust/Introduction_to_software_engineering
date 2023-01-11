@@ -29,7 +29,7 @@
             <TextField fx:id="txtUser" layoutX="74.0" layoutY="134.0" prefHeight="28.0" prefWidth="376.0" promptText="User name" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
             <Button id="logininto" fx:id="btnLogin" layoutX="224.0" layoutY="275.0" mnemonicParsing="false" onMouseClicked="#handleButtonAction" text="Đăng nhập" />
             <Hyperlink layoutX="214.0" layoutY="322.0" text="Quên mật khẩu?" />
-            <Label fx:id="iblError" layoutX="74.0" layoutY="211.0" prefHeight="18.0" prefWidth="155.0" textAlignment="CENTER" textFill="#f21010" />
+            <Label fx:id="iblError" layoutX="136.0" layoutY="358.0" prefHeight="40.0" prefWidth="270.0" textAlignment="CENTER" textFill="#f21010" />
          </children>
       </AnchorPane>
    </center>

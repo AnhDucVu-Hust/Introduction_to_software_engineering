@@ -57,7 +57,7 @@ public class LoginController {
             iblError.setText("Enter correct username/password");
         }
         else {
-            String sql = "SELECT * FROM userinfo WHERE username = ? and password = ?";
+            String sql = "SELECT * FROM taiKhoan WHERE taiKhoan = ? and matKhau = ?";
             status = "Success";
             try {
                 preparedStatement = conn.prepareStatement(sql);
@@ -73,6 +73,7 @@ public class LoginController {
             } catch (SQLException ex) {
                 System.err.println(ex.getMessage());
                 status = "Exception";
+                iblError.setText("Sai tên đăng nhập hoặc mật khẩu");
             }
         }
         return status;
