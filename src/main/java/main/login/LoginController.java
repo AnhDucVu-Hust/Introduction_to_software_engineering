@@ -1,7 +1,6 @@
 package main.login;
 
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -17,7 +16,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class Controller {
+public class LoginController {
     @FXML
     private TextField txtUser;
     @FXML
@@ -35,7 +34,7 @@ public class Controller {
                 //stage.setMaximized(true);
                 stage.close();
                 stage.setTitle("Danh sách tài khoản");
-                Scene scene = new Scene(FXMLLoader.load(getClass().getResource("manhinh.fxml")));
+                Scene scene = new Scene(FXMLLoader.load(getClass().getResource("Main.fxml")));
                 stage.setScene(scene);
                 stage.show();
             }
