@@ -2,8 +2,10 @@ package main.login;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
@@ -15,7 +17,9 @@ import javafx.scene.paint.Color;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.sql.*;
 import java.time.LocalDate;
 
@@ -304,6 +308,15 @@ public class ManHinh {
     @FXML
     void guiThongTinKhaiTuClicked(MouseEvent event){
 
+    }
+    @FXML
+    void tamTruClicked(MouseEvent event) throws IOException {
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        Scene scene = new Scene(FXMLLoader.load(getClass().getResource("khaiBaoTamTru.fxml")));
+
+        stage.setScene(scene);
+        stage.show();
     }
 }
 
