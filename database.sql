@@ -223,7 +223,7 @@ CREATE TABLE NhanKhauChuyenHoKhau(
 	trangThai VARCHAR(15) NOT NULL,
 	CONSTRAINT PK_NKCHuyenHoKhau PRIMARY KEY(id),
 	CONSTRAINT FK_NK_NKChuyenHo FOREIGN KEY(idNhanKhau) REFERENCES NhanKhau(idNhanKhau),
-	CONSTRAINT FK_HK_HKChuyenHo FOREIGN KEY(idHoKhau) REFERENCES NhanKhau(idHoKhau),
+	CONSTRAINT FK_HK_HKChuyenHo FOREIGN KEY(idHoKhau) REFERENCES HoKhau(idHoKhau),
 	CONSTRAINT CHK_trangThaiChuyenHoKhau CHECK (trangThai IN (N'Không duyệt', N'Đã duyệt', N'Chờ duyệt'))
 );
 
