@@ -9,17 +9,17 @@ public class HoKhau {
     private String quanHuyen;
     private String phuongXa;
     private String diaChi;
-    private Date ngayTao;
+    private Date ngayCap;
     private String trangThai;
 
-    public HoKhau(Integer idHoKhau, Integer idChuHo, String tinhThanhPho, String quanHuyen, String phuongXa, String diaChi, Date ngayTao, String trangThai) {
+    public HoKhau(Integer idHoKhau, Integer idChuHo, String tinhThanhPho, String quanHuyen, String phuongXa, String diaChi, Date ngayCap, String trangThai) {
         this.idHoKhau = idHoKhau;
         this.idChuHo = idChuHo;
         this.tinhThanhPho = tinhThanhPho;
         this.quanHuyen = quanHuyen;
         this.phuongXa = phuongXa;
         this.diaChi = diaChi;
-        this.ngayTao = ngayTao;
+        this.ngayCap = ngayCap;
         this.trangThai = trangThai;
     }
 
@@ -71,12 +71,12 @@ public class HoKhau {
         this.diaChi = diaChi;
     }
 
-    public Date getNgayTao() {
-        return ngayTao;
+    public Date getNgayCap() {
+        return ngayCap;
     }
 
-    public void setNgayTao(Date ngayTao) {
-        this.ngayTao = ngayTao;
+    public void setNgayCap(Date ngayCap) {
+        this.ngayCap = ngayCap;
     }
 
     public String getTrangThai() {

@@ -3,11 +3,30 @@ package Entity;
 import java.sql.Date;
 
 public class NhanKhauChuyenDi {
+
+    private Integer id;
     private Integer idNhanKhau;
     private Date ngayChuyenDi;
     private String noiChuyenDen;
     private String ghiChu;
     private String trangThai;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public NhanKhauChuyenDi(Integer id, Integer idNhanKhau, Date ngayChuyenDi, String noiChuyenDen, String ghiChu, String trangThai) {
+        this.id = id;
+        this.idNhanKhau = idNhanKhau;
+        this.ngayChuyenDi = ngayChuyenDi;
+        this.noiChuyenDen = noiChuyenDen;
+        this.ghiChu = ghiChu;
+        this.trangThai = trangThai;
+    }
 
     public NhanKhauChuyenDi(Integer idNhanKhau, Date ngayChuyenDi, String noiChuyenDen, String ghiChu, String trangThai) {
         this.idNhanKhau = idNhanKhau;

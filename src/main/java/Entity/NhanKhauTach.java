@@ -3,10 +3,27 @@ package Entity;
 import java.sql.Date;
 
 public class NhanKhauTach {
+    private Integer id;
     private Integer idNhanKhau;
     private Date ngayKhaiBao;
     private String ghiChu;
     private String trangThai;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public NhanKhauTach(Integer id, Integer idNhanKhau, Date ngayKhaiBao, String ghiChu, String trangThai) {
+        this.id = id;
+        this.idNhanKhau = idNhanKhau;
+        this.ngayKhaiBao = ngayKhaiBao;
+        this.ghiChu = ghiChu;
+        this.trangThai = trangThai;
+    }
 
     public NhanKhauTach(Integer idNhanKhau, Date ngayKhaiBao, String ghiChu, String trangThai) {
         this.idNhanKhau = idNhanKhau;

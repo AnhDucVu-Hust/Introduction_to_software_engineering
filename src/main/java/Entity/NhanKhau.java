@@ -1,6 +1,8 @@
 package Entity;
 
 import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 
 public class NhanKhau {
     private Integer id;
