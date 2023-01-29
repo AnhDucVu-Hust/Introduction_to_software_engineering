@@ -279,6 +279,7 @@ CREATE TABLE NguoiNopMinhChung(
 	linkMinhChung VARCHAR(255),
 	ngayDangKy DATE NOT NULL,
 	trangThai VARCHAR(15) NOT NULL,
+	thanhTich VARCHAR(30),
 	idPhanThuong INT,
 	CONSTRAINT PK_NguoiNop PRIMARY KEY(idDip, idNguoiNhan),
 	CONSTRAINT FK_idNguoiNop FOREIGN KEY(idNguoiNop) REFERENCES NhanKhau(idNhanKhau),
@@ -288,10 +289,10 @@ CREATE TABLE NguoiNopMinhChung(
 );
 
 INSERT INTO NguoiNopMinhChung(idNguoiNop, idDip, idNguoiNhan, linkMinhChung, ngayDangKy, trangThai, idPhanThuong)
-	VALUES	(21, 1, 21, NULL, '2022-09-01', N'Đã duyệt', 1),
-		(21, 2, 21, N'x', '2022-05-25', N'Đã duyệt', 3),
-		(4, 2, 17, NULL, '2022-05-26', N'Đã duyệt', 4),
-		(18, 2, 18, N'y', '2022-05-27', N'Đã duyệt', 2),
+	VALUES	(21, 1, 21, NULL, '2022-09-01', N'Đã duyệt', NULL, 1),
+		(21, 2, 21, N'x', '2022-05-25', N'Đã duyệt', N'Học sinh tiên tiến', 3),
+		(4, 2, 17, NULL, '2022-05-26', N'Đã duyệt', NULL, 4),
+		(18, 2, 18, N'y', '2022-05-27', N'Đã duyệt', N'Học sinh giỏi', 2),
 		(4, 3, 4, NULL, '2022-05-26', N'Không duyệt', NULL);
 
 CREATE TABLE taiKhoan(

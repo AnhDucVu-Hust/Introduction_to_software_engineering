@@ -304,7 +304,7 @@ public class Services {
 
     public static void themVaoBangNguoiNopMinhChung(NopMinhChung nmc){
         try {
-            String query = "INSERT INTO NguoiNopMinhChung(idNguoiNop, idDip, idNguoiNhan, linkMinhChung, ngayDangKy, trangThai, idPhanThuong) VALUES (?, ?, ?, ?, ?, ?, ?)";
+            String query = "INSERT INTO NguoiNopMinhChung(idNguoiNop, idDip, idNguoiNhan, linkMinhChung, ngayDangKy, trangThai, thanhTich, idPhanThuong) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement pstmt = Services.conn.prepareStatement(query);
 
             pstmt.setInt(1, nmc.getIdNguoiNop());
@@ -313,7 +313,8 @@ public class Services {
             pstmt.setString(4, nmc.getLinkMinhChung());
             pstmt.setDate(5, nmc.getNgayDangKy());
             pstmt.setString(6, nmc.getTrangThai());
-            pstmt.setInt(7, nmc.getIdPhanThuong());
+            pstmt.setString(7, nmc.getThanhTich());
+            pstmt.setInt(8, nmc.getIdPhanThuong());
 
             pstmt.executeQuery();
             System.out.println("them thanh cong!");
@@ -518,6 +519,24 @@ public class Services {
             System.err.println(e.getMessage());
         }
     }
+
+    public static void doiThanhTichNguoiNopMinhChung(NopMinhChung nmc, String thanhTich){
+        try {
+            String query = "UPDATE NguoiNopMinhChung SET thanhTich = ? WHERE idDip = ? AND idNguoiNhan = ?";
+
+            PreparedStatement pstmt = Services.conn.prepareStatement(query);
+
+            pstmt.setString(1, thanhTich);
+            pstmt.setInt(2, nmc.getIdDip());
+            pstmt.setInt(2, nmc.getIdNguoiNhan());
+
+            pstmt.executeQuery();
+            System.out.println("chuyen trang thai thanh cong!");
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+    }
+
 
     // các phương thức lấy thông tin từ database
 

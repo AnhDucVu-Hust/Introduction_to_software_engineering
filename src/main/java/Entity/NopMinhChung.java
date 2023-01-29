@@ -9,6 +9,8 @@ public class NopMinhChung {
     private String linkMinhChung;
     private Date ngayDangKy;
     private String trangThai;
+
+    private String thanhTich;
     private Integer idPhanThuong;
 
     public NopMinhChung(Integer idNguoiNop, Integer idDip, Integer idNguoiNhan, String linkMinhChung, Date ngayDangKy, String trangThai, Integer idPhanThuong) {
@@ -19,6 +21,25 @@ public class NopMinhChung {
         this.ngayDangKy = ngayDangKy;
         this.trangThai = trangThai;
         this.idPhanThuong = idPhanThuong;
+    }
+
+    public NopMinhChung(Integer idNguoiNop, Integer idDip, Integer idNguoiNhan, String linkMinhChung, Date ngayDangKy, String trangThai, String thanhTich, Integer idPhanThuong) {
+        this.idNguoiNop = idNguoiNop;
+        this.idDip = idDip;
+        this.idNguoiNhan = idNguoiNhan;
+        this.linkMinhChung = linkMinhChung;
+        this.ngayDangKy = ngayDangKy;
+        this.trangThai = trangThai;
+        this.thanhTich = thanhTich;
+        this.idPhanThuong = idPhanThuong;
+    }
+
+    public String getThanhTich() {
+        return thanhTich;
+    }
+
+    public void setThanhTich(String thanhTich) {
+        this.thanhTich = thanhTich;
     }
 
     public Integer getIdNguoiNop() {
