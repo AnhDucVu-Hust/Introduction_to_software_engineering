@@ -550,16 +550,20 @@ public class Services {
         return null;
     }
 
-    public static Integer queryNhanKhau(String hoTen, Date ngaySinh, String cmndCccd) {
+    public static ObservableList<NhanKhau> queryIdNhanKhau(String hoTen, Date ngaySinh, String cmndCccd) {
+        ObservableList<NhanKhau> dsNK = FXCollections.observableArrayList();
+        ArrayList<Integer> idNK = new ArrayList<>();
         if (cmndCccd != null && cmndCccd != "") {
             try {
                 String query = "SELECT idNhanKhau FROM NhanKhau WHERE cmnd_cccd = ?";
                 PreparedStatement pstmt = Services.conn.prepareStatement(query);
                 pstmt.setString(1, cmndCccd);
                 ResultSet resultSet = pstmt.executeQuery();
-                if (!resultSet.next()) {
-                    return null;
-                } else return resultSet.getInt(0);
+                while(resultSet.next()){
+                    Integer id = resultSet.getInt("idNhanKhau");
+                    NhanKhau nk = queryNhanKhauTheoId(id);
+                    dsNK.add(nk);
+                }
 
             } catch (SQLException e) {
                 System.err.println(e.getMessage());
@@ -571,15 +575,16 @@ public class Services {
                 pstmt.setString(1, hoTen);
                 pstmt.setDate(2, ngaySinh);
                 ResultSet resultSet = pstmt.executeQuery();
-                if (!resultSet.next()) {
-                    return null;
-                } else return resultSet.getInt(0);
-
+                while(resultSet.next()){
+                    Integer id = resultSet.getInt("idNhanKhau");
+                    NhanKhau nk = queryNhanKhauTheoId(id);
+                    dsNK.add(nk);
+                }
             } catch (SQLException e) {
                 System.err.println(e.getMessage());
             }
         }
-        return null;
+        return dsNK;
     }
 
     public static Integer queryIdHoKhau(NhanKhau nk){
@@ -600,7 +605,6 @@ public class Services {
 
     public static ObservableList<NhanKhau> dsGiaDinh(Integer idHoKhau){
         ObservableList<NhanKhau> gd = FXCollections.observableArrayList();
-        ArrayList<Integer> idNK = new ArrayList<>();
 
         try {
             String query = "SELECT idNhanKhau FROM NhanKhau, NhanKhau_HoKhau WHERE NhanKhau_HoKhau.idHoKhau = ? AND NhanKhau.idNhanKhau = NhanKhau_HoKhau.idNhanKhau";
@@ -617,6 +621,261 @@ public class Services {
             System.err.println(e.getMessage());
         }
         return gd;
+    }
+
+    public static DipTraoThuong queryDipTheoId(Integer id){
+        ObservableList<Integer> gd = FXCollections.observableArrayList();
+        ArrayList<Integer> idNK = new ArrayList<>();
+
+        try {
+            String query = "SELECT * FROM DipTraoThuong WHERE idDip = ?";
+            PreparedStatement pstmt = Services.conn.prepareStatement(query);
+
+            pstmt.setInt(1, id);
+            ResultSet resultSet = pstmt.executeQuery();
+            while(resultSet.next()){
+                DipTraoThuong dip = new DipTraoThuong(
+                        resultSet.getInt("idDip"),
+                        resultSet.getString("loaiDip"),
+                        resultSet.getString("tenDip "),
+                        resultSet.getDate("ngayTraoThuong"));
+                return dip;
+            }
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+        return null;
+    }
+
+    public static ObservableList<DipTraoThuong> queryDipTheoLoai(String loaiDip){
+        ObservableList<DipTraoThuong> dsDip = FXCollections.observableArrayList();
+
+        try {
+            String query = "SELECT idDip FROM DipTraoThuong WHERE loaiDip = ?";
+            PreparedStatement pstmt = Services.conn.prepareStatement(query);
+
+            pstmt.setString(1, loaiDip);
+            ResultSet resultSet = pstmt.executeQuery();
+            while(resultSet.next()){
+                Integer id = resultSet.getInt("idDip");
+                DipTraoThuong dip = queryDipTheoId(id);
+                dsDip.add(dip);
+            }
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+        return dsDip;
+    }
+
+    public static ObservableList<DipTraoThuong> queryDipTheoTen(String tenDip){
+        tenDip = "%" + tenDip + "%";
+        ObservableList<DipTraoThuong> dsDip = FXCollections.observableArrayList();
+
+        try {
+            String query = "SELECT idDip FROM DipTraoThuong WHERE tenDip LIKE ?";
+            PreparedStatement pstmt = Services.conn.prepareStatement(query);
+
+            pstmt.setString(1, tenDip);
+            ResultSet resultSet = pstmt.executeQuery();
+            while(resultSet.next()){
+                Integer id = resultSet.getInt("idDip");
+                DipTraoThuong dip = queryDipTheoId(id);
+                dsDip.add(dip);
+            }
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+        return dsDip;
+    }
+
+    public static ObservableList<DipTraoThuong> queryDipTheoTenVaLoai(String tenDip, String loaiDip){
+        tenDip = "%" + tenDip + "%";
+        ObservableList<DipTraoThuong> dsDip = FXCollections.observableArrayList();
+
+        try {
+            String query = "SELECT idDip FROM DipTraoThuong WHERE loaiDip = ? AND tenDip = ?";
+            PreparedStatement pstmt = Services.conn.prepareStatement(query);
+
+            pstmt.setString(1, tenDip);
+            pstmt.setString(2, loaiDip);
+            ResultSet resultSet = pstmt.executeQuery();
+            while(resultSet.next()){
+                Integer id = resultSet.getInt("idDip");
+                DipTraoThuong dip = queryDipTheoId(id);
+                dsDip.add(dip);
+            }
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+        return dsDip;
+    }
+
+    public static PhanThuong queryPhanThuongTheoId(Integer id){
+        try {
+            String query = "SELECT * FROM PhanThuong WHERE idPhanThuong = ?";
+            PreparedStatement pstmt = Services.conn.prepareStatement(query);
+
+            pstmt.setInt(1, id);
+            ResultSet resultSet = pstmt.executeQuery();
+            while(resultSet.next()){
+                PhanThuong pt = new PhanThuong(
+                        resultSet.getInt("idPhanThuong"),
+                        resultSet.getString("tenPhanThuong"),
+                        resultSet.getInt("giaTriPhanThuong "),
+                        resultSet.getString("ghiChu"));
+                return pt;
+            }
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+        return null;
+    }
+
+    public static ObservableList<PhanThuong> queryPhanThuongTheoTen(String tenPhanThuong){
+        ObservableList<PhanThuong> dsPT = FXCollections.observableArrayList();
+        tenPhanThuong = "%" + tenPhanThuong + "%";
+
+        try {
+            String query = "SELECT * FROM PhanThuong WHERE tenPhanThuong LIKE ?";
+            PreparedStatement pstmt = Services.conn.prepareStatement(query);
+
+            pstmt.setString(1, tenPhanThuong);
+            ResultSet resultSet = pstmt.executeQuery();
+            while(resultSet.next()){
+                Integer id = resultSet.getInt("idPhanThuong");
+                PhanThuong pt = queryPhanThuongTheoId(id);
+                dsPT.add(pt);
+            }
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+        return dsPT;
+    }
+
+    public static ObservableList<PhanThuong> queryPhanThuongTheoTenVaGiaTri(String tenPhanThuong, Integer giaTri){
+        ObservableList<PhanThuong> dsPT = FXCollections.observableArrayList();
+        tenPhanThuong = "%" + tenPhanThuong + "%";
+
+        try {
+            String query = "SELECT * FROM PhanThuong WHERE tenPhanThuong LIKE ? AND giaTri = ?";
+            PreparedStatement pstmt = Services.conn.prepareStatement(query);
+
+            pstmt.setString(1, tenPhanThuong);
+            pstmt.setInt(2, giaTri);
+            ResultSet resultSet = pstmt.executeQuery();
+            while(resultSet.next()){
+                Integer id = resultSet.getInt("idPhanThuong");
+                PhanThuong pt = queryPhanThuongTheoId(id);
+                dsPT.add(pt);
+            }
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+        return dsPT;
+    }
+
+    public static ObservableList<PhanThuong> queryPhanThuongChoDip(DipTraoThuong d){
+        ObservableList<PhanThuong> dsPT = FXCollections.observableArrayList();
+
+        try {
+            String query = "SELECT * FROM PhanThuong_DipTraoThuong WHERE idDip = ?";
+            PreparedStatement pstmt = Services.conn.prepareStatement(query);
+
+            pstmt.setInt(1, d.getIdDip());
+            ResultSet resultSet = pstmt.executeQuery();
+            while(resultSet.next()){
+                Integer id = resultSet.getInt("idPhanThuong");
+                PhanThuong pt = queryPhanThuongTheoId(id);
+                dsPT.add(pt);
+            }
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+        return dsPT;
+    }
+
+    public static ObservableList<NhanKhau> queryNguoiNhanPhanThuongTheoDip(DipTraoThuong d){
+        ObservableList<NhanKhau> dsNK = FXCollections.observableArrayList();
+
+        try {
+            String query = "SELECT * FROM NguoiNopMinhChung WHERE idDip = ?";
+            PreparedStatement pstmt = Services.conn.prepareStatement(query);
+
+            pstmt.setInt(1, d.getIdDip());
+            ResultSet resultSet = pstmt.executeQuery();
+            while(resultSet.next()){
+                Integer id = resultSet.getInt("idNguoiNhan");
+                NhanKhau nk = queryNhanKhauTheoId(id);
+                dsNK.add(nk);
+            }
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+        return dsNK;
+    }
+
+    public static ObservableList<NhanKhau> queryNguoiNhanPhanThuongTheoDipVaTrangThai(DipTraoThuong d, String trangThai){
+        ObservableList<NhanKhau> dsNK = FXCollections.observableArrayList();
+
+        try {
+            String query = "SELECT * FROM NguoiNopMinhChung WHERE idDip = ? AND trangThai = ?";
+            PreparedStatement pstmt = Services.conn.prepareStatement(query);
+
+            pstmt.setInt(1, d.getIdDip());
+            pstmt.setString(2, trangThai);
+            ResultSet resultSet = pstmt.executeQuery();
+            while(resultSet.next()){
+                Integer id = resultSet.getInt("idNguoiNhan");
+                NhanKhau nk = queryNhanKhauTheoId(id);
+                dsNK.add(nk);
+            }
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+        return dsNK;
+    }
+
+    public static ObservableList<DipTraoThuong> queryDipTheoNguoiDangKyHoacNguoiNhan(NhanKhau nk){
+        ObservableList<DipTraoThuong> dsDip = FXCollections.observableArrayList();
+
+        try {
+            String query = "SELECT * FROM NguoiNopMinhChung WHERE idNguoiNop = ? OR idNguoiNhan = ?";
+            PreparedStatement pstmt = Services.conn.prepareStatement(query);
+
+            pstmt.setInt(1, nk.getId());
+            pstmt.setInt(2, nk.getId());
+            ResultSet resultSet = pstmt.executeQuery();
+            while(resultSet.next()){
+                Integer id = resultSet.getInt("idDip");
+                DipTraoThuong dip = queryDipTheoId(id);
+                dsDip.add(dip);
+            }
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+        return dsDip;
+    }
+
+    public static ObservableList<PhanThuong> queryPhanThuongTheoNKVaDip(NhanKhau nk, DipTraoThuong dip){
+        ObservableList<PhanThuong> dsPT = FXCollections.observableArrayList();
+
+        try {
+            String query = "SELECT * FROM NguoiNopMinhChung WHERE (idNguoiNop = ? OR idNguoiNhan = ?) AND idDip = ?";
+            PreparedStatement pstmt = Services.conn.prepareStatement(query);
+
+            pstmt.setInt(1, nk.getId());
+            pstmt.setInt(2, nk.getId());
+            pstmt.setInt(3, dip.getIdDip());
+            ResultSet resultSet = pstmt.executeQuery();
+            while(resultSet.next()){
+                Integer id = resultSet.getInt("idPhanThuong");
+                PhanThuong pt = queryPhanThuongTheoId(id);
+                dsPT.add(pt);
+            }
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+        return dsPT;
     }
 
     // các phương thức xóa bản ghi khỏi database
