@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="549.0" prefWidth="790.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.login.mainHoKhauController">
+   <children>
+      <VBox fx:id="menuPane" prefHeight="549.0" prefWidth="176.0" style="-fx-background-color: #024969;">
+         <children>
+            <Button fx:id="nhanKhau" alignment="BASELINE_LEFT" mnemonicParsing="false" onMouseClicked="#nhanKhauClicked" prefHeight="106.0" prefWidth="176.0" style="-fx-background-color: #024969;" text="Nhân khẩu" textFill="WHITE">
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </Button>
+            <Button fx:id="hoKhau" alignment="BASELINE_LEFT" mnemonicParsing="false" onMouseClicked="#hoKhauClicked" prefHeight="106.0" prefWidth="176.0" style="-fx-background-color: #000000;" text="Hộ khẩu" textFill="WHITE">
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </Button>
+            <Button fx:id="phanThuong" alignment="BASELINE_LEFT" mnemonicParsing="false" onMouseClicked="#phanThuongClicked" prefHeight="106.0" prefWidth="176.0" style="-fx-background-color: #024969;" text="Phần thưởng" textFill="WHITE">
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </Button>
+            <Button fx:id="thongKe" alignment="BASELINE_LEFT" mnemonicParsing="false" onMouseClicked="#thongKeClicked" prefHeight="106.0" prefWidth="176.0" style="-fx-background-color: #024969;" text="Thống kê" textFill="WHITE">
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </Button>
+            <Pane prefHeight="72.0" prefWidth="235.0" style="-fx-border-color: #transparent;">
+               <children>
+                  <Button fx:id="dangXuat" layoutX="54.0" layoutY="21.0" mnemonicParsing="false" onMouseClicked="#dangXuatClicked" style="-fx-background-color: #00000;" text="Đăng xuất" />
+               </children>
+            </Pane>
+         </children>
+      </VBox>
+      <GridPane layoutX="182.0" layoutY="108.0" prefHeight="291.0" prefWidth="418.0" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="182.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="108.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="182.8" minHeight="10.0" prefHeight="39.000024414062494" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="182.8" minHeight="10.0" prefHeight="34.20000610351563" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="376.6000274658203" minHeight="10.0" prefHeight="365.3999938964844" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <TextField prefHeight="26.0" prefWidth="608.0" promptText="Search" GridPane.rowIndex="1" />
+            <HBox fx:id="barHK" prefHeight="51.0" prefWidth="608.0" spacing="10.0">
+               <children>
+                  <Button fx:id="btnThem" mnemonicParsing="false" onMouseClicked="#themHoKhauClicked" prefHeight="28.0" prefWidth="102.0" style="-fx-background-color: #024969; -fx-font-size: 12;" text="Thêm mới" textFill="WHITE">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btnSua" mnemonicParsing="false" onMouseClicked="#suaClicked" prefHeight="28.0" prefWidth="102.0" style="-fx-background-color: #024969; -fx-font-size: 12;" text="Sửa" textFill="WHITE">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btnXoa" mnemonicParsing="false" onMouseClicked="#xoaClicked" prefHeight="28.0" prefWidth="102.0" style="-fx-background-color: #024969; -fx-font-size: 12;" text="Xóa" textFill="WHITE">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btnChiTiet" mnemonicParsing="false" onMouseClicked="#xemChiTietClicked" prefHeight="28.0" prefWidth="102.0" style="-fx-background-color: #024969; -fx-font-size: 12;" text="Xem chi tiết" textFill="WHITE">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+            <TableView fx:id="tbHoKhau" prefHeight="374.0" prefWidth="608.0" style="-fx-background-color: #3;" GridPane.rowIndex="2">
+               <columns>
+                  <TableColumn fx:id="tbIDHoKhau" prefWidth="103.199951171875" text="ID Hộ Khẩu" />
+                  <TableColumn fx:id="tbIDChuHo" prefWidth="152.0" text="ID Chủ hộ" />
+                  <TableColumn fx:id="tbNgayTao" minWidth="0.0" prefWidth="162.40011596679688" text="Ngày tạo" />
+                  <TableColumn fx:id="tbDiaChi" minWidth="0.0" prefWidth="195.99993896484375" text="Địa chỉ" />
+               </columns>
+            </TableView>
+         </children>
+      </GridPane>
+      <Pane fx:id="pgnBackground" layoutX="176.0" layoutY="22.0" prefHeight="70.0" prefWidth="617.0" style="-fx-background-color: #024969;">
+         <children>
+            <Label fx:id="title" layoutX="14.0" layoutY="12.0" prefHeight="47.0" prefWidth="220.0" text="Hộ khẩu" textFill="WHITE">
+               <font>
+                  <Font size="23.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

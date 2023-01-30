@@ -4,6 +4,8 @@ module main.login {
     requires java.sql;
 
 
-    opens main.login to javafx.fxml;
+    opens main.login to javafx.fxml,javafx.base;
+    opens Entity to javafx.fxml;
     exports main.login;
+    exports Entity;
 }

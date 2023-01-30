@@ -34,7 +34,7 @@ public class LoginController {
                 //stage.setMaximized(true);
                 stage.close();
                 stage.setTitle("Danh sách tài khoản");
-                Scene scene = new Scene(FXMLLoader.load(getClass().getResource("Main.fxml")));
+                Scene scene = new Scene(FXMLLoader.load(getClass().getResource("mainNhanKhau.fxml")));
                 stage.setScene(scene);
                 stage.show();
             }

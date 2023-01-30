@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="434.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.login.danhSachLoaiQuaController">
+   <children>
+      <TableView fx:id="tbQua" layoutY="54.0" prefHeight="294.0" prefWidth="434.0">
+        <columns>
+          <TableColumn fx:id="tbID" prefWidth="81.60003507137299" text="ID" />
+          <TableColumn fx:id="tbTen" prefWidth="140.00000762939453" text="Tên" />
+            <TableColumn fx:id="tbGiaTri" prefWidth="104.0" text="Giá trị" />
+            <TableColumn fx:id="tbGhiChu" prefWidth="111.199951171875" text="Ghi chú" />
+        </columns>
+      </TableView>
+      <Text layoutX="116.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Danh sách các loại quà">
+         <font>
+            <Font name="Microsoft Tai Le" size="20.0" />
+         </font>
+      </Text>
+      <Button fx:id="btnGuiThongTin" layoutX="115.0" layoutY="358.0" mnemonicParsing="false" onMouseClicked="#guiThongTinClicked" prefHeight="28.0" prefWidth="89.0" style="-fx-background-color: #830136FF; -fx-font-size: 12;" text="Gửi thông tin" textFill="WHITE" />
+      <Button fx:id="btnHuy" layoutX="227.0" layoutY="358.0" mnemonicParsing="false" onMouseClicked="#huyClicked" prefHeight="28.0" prefWidth="90.0" style="-fx-background-color: #830136FF; -fx-font-size: 12;" text="Hủy" textFill="WHITE" />
+   </children>
+</AnchorPane>

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="549.0" prefWidth="790.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.login.themHoKhauController">
+   <children>
+      <VBox fx:id="menuPane" prefHeight="549.0" prefWidth="176.0" style="-fx-background-color: #024969;">
+         <children>
+            <Button fx:id="nhanKhau" alignment="BASELINE_LEFT" mnemonicParsing="false" onMouseClicked="#nhanKhauClicked" prefHeight="106.0" prefWidth="176.0" style="-fx-background-color: #024969;" text="Nhân khẩu" textFill="WHITE">
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </Button>
+            <Button fx:id="hoKhau" alignment="BASELINE_LEFT" mnemonicParsing="false" onMouseClicked="#hoKhauClicked" prefHeight="106.0" prefWidth="176.0" style="-fx-background-color: #000000;" text="Hộ khẩu" textFill="WHITE">
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </Button>
+            <Button fx:id="phanThuong" alignment="BASELINE_LEFT" mnemonicParsing="false" onMouseClicked="#phanThuongClicked" prefHeight="106.0" prefWidth="176.0" style="-fx-background-color: #024969;" text="Phần thưởng" textFill="WHITE">
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </Button>
+            <Button fx:id="thongKe" alignment="BASELINE_LEFT" mnemonicParsing="false" onMouseClicked="#thongKeClicked" prefHeight="106.0" prefWidth="176.0" style="-fx-background-color: #024969;" text="Thống kê" textFill="WHITE">
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </Button>
+            <Pane prefHeight="72.0" prefWidth="235.0" style="-fx-border-color: #transparent;">
+               <children>
+                  <Button fx:id="dangXuat" layoutX="54.0" layoutY="21.0" mnemonicParsing="false" onMouseClicked="#dangXuatClicked" style="-fx-background-color: #00000;" text="Đăng xuất" />
+               </children>
+            </Pane>
+         </children>
+      </VBox>
+      <GridPane layoutX="182.0" layoutY="108.0" prefHeight="291.0" prefWidth="418.0" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="182.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="108.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="182.8" minHeight="10.0" prefHeight="39.000024414062494" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="182.8" minHeight="10.0" prefHeight="34.20000610351563" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="376.6000274658203" minHeight="10.0" prefHeight="365.3999938964844" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <StackPane fx:id="tuongTacChinhNK" prefHeight="76.0" prefWidth="616.0" GridPane.rowIndex="2">
+               <children>
+                  <Pane fx:id="themNhanKhau" prefHeight="151.0" prefWidth="608.0">
+                     <children>
+                        <TextField fx:id="hoTen" layoutX="94.0" layoutY="16.0" prefHeight="25.0" prefWidth="199.0" promptText="NGUYỄN VĂN A" />
+                        <Text layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Họ tên chủ hộ (*)" />
+                        <Text layoutX="-2.0" layoutY="175.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tỉnh/Thành phố(*)" />
+                        <TextField fx:id="tinhThanhPho" layoutX="93.0" layoutY="158.0" prefHeight="25.0" prefWidth="199.0" promptText="Hà Nội" />
+                        <Text layoutX="312.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID Chủ hộ(*)" />
+                        <TextField fx:id="idChuHo" layoutX="412.0" layoutY="16.0" prefHeight="25.0" prefWidth="182.0" promptText="012345678901" />
+                        <Text layoutX="1.0" layoutY="193.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+                        <Button fx:id="guiThongTin" layoutX="194.0" layoutY="324.0" mnemonicParsing="false" onMouseClicked="#guiThongTinClicked" prefHeight="28.0" prefWidth="96.0" style="-fx-background-color: #024969; -fx-font-size: 12;" text="Gửi thông tin" textFill="WHITE" />
+                        <Text layoutX="177.0" layoutY="315.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Các trường có dấu (*) là không được để trống!" />
+                        <Button fx:id="quayLai" layoutX="312.0" layoutY="324.0" mnemonicParsing="false" onMouseClicked="#quayLaiThemNKClicked" prefHeight="28.0" prefWidth="96.0" style="-fx-background-color: #024969; -fx-font-size: 12;" text="Quay lại" textFill="WHITE" />
+                        <TextField fx:id="idHoKhau" layoutX="412.0" layoutY="89.0" prefHeight="25.0" prefWidth="182.0" promptText="012345678901" />
+                        <Text layoutX="312.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID Hộ khẩu(*)" />
+                        <Text layoutX="310.0" layoutY="175.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quận/Huyện(*)" />
+                        <TextField fx:id="quanHuyen" layoutX="410.0" layoutY="158.0" prefHeight="25.0" prefWidth="182.0" promptText="Hai Bà Trưng" />
+                        <Text layoutX="-2.0" layoutY="242.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phường/Xã(*)" />
+                        <TextField fx:id="phuongXa" layoutX="93.0" layoutY="225.0" prefHeight="25.0" prefWidth="199.0" promptText="Đồng Tâm" />
+                        <Text layoutX="310.0" layoutY="242.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Địa chỉ(*)" />
+                        <TextField fx:id="diaChi" layoutX="410.0" layoutY="225.0" prefHeight="25.0" prefWidth="182.0" promptText="60 ngõ 402 Bạch Mai" />
+                        <Text layoutX="-2.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ngày cấp (*)" />
+                        <DatePicker fx:id="ngayCap" layoutX="93.0" layoutY="89.0" prefHeight="25.0" prefWidth="199.0" promptText="2023-01-01" />
+                     </children>
+                  </Pane>
+               </children>
+            </StackPane>
+            <TextField prefHeight="26.0" prefWidth="608.0" promptText="Search" GridPane.rowIndex="1" />
+            <HBox fx:id="barHK" prefHeight="51.0" prefWidth="608.0" spacing="10.0">
+               <children>
+                  <Button fx:id="btnThemHK" mnemonicParsing="false" onMouseClicked="#themHoKhauClicked" prefHeight="28.0" prefWidth="102.0" style="-fx-background-color: #024969; -fx-font-size: 12;" text="Thêm mới" textFill="WHITE">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btnSuaHK" mnemonicParsing="false" onMouseClicked="#khaiTuClicked" prefHeight="28.0" prefWidth="102.0" style="-fx-background-color: #024969; -fx-font-size: 12;" text="Sửa" textFill="WHITE" visible="false">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btnXoaHK" mnemonicParsing="false" prefHeight="28.0" prefWidth="102.0" style="-fx-background-color: #024969; -fx-font-size: 12;" text="Xóa" textFill="WHITE" visible="false">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+      </GridPane>
+      <Pane fx:id="pgnBackground" layoutX="176.0" layoutY="22.0" prefHeight="70.0" prefWidth="617.0" style="-fx-background-color: #024969;">
+         <children>
+            <Label fx:id="title" layoutX="14.0" layoutY="13.0" prefHeight="47.0" prefWidth="220.0" text="Thêm mới hộ khẩu" textFill="WHITE">
+               <font>
+                  <Font size="23.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

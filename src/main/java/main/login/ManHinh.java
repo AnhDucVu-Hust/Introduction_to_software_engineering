@@ -337,7 +337,7 @@ public class ManHinh implements Initializable {
         gioiTinhNK.getItems().add("Nam");
         gioiTinhNK.getItems().add("Nữ");
         Connection conn = MyConnection.conDB();
-        String query = "SELECT idNhanKhau, hoTen,trangThai,biDanh from nhankhau";
+        String query = "SELECT idNhanKhau, hoTen,trangThai,ngaySinh from nhankhau";
         try {
             PreparedStatement pstmt = conn.prepareStatement(query);
             ResultSet resultSet = pstmt.executeQuery();
