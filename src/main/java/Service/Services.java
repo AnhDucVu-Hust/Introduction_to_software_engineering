@@ -680,7 +680,22 @@ public class Services {
         }
         return 0;
     }
+    public static Integer queryIdHoKhauCuaNhanKhau(Integer idNhanKhau){
+        try {
+            String query = "SELECT idHoKhau FROM `nhankhau_hokhau`\n" +
+                    "WHERE idNhanKhau=? ";
+            PreparedStatement pstmt = Services.conn.prepareStatement(query);
 
+            pstmt.setInt(1, idNhanKhau);
+            ResultSet resultSet = pstmt.executeQuery();
+            if (!resultSet.next()) {
+                return 0;
+            } else return resultSet.getInt("idHoKhau");
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+        return 0;
+    }
     public static ObservableList<NhanKhau> dsGiaDinh(Integer idHoKhau){
         ObservableList<NhanKhau> gd = FXCollections.observableArrayList();
         ArrayList<Integer> idNK = new ArrayList<>();

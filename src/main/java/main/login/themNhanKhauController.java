@@ -129,7 +129,7 @@ public class themNhanKhauController implements Initializable {
         try {
             Connection conn = MyConnection.conDB();
             String query = "INSERT INTO NhanKhau(hoTen, biDanh, ngaySinh, noiSinh, gioiTinh, nguyenQuan, danToc, tonGiao, quocTich, ngheNghiep, noiLamViec, cmnd_cccd, chuyenDenNgay, noiThuongTruTruoc, trangThai)\n" +
-                    "\tVALUES\t(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, N'Thuong tru');\n";
+                    "\tVALUES\t(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, N'Thuong tru');\n ";
             PreparedStatement pstmt = conn.prepareStatement(query);
 
             String hoTenStr = hoTen.getText().toString();

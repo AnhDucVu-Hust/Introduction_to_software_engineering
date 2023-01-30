@@ -187,6 +187,31 @@ public class mainNhanKhauController implements Initializable {
 
     }
     @FXML
+    void tamTruClicked(MouseEvent event){
+
+    }
+    @FXML
+    void tamVangClicked(MouseEvent event) throws IOException{
+        NhanKhau nk=tbNhanKhau.getSelectionModel().getSelectedItem();
+        if (nk!=null) {
+            Node node = (Node) event.getSource();
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/main/login/tamVang.fxml"));
+            Parent tamVang = loader.load();
+            tamVangController controller = loader.getController();
+            controller.setNhanKhau(nk);
+            Stage stage = new Stage();
+            stage.setScene(new Scene(tamVang));
+            stage.show();
+        }
+        else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setHeaderText(null);
+            alert.setContentText("Chưa nhân khẩu nào được chọn để khai báo tạm vắng");
+            alert.showAndWait();
+        }
+    }
+    @FXML
     private void refreshTable() {
         Connection conn = MyConnection.conDB();
         String query = "SELECT * from `nhankhau`";

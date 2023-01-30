@@ -82,7 +82,12 @@
                         <Font size="10.0" />
                      </font>
                   </Button>
-                  <Button fx:id="btnTamTru" mnemonicParsing="false" prefHeight="28.0" prefWidth="102.0" style="-fx-background-color: #3F2B63; -fx-font-size: 12;" text="Tạm trú" textFill="WHITE">
+                  <Button fx:id="btnTamTru" mnemonicParsing="false" onMouseClicked="#tamTruClicked" prefHeight="28.0" prefWidth="102.0" style="-fx-background-color: #3F2B63; -fx-font-size: 12;" text="Tạm trú" textFill="WHITE">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btnTamVang" mnemonicParsing="false" onMouseClicked="#tamVangClicked" prefHeight="28.0" prefWidth="102.0" style="-fx-background-color: #3F2B63; -fx-font-size: 12;" text="Tạm vắng" textFill="WHITE">
                      <font>
                         <Font size="10.0" />
                      </font>
