@@ -1,6 +1,8 @@
 package Entity;
 
 import java.sql.Date;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class NhanKhauQuaDoi {
     private Integer idNguoiMat;
@@ -10,13 +12,13 @@ public class NhanKhauQuaDoi {
     private String ghiChu;
     private String trangThai;
 
-    public NhanKhauQuaDoi(Integer idNguoiMat, Integer idNguoiKhai, Date ngayKhai, Date ngayMat, String ghiChu, String trangThai) {
+    public NhanKhauQuaDoi(Integer idNguoiMat, Integer idNguoiKhai,Date ngayKhai, Date ngayMat, String ghiChu) {
         this.idNguoiMat = idNguoiMat;
         this.idNguoiKhai = idNguoiKhai;
         this.ngayKhai = ngayKhai;
         this.ngayMat = ngayMat;
         this.ghiChu = ghiChu;
-        this.trangThai = trangThai;
+        this.trangThai = "Qua doi";
     }
 
     public Integer getIdNguoiMat() {

@@ -1,10 +1,12 @@
 package main.login;
+import Entity.HoKhau;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -102,30 +104,23 @@ public class mainNhanKhauController implements Initializable {
 
     @FXML
     void khaiTuClicked(MouseEvent event) throws IOException {
-        try {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Khai tử");
-            alert.setHeaderText("Bạn chắc chắn khai tử cho nhân khẩu này?");
-            Optional<ButtonType> option = alert.showAndWait();
-
-            if (option.get() == null) {
-
-            } else if (option.get() == ButtonType.OK) {
-                NhanKhau nk = tbNhanKhau.getSelectionModel().getSelectedItem();
-                Connection conn = MyConnection.conDB();
-                String query = "UPDATE `nhankhau` SET trangThai='Qua doi' WHERE idNhanKhau = " + nk.getId();
-                PreparedStatement preparedStatement = conn.prepareStatement(query);
-                preparedStatement.execute();
-                refreshTable();
-                tbID.setCellValueFactory(new PropertyValueFactory<>("id"));
-                tbTen.setCellValueFactory(new PropertyValueFactory<>("hoTen"));
-                tbCCCD.setCellValueFactory(new PropertyValueFactory<>("cmnd_cccd"));
-                tbTrangThai.setCellValueFactory(new PropertyValueFactory<>("trangThai"));
-            } else if (option.get() == ButtonType.CANCEL) {
-
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(themNhanKhauController.class.getName()).log(Level.SEVERE,null,ex);
+        NhanKhau nk=tbNhanKhau.getSelectionModel().getSelectedItem();
+        if (nk!=null) {
+            Node node = (Node) event.getSource();
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/main/login/khaiTu.fxml"));
+            Parent khaiTu = loader.load();
+            khaiTuController controller = loader.getController();
+            controller.setNhanKhau(nk);
+            Stage stage = new Stage();
+            stage.setScene(new Scene(khaiTu));
+            stage.show();
+        }
+        else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setHeaderText(null);
+            alert.setContentText("Chưa nhân khẩu nào được chọn để sửa");
+            alert.showAndWait();
         }
     }
 

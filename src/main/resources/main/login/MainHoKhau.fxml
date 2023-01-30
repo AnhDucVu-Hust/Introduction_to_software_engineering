@@ -56,7 +56,7 @@
             <RowConstraints maxHeight="376.6000274658203" minHeight="10.0" prefHeight="365.3999938964844" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <TextField prefHeight="26.0" prefWidth="608.0" promptText="Search" GridPane.rowIndex="1" />
+            <TextField fx:id="search" onKeyPressed="#timKiem" prefHeight="26.0" prefWidth="608.0" promptText="Search" GridPane.rowIndex="1" />
             <HBox fx:id="barHK" prefHeight="51.0" prefWidth="608.0" spacing="10.0">
                <children>
                   <Button fx:id="btnThem" mnemonicParsing="false" onMouseClicked="#themHoKhauClicked" prefHeight="28.0" prefWidth="102.0" style="-fx-background-color: #024969; -fx-font-size: 12;" text="Thêm mới" textFill="WHITE">

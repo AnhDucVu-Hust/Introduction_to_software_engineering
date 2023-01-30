@@ -12,6 +12,8 @@ import javafx.scene.Scene;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -19,6 +21,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.security.Key;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -139,7 +142,46 @@ public class mainHoKhauController implements Initializable {
     void thongKeClicked(MouseEvent event) {
 
     }
+    @FXML
+    private TextField search;
+    @FXML
+    void timKiem(KeyEvent e){
+        search.setOnAction(actionEvent -> {
+            try {
+                if (e.getCode().equals(KeyCode.ENTER)) {
+                    String tuKhoa = search.getText().toString();
+                    System.out.println(tuKhoa);
+                    Connection conn = MyConnection.conDB();
+                    String query = "SELECT * FROM `hokhau`\n" +
+                            "WHERE idHoKhau=" + tuKhoa + "\n" +
+                            "OR idChuHo=" + tuKhoa + "\n" +
+                            "OR ngayTao=" + tuKhoa;
+                    PreparedStatement preparedStatement = conn.prepareStatement(query);
+                    ResultSet resultSet = preparedStatement.executeQuery();
+                    ObservableList<HoKhau> hoKhaus = FXCollections.observableArrayList();
+                    while (resultSet.next()) {
+                        String diachi = resultSet.getString("diaChi") + "-" + resultSet.getString("phuongXa") + "-" + resultSet.getString("quanHuyen") + "-" + resultSet.getString("tinhThanhPho");
+                        hoKhaus.add(new HoKhau(resultSet.getInt("idHoKhau"),
+                                resultSet.getInt("idChuHo"),
+                                resultSet.getString("tinhThanhPho"),
+                                resultSet.getString("quanHuyen"),
+                                resultSet.getString("phuongXa"),
+                                diachi,
+                                resultSet.getDate("ngayCap"),
+                                resultSet.getString("trangThai")
+                        ));
+                    }
+                    tbHoKhau.setItems(hoKhaus);
+                    tbIDHoKhau.setCellValueFactory(new PropertyValueFactory<>("idHoKhau"));
+                    tbIDChuHo.setCellValueFactory(new PropertyValueFactory<>("idChuHo"));
+                    tbDiaChi.setCellValueFactory(new PropertyValueFactory<>("diaChi"));
+                    tbNgayTao.setCellValueFactory(new PropertyValueFactory<>("ngayTao"));
+                }
+            } catch (SQLException ex) {
 
+        }
+        });
+    }
     @FXML
     void xemChiTietClicked(MouseEvent event) throws IOException {
         HoKhau hk=tbHoKhau.getSelectionModel().getSelectedItem();
