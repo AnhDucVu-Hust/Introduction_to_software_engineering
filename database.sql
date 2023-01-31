@@ -288,12 +288,12 @@ CREATE TABLE NguoiNopMinhChung(
 	CONSTRAINT CHK_trangThaiNopMinhChung CHECK (trangThai IN (N'Không duyệt', N'Đã duyệt', N'Chờ duyệt'))
 );
 
-INSERT INTO NguoiNopMinhChung(idNguoiNop, idDip, idNguoiNhan, linkMinhChung, ngayDangKy, trangThai, idPhanThuong)
+INSERT INTO NguoiNopMinhChung(idNguoiNop, idDip, idNguoiNhan, linkMinhChung, ngayDangKy, trangThai, thanhTich, idPhanThuong)
 	VALUES	(21, 1, 21, NULL, '2022-09-01', N'Đã duyệt', NULL, 1),
 		(21, 2, 21, N'x', '2022-05-25', N'Đã duyệt', N'Học sinh tiên tiến', 3),
 		(4, 2, 17, NULL, '2022-05-26', N'Đã duyệt', NULL, 4),
 		(18, 2, 18, N'y', '2022-05-27', N'Đã duyệt', N'Học sinh giỏi', 2),
-		(4, 3, 4, NULL, '2022-05-26', N'Không duyệt', NULL);
+		(4, 3, 4, NULL, '2022-05-26', N'Không duyệt', NULL, NULL);
 
 CREATE TABLE taiKhoan(
 	idNhanKhau INT NOT NULL,
