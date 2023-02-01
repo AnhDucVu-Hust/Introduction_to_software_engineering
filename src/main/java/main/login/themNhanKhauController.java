@@ -176,6 +176,15 @@ public class themNhanKhauController implements Initializable {
             pstmt.setString(14, noiThuongTruTruocStr);
             pstmt.execute();
             System.out.println("them thanh cong!");
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText(null);
+            alert.setContentText("Thêm thành công");
+            alert.showAndWait();
+            Node node = (Node) event.getSource();
+            Stage stage = (Stage) node.getScene().getWindow();
+            Scene scene = new Scene(FXMLLoader.load(getClass().getResource("mainNhanKhau.fxml")));
+            stage.setScene(scene);
+            stage.show();
         } catch(Exception e){
             System.err.println(e.getMessage());
             Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -229,6 +238,10 @@ public class themNhanKhauController implements Initializable {
         Scene scene = new Scene(FXMLLoader.load(getClass().getResource("mainNhanKhau.fxml")));
         stage.setScene(scene);
         stage.show();
+
+    }
+    @FXML
+    void quayLaiThemNKClicked(MouseEvent event){
 
     }
 

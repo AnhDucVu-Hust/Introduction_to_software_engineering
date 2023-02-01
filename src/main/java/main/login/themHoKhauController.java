@@ -132,6 +132,11 @@ public class themHoKhauController {
                 pstmt.setDate(7, Date.valueOf(ngayCapDate));
                 pstmt.execute();
                 System.out.println("them thanh cong!");
+                Alert alert1 = new Alert(Alert.AlertType.WARNING);
+                alert1.setHeaderText(null);
+                alert1.setContentText("Thêm thành công");
+                alert1.showAndWait();
+
             }
         } catch(Exception e){
                 System.err.println(e.getMessage());
@@ -183,7 +188,10 @@ public class themHoKhauController {
     void themHoKhauClicked(MouseEvent event) {
 
     }
+    @FXML
+    void quayLaiThemNKClicked(MouseEvent event){
 
+    }
     @FXML
     void thongKeClicked(MouseEvent event) {
 

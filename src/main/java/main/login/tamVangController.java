@@ -69,20 +69,26 @@ public class tamVangController implements Initializable {
 
             } else if (option.get() == ButtonType.OK) {
                 Connection conn = MyConnection.conDB();
-                String query = "UPDATE `nhankhau` SET trangThai='Qua doi' WHERE idNhanKhau = ?;\n" +
-                        "INSERT INTO `nhankhautamvang`\n" +
-                        "VALUES (?,?,?,?,?,?,?) ; ";
+                String query = "UPDATE `nhankhau` \n" +
+                        "SET trangThai='Tam vang' \n" +
+                        "WHERE idNhanKhau = ?; \n";
                 PreparedStatement pstmt = conn.prepareStatement(query);
 
                 pstmt.setInt(1, nhanKhau.getId());
-                pstmt.setInt(2,idHoKhauInt);
-                pstmt.setInt(3,nhanKhau.getId());
-                pstmt.setString(4, noiTamTrustr);
-                pstmt.setDate(5,ngayDiDate);
-                pstmt.setDate(6,ngayVeDate);
-                pstmt.setString(7,lidoStr);
-                pstmt.setString(8,"Tam vang");
                 pstmt.execute();
+                String query1="INSERT INTO `nhankhautamvang` (idNhanKhau,noiTamTru,tuNgay,denNgay,lyDo,trangThai)\n" +
+                        "VALUES (?,?,?,?,?,?) ;";
+                pstmt=conn.prepareStatement(query1);
+                pstmt.setInt(1,nhanKhau.getId());
+                pstmt.setString(2, noiTamTrustr);
+                pstmt.setDate(3,ngayDiDate);
+                pstmt.setDate(4,ngayVeDate);
+                pstmt.setString(5,lidoStr);
+                pstmt.setString(6,"Tam vang");
+                pstmt.execute();
+                Node node = (Node) event.getSource();
+                Stage stage = (Stage) node.getScene().getWindow();
+                stage.close();;
             } else if (option.get() == ButtonType.CANCEL) {
 
             }
