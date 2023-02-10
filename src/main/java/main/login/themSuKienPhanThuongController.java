@@ -159,6 +159,7 @@ public class themSuKienPhanThuongController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         loaiDip.getItems().add("Hoc sinh gioi");
+        loaiDip.setValue("Hoc sinh gioi");
         loaiDip.getItems().add("Dac biet");
     }
 }

@@ -1,7 +1,9 @@
 package main.login;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -13,11 +15,23 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.Optional;
+import java.util.ResourceBundle;
 
-public class themHoKhauController {
+public class themHoKhauController implements Initializable {
+    public void setIdNhanKhauAccount(int idNhanKhauAccount) {
+        this.idNhanKhauAccount = idNhanKhauAccount;
+    }
+
+    public void setQuyen(String quyen) {
+        this.quyen = quyen;
+    }
+
+    private int idNhanKhauAccount;
+    private String quyen;
 
     @FXML
     private HBox barHK;
@@ -197,4 +211,8 @@ public class themHoKhauController {
 
     }
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        Platform.runLater(()->{});
+    }
 }

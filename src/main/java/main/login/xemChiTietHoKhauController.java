@@ -3,12 +3,15 @@ package main.login;
 import Entity.HoKhau;
 import Entity.HoKhauNhanKhau;
 import Entity.NhanKhau;
+import Service.Services;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -26,6 +29,17 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class xemChiTietHoKhauController implements Initializable {
+    public void setQuyen(String quyen) {
+        this.quyen = quyen;
+    }
+
+    public void setIdNhanKhauAccount(int idNhanKhauAccount) {
+        this.idNhanKhauAccount = idNhanKhauAccount;
+    }
+
+    private String quyen;
+    private int idNhanKhauAccount;
+
     private HoKhau hokhau;
     public void set_hk(HoKhau hk){
         this.hokhau=hk;
@@ -100,17 +114,37 @@ public class xemChiTietHoKhauController implements Initializable {
     @FXML
     void nhanKhauClicked(MouseEvent event) throws IOException {
         Node node = (Node) event.getSource();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/main/login/mainNhanKhau.fxml"));
+        Parent mainNK = null;
+        try {
+            mainNK = loader.load();
+        } catch (IOException ex) {
+            throw new RuntimeException(ex);
+        }
+        mainNhanKhauController controller = loader.getController();
+        controller.setQuyen(quyen);
+        controller.setIdNhanKhau(idNhanKhauAccount);
         Stage stage = (Stage) node.getScene().getWindow();
-        Scene scene = new Scene(FXMLLoader.load(getClass().getResource("mainNhanKhau.fxml")));
-        stage.setScene(scene);
+        stage.setScene(new Scene(mainNK));
         stage.show();
     }
     @FXML
     void hoKhauClicked(MouseEvent event) throws  IOException {
         Node node = (Node) event.getSource();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/main/login/mainHoKhau.fxml"));
+        Parent mainHK = null;
+        try {
+            mainHK = loader.load();
+        } catch (IOException ex) {
+            throw new RuntimeException(ex);
+        }
+        mainHoKhauController controller = loader.getController();
+        controller.setQuyen(quyen);
+        controller.setIdNhanKhau(idNhanKhauAccount);
         Stage stage = (Stage) node.getScene().getWindow();
-        Scene scene = new Scene(FXMLLoader.load(getClass().getResource("mainHoKhau.fxml")));
-        stage.setScene(scene);
+        stage.setScene(new Scene(mainHK));
         stage.show();
     }
     @FXML
@@ -127,8 +161,17 @@ public class xemChiTietHoKhauController implements Initializable {
     }
 
     @FXML
-    void themHoKhauClicked(MouseEvent event) {
-
+    void themHoKhauClicked(MouseEvent event) throws IOException {
+        Node node = (Node) event.getSource();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/main/login/themHoKhau.fxml"));
+        Parent themHoKhau = loader.load();
+        themHoKhauController controller = loader.getController();
+        controller.setIdNhanKhauAccount(idNhanKhauAccount);
+        controller.setQuyen(quyen);
+        Stage stage = (Stage) node.getScene().getWindow();
+        stage.setScene(new Scene(themHoKhau));
+        stage.show();
     }
 
     @FXML
@@ -185,7 +228,7 @@ public class xemChiTietHoKhauController implements Initializable {
         String query = "SELECT idNhanKhau, hoTen,cmnd_cccd,quanHeChuHo\n" +
                 "FROM `nhankhau_hokhau` nkhk, `nhankhau` nk\n" +
                 "where nkhk.idNhanKhau=nk.idNhanKhau \n" +
-                "and nkhk.idHoKhau=19\n";
+                "and nkhk.idHoKhau="+hokhau.getIdHoKhau();
         try {
             PreparedStatement pstmt = conn.prepareStatement(query);
             ResultSet resultSet = pstmt.executeQuery();
@@ -208,12 +251,13 @@ public class xemChiTietHoKhauController implements Initializable {
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        Platform.runLater(()-> {
             refreshTable();
             tbID.setCellValueFactory(new PropertyValueFactory<>("idNhanKhau"));
             tbHoTen.setCellValueFactory(new PropertyValueFactory<>("hoTen"));
             tbCccd.setCellValueFactory(new PropertyValueFactory<>("cmnd_cccd"));
             tbQuanHeChuHo.setCellValueFactory(new PropertyValueFactory<>("quanHeChuHo"));
-
+        });
         }
 
 }

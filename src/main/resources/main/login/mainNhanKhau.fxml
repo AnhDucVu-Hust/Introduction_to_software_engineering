@@ -59,7 +59,7 @@
          <children>
             <StackPane fx:id="tuongTacChinhNK" prefHeight="76.0" prefWidth="616.0" GridPane.rowIndex="2">
                <children>
-                  <TableView fx:id="tbNhanKhau" prefHeight="374.0" prefWidth="608.0" style="-fx-background-color: #3;">
+                  <TableView fx:id="tbNhanKhau" onMouseClicked="#xemChiTiet" prefHeight="374.0" prefWidth="608.0" style="-fx-background-color: #3;">
                      <columns>
                         <TableColumn fx:id="tbID" prefWidth="75.0" text="ID" />
                         <TableColumn fx:id="tbTen" prefWidth="222.4000244140625" text="Họ và tên" />

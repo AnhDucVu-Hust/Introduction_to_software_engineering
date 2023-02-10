@@ -23,7 +23,16 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class suaHoKhauController implements Initializable {
+    public void setIdNhanKhauAccount(int idNhanKhauAccount) {
+        this.idNhanKhauAccount = idNhanKhauAccount;
+    }
 
+    public void setQuyen(String quyen) {
+        this.quyen = quyen;
+    }
+
+    private int idNhanKhauAccount;
+    private String quyen;
     @FXML
     private HBox barHK;
 

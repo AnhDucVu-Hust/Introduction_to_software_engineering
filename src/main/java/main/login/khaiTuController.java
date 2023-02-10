@@ -63,22 +63,34 @@ public class khaiTuController implements Initializable{
 
             } else if (option.get() == ButtonType.OK) {
                 Connection conn = MyConnection.conDB();
-                String query = "UPDATE `nhankhau` SET trangThai='Qua doi' WHERE idNhanKhau = ?;\n" +
-                        "INSERT INTO `nhankhauquadoi`\n" +
-                        "VALUES (?,?,?,?,?,?) ";
+                String query = "UPDATE `nhankhau` SET trangThai='Qua doi' WHERE idNhanKhau = ?";
+                String query1="INSERT INTO `nhankhauquadoi` VALUES (?,?,?,?,?,?)";
                 PreparedStatement pstmt = conn.prepareStatement(query);
                 pstmt.setInt(1, nhanKhau.getId());
-                pstmt.setInt(2,nhanKhau.getId());
-                pstmt.setInt(3,idNguoiKhaiInt);
-                pstmt.setDate(4, Date.valueOf(LocalDate.now()));
-                pstmt.setDate(5,Date.valueOf(ngayBaoTuDate));
-                pstmt.setString(6,ghiChuStr);
-                pstmt.setString(7,"Qua doi");
                 pstmt.execute();
+                pstmt=conn.prepareStatement(query1);
+                pstmt.setInt(1,nhanKhau.getId());
+                pstmt.setInt(2,idNguoiKhaiInt);
+                pstmt.setDate(3, Date.valueOf(LocalDate.now()));
+                pstmt.setDate(4,Date.valueOf(ngayBaoTuDate));
+                pstmt.setString(5,ghiChuStr);
+                pstmt.setString(6,"Qua doi");
+                pstmt.execute();
+                Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
+                alert1.setHeaderText(null);
+                alert1.setContentText("Đã khai tử thành công");
+                alert1.showAndWait();
+                Node node = (Node) event.getSource();
+                Stage stage = (Stage) node.getScene().getWindow();
+                stage.close();
             } else if (option.get() == ButtonType.CANCEL) {
 
             }
         } catch (SQLException ex) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText(null);
+            alert.setContentText("Điền thông tin thiếu hoặc không tồn tại ID người khai");
+            alert.showAndWait();
             Logger.getLogger(themNhanKhauController.class.getName()).log(Level.SEVERE,null,ex);
         }
     }

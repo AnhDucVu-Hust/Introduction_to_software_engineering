@@ -1,4 +1,5 @@
 package main.login;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -25,6 +26,17 @@ import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class themNhanKhauController implements Initializable {
+    private String quyen;
+
+    public void setQuyen(String quyen) {
+        this.quyen = quyen;
+    }
+
+    public void setIdNhanKhau(int idNhanKhau) {
+        this.idNhanKhau = idNhanKhau;
+    }
+
+    private int idNhanKhau;
     @FXML
     private HBox barNK;
 
@@ -254,8 +266,11 @@ public class themNhanKhauController implements Initializable {
 
     }
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        gioiTinh.getItems().add("Nam");
-        gioiTinh.getItems().add("Nữ");
+        Platform.runLater(()->{
+            gioiTinh.getItems().add("Nam");
+            gioiTinh.getItems().add("Nữ");
+            gioiTinh.setValue("Nam");
+        });
     }
 
 }

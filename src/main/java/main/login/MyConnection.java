@@ -18,8 +18,8 @@ public class MyConnection {
     public static Connection conDB()
     {
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/logininfo", "root", "922002");
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/introse", "root", "");
             return con;
         } catch (ClassNotFoundException | SQLException ex) {
             System.err.println("Exception : "+ex.getMessage());
