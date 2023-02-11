@@ -642,7 +642,7 @@ public class Services {
                 ResultSet resultSet = pstmt.executeQuery();
                 if (!resultSet.next()) {
                     return null;
-                } else return resultSet.getInt(0);
+                } else return resultSet.getInt(1);
 
             } catch (SQLException e) {
                 System.err.println(e.getMessage());
@@ -656,7 +656,7 @@ public class Services {
                 ResultSet resultSet = pstmt.executeQuery();
                 if (!resultSet.next()) {
                     return null;
-                } else return resultSet.getInt(0);
+                } else return resultSet.getInt(1);
 
             } catch (SQLException e) {
                 System.err.println(e.getMessage());
@@ -674,7 +674,7 @@ public class Services {
             ResultSet resultSet = pstmt.executeQuery();
             if (!resultSet.next()) {
                 return 0;
-            } else return resultSet.getInt(0);
+            } else return resultSet.getInt(1);
         } catch (SQLException e) {
             System.err.println(e.getMessage());
         }
