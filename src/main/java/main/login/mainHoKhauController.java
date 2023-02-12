@@ -164,7 +164,7 @@ public class mainHoKhauController implements Initializable {
             stage.show();
         }
         else {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setHeaderText(null);
             alert.setContentText("Chưa hộ khẩu nào được chọn để sửa");
             alert.showAndWait();
@@ -250,7 +250,7 @@ public class mainHoKhauController implements Initializable {
             stage.show();
         }
         else {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setHeaderText(null);
             alert.setContentText("Chưa hộ khẩu nào được chọn để xem");
             alert.showAndWait();
@@ -261,29 +261,37 @@ public class mainHoKhauController implements Initializable {
     @FXML
     void xoaClicked(MouseEvent event) {
         try {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Xóa hộ khẩu");
-            alert.setHeaderText("Bạn có thực sự muốn xóa hộ khẩu này ?");
-            alert.setContentText("Việc xóa hộ khẩu sẽ làm mất tất cả các dữ liệu liên quan đến hộ khẩu.");
-            Optional<ButtonType> option = alert.showAndWait();
+            HoKhau hk = tbHoKhau.getSelectionModel().getSelectedItem();
+            if(hk!=null) {
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Xóa hộ khẩu");
+                alert.setHeaderText("Bạn có thực sự muốn xóa hộ khẩu này ?");
+                alert.setContentText("Việc xóa hộ khẩu sẽ làm mất tất cả các dữ liệu liên quan đến hộ khẩu.");
+                Optional<ButtonType> option = alert.showAndWait();
 
-            if (option.get() == null) {
+                if (option.get() == null) {
 
-            } else if (option.get() == ButtonType.OK) {
-                HoKhau hk = tbHoKhau.getSelectionModel().getSelectedItem();
-                Connection conn = MyConnection.conDB();
-                String query = "DELETE from `hokhau` WHERE idHoKhau=" + hk.getIdHoKhau();
-                PreparedStatement preparedStatement = conn.prepareStatement(query);
-                preparedStatement.execute();
-                refreshTable();
-                tbIDHoKhau.setCellValueFactory(new PropertyValueFactory<>("idHoKhau"));
-                tbIDChuHo.setCellValueFactory(new PropertyValueFactory<>("idChuHo"));
-                tbNgayTao.setCellValueFactory(new PropertyValueFactory<>("ngayCap"));
-                tbDiaChi.setCellValueFactory(new PropertyValueFactory<>("diaChi"));
-            } else if (option.get() == ButtonType.CANCEL) {
+                } else if (option.get() == ButtonType.OK) {
+                    Connection conn = MyConnection.conDB();
+                    String query = "DELETE from `hokhau` WHERE idHoKhau=" + hk.getIdHoKhau();
+                    PreparedStatement preparedStatement = conn.prepareStatement(query);
+                    preparedStatement.execute();
+                    refreshTable();
+                    tbIDHoKhau.setCellValueFactory(new PropertyValueFactory<>("idHoKhau"));
+                    tbIDChuHo.setCellValueFactory(new PropertyValueFactory<>("idChuHo"));
+                    tbNgayTao.setCellValueFactory(new PropertyValueFactory<>("ngayCap"));
+                    tbDiaChi.setCellValueFactory(new PropertyValueFactory<>("diaChi"));
+                } else if (option.get() == ButtonType.CANCEL) {
 
+                }
+            } else{
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setHeaderText(null);
+                alert.setContentText("Chưa hộ khẩu nào được chọn để xóa!");
+                alert.showAndWait();
             }
         } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
             //Logger.getLogger(themNhanKhauController.class.getName()).log(Level.SEVERE,null,ex);
         }
     }

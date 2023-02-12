@@ -196,26 +196,33 @@ public class xemChiTietHoKhauController implements Initializable {
     @FXML
     void tachKhauClicked(MouseEvent event){
         try {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Tách khẩu");
-            alert.setHeaderText("Bạn có thực sự muốn tách khẩu ?");
-            Optional<ButtonType> option = alert.showAndWait();
+            HoKhauNhanKhau nk = tbHoKhau.getSelectionModel().getSelectedItem();
+            if(nk!=null){
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Tách khẩu");
+                alert.setHeaderText("Bạn có thực sự muốn tách khẩu ?");
+                Optional<ButtonType> option = alert.showAndWait();
 
-            if (option.get() == null) {
+                if (option.get() == null) {
 
-            } else if (option.get() == ButtonType.OK) {
-                HoKhauNhanKhau nk = tbHoKhau.getSelectionModel().getSelectedItem();
-                Connection conn = MyConnection.conDB();
-                String query = "DELETE from `nhankhau_hokhau` WHERE idHoKhau=" + nk.getIdHoKhau() + " AND idNhanKhau="+ nk.getIdNhanKhau();
-                PreparedStatement preparedStatement = conn.prepareStatement(query);
-                preparedStatement.execute();
-                refreshTable();
-                tbID.setCellValueFactory(new PropertyValueFactory<>("idNhanKhau"));
-                tbHoTen.setCellValueFactory(new PropertyValueFactory<>("hoTen"));
-                tbCccd.setCellValueFactory(new PropertyValueFactory<>("cmnd_cccd"));
-                tbQuanHeChuHo.setCellValueFactory(new PropertyValueFactory<>("quanHeChuHo"));
-            } else if (option.get() == ButtonType.CANCEL) {
+                } else if (option.get() == ButtonType.OK) {
+                    Connection conn = MyConnection.conDB();
+                    String query = "DELETE from `nhankhau_hokhau` WHERE idHoKhau=" + nk.getIdHoKhau() + " AND idNhanKhau="+ nk.getIdNhanKhau();
+                    PreparedStatement preparedStatement = conn.prepareStatement(query);
+                    preparedStatement.execute();
+                    refreshTable();
+                    tbID.setCellValueFactory(new PropertyValueFactory<>("idNhanKhau"));
+                    tbHoTen.setCellValueFactory(new PropertyValueFactory<>("hoTen"));
+                    tbCccd.setCellValueFactory(new PropertyValueFactory<>("cmnd_cccd"));
+                    tbQuanHeChuHo.setCellValueFactory(new PropertyValueFactory<>("quanHeChuHo"));
+                } else if (option.get() == ButtonType.CANCEL) {
 
+                }
+            } else{
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Tách khẩu");
+                alert.setHeaderText("Chưa chọn nhân khẩu để tách!");
+                alert.showAndWait();
             }
         } catch (SQLException ex) {
             //Logger.getLogger(themNhanKhauController.class.getName()).log(Level.SEVERE,null,ex);
@@ -224,15 +231,22 @@ public class xemChiTietHoKhauController implements Initializable {
     @FXML
     void chuyenKhauClicked(MouseEvent event) throws  IOException{
         HoKhauNhanKhau nk=tbHoKhau.getSelectionModel().getSelectedItem();
-        Node node = (Node) event.getSource();
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/main/login/chuyenKhau.fxml"));
-        Parent mainHK = loader.load();
-        chuyenKhauController controller = loader.getController();
-        controller.setNk(nk);
-        Stage stage = new Stage();
-        stage.setScene(new Scene(mainHK));
-        stage.show();
+        if(nk!=null) {
+            Node node = (Node) event.getSource();
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/main/login/chuyenKhau.fxml"));
+            Parent mainHK = loader.load();
+            chuyenKhauController controller = loader.getController();
+            controller.setNk(nk);
+            Stage stage = new Stage();
+            stage.setScene(new Scene(mainHK));
+            stage.show();
+        } else{
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Tách khẩu");
+            alert.setHeaderText("Chưa chọn nhân khẩu để chuyển!");
+            alert.showAndWait();
+        }
     }
     @FXML
     void quayLaiClicked(MouseEvent event) throws  IOException{
