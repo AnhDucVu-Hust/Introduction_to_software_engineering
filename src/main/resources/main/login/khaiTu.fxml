@@ -39,7 +39,7 @@
          </font>
       </Text>
       <TextField fx:id="ghiChu" layoutX="114.0" layoutY="225.0" prefHeight="26.0" prefWidth="306.0" />
-      <Text layoutX="12.0" layoutY="291.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Người khai tử" wrappingWidth="100.00003662109361">
+      <Text layoutX="12.0" layoutY="291.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID Người khai" wrappingWidth="100.00003662109361">
          <font>
             <Font size="16.0" />
          </font>

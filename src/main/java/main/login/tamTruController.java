@@ -15,19 +15,36 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class tamVangController implements Initializable {
-    public void setNhanKhau(NhanKhau nhanKhau) {
-        this.nhanKhau = nhanKhau;
+public class tamTruController implements Initializable {
+    public void setNk(NhanKhau nk) {
+        this.nk = nk;
     }
 
-    private NhanKhau nhanKhau;
+    private NhanKhau nk;
 
+    public Integer getIdNhanKhauLogin() {
+        return idNhanKhauLogin;
+    }
+
+    public void setIdNhanKhauLogin(Integer idNhanKhauLogin) {
+        this.idNhanKhauLogin = idNhanKhauLogin;
+    }
+
+    public String getQuyen() {
+        return quyen;
+    }
+
+    public void setQuyen(String quyen) {
+        this.quyen = quyen;
+    }
+
+    private Integer idNhanKhauLogin;
+    private String quyen;
     @FXML
     private Button btnGuiThongTin;
 
@@ -41,13 +58,16 @@ public class tamVangController implements Initializable {
     private TextField liDo;
 
     @FXML
-    private DatePicker ngayVe;
+    private DatePicker ngayDen;
 
     @FXML
     private DatePicker ngayDi;
 
     @FXML
     private TextField noiTamTru;
+
+    @FXML
+    private TextField noiThuongTru;
 
     @FXML
     private TextField ten;
@@ -60,30 +80,32 @@ public class tamVangController implements Initializable {
             alert.setHeaderText("Bạn chắc chắn khai báo tạm vắng cho nhân khẩu này?");
             Optional<ButtonType> option = alert.showAndWait();
             Integer idNguoiKhaiInt = Integer.parseInt(id.getText());
-            Date ngayVeDate=Date.valueOf(ngayVe.getValue());
+            Date ngayDenDate=Date.valueOf(ngayDen.getValue());
             Date ngayDiDate=Date.valueOf(ngayDi.getValue());
             String noiTamTrustr=noiTamTru.getText().toString();
             String lidoStr=liDo.getText().toString();
-            Integer idHoKhauInt= Services.queryIdHoKhauCuaNhanKhau(nhanKhau.getId());
+            Integer idHoKhauInt= Services.queryIdHoKhauCuaNhanKhau(nk.getId());
+            String noiThuongTruStr=noiThuongTru.getText().toString();
             if (option.get() == null) {
 
             } else if (option.get() == ButtonType.OK) {
                 Connection conn = MyConnection.conDB();
                 String query = "UPDATE `nhankhau` \n" +
-                        "SET trangThai='Tạm vắng_Chờ duyệt' \n" +
+                        "SET trangThai='Tạm trú_Chờ duyệt' \n" +
                         "WHERE idNhanKhau = ?; \n";
                 PreparedStatement pstmt = conn.prepareStatement(query);
-                pstmt.setInt(1, nhanKhau.getId());
+                pstmt.setInt(1, nk.getId());
                 pstmt.execute();
-                String query1="INSERT INTO `nhankhautamvang` (idNhanKhau,noiTamTru,tuNgay,denNgay,lyDo,trangThai)\n" +
-                        "VALUES (?,?,?,?,?,?) ;";
+                String query1="INSERT INTO `nhankhautamtru` (idNhanKhau, noiThuongTru, noiTamTru,tuNgay, denNgay, lyDo, trangThai)\n" +
+                        "VALUES (?,?,?,?,?,?,?) ;";
                 pstmt=conn.prepareStatement(query1);
-                pstmt.setInt(1,nhanKhau.getId());
-                pstmt.setString(2, noiTamTrustr);
-                pstmt.setDate(3,ngayDiDate);
-                pstmt.setDate(4,ngayVeDate);
-                pstmt.setString(5,lidoStr);
-                pstmt.setString(6,"Chờ duyệt");
+                pstmt.setInt(1,nk.getId());
+                pstmt.setString(2,noiThuongTruStr);
+                pstmt.setString(3, noiTamTrustr);
+                pstmt.setDate(4,ngayDenDate);
+                pstmt.setDate(5,ngayDiDate);
+                pstmt.setString(6,lidoStr);
+                pstmt.setString(7,"Chờ duyệt");
                 pstmt.execute();
                 Node node = (Node) event.getSource();
                 Stage stage = (Stage) node.getScene().getWindow();
@@ -105,10 +127,9 @@ public class tamVangController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        Platform.runLater(()->
-        {
-            id.setText(nhanKhau.getId().toString());
-            ten.setText(nhanKhau.getHoTen());
+        Platform.runLater(()->{
+            id.setText(nk.getId().toString());
+            ten.setText(nk.getHoTen());
             id.setEditable(false);
             ten.setEditable(false);
         });

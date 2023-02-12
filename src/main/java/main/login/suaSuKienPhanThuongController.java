@@ -3,13 +3,18 @@ package main.login;
 import Entity.DipTraoThuong;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -18,6 +23,15 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class suaSuKienPhanThuongController implements Initializable {
+    public void setQuyen(String quyen) {
+        this.quyen = quyen;
+    }
+    private int idNhanKhau;
+    public void setIdNhanKhau(int idNhanKhau) {
+        this.idNhanKhau = idNhanKhau;
+    }
+
+    private String quyen;
     private DipTraoThuong diptraothuong;
     @FXML
     private HBox barNK;
@@ -78,27 +92,43 @@ public class suaSuKienPhanThuongController implements Initializable {
     }
 
     @FXML
-    void hoKhauClicked(MouseEvent event) {
-
+    void hoKhauClicked(MouseEvent event) throws IOException {
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        Scene scene = new Scene(FXMLLoader.load(getClass().getResource("mainHoKhau.fxml")));
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
-    void nhanKhauClicked(MouseEvent event) {
-
+    void nhanKhauClicked(MouseEvent event) throws IOException{
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        Scene scene = new Scene(FXMLLoader.load(getClass().getResource("mainNhanKhau.fxml")));
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
-    void phanThuongClicked(MouseEvent event) {
-
+    void phanThuongClicked(MouseEvent event) throws IOException{
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        Scene scene = new Scene(FXMLLoader.load(getClass().getResource("mainPhanThuong.fxml")));
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
-    void quayLaiClicked(MouseEvent event) {
-
+    void quayLaiClicked(MouseEvent event) throws IOException{
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        Scene scene = new Scene(FXMLLoader.load(getClass().getResource("mainPhanThuong.fxml")));
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
-    void thongKeClicked(MouseEvent event) {
+    void thongKeClicked(MouseEvent event) throws IOException{
 
     }
 
@@ -119,6 +149,7 @@ public class suaSuKienPhanThuongController implements Initializable {
             iD.setEditable(false);
             loaiDip.getItems().add("Hoc sinh gioi");
             loaiDip.getItems().add("Dac biet");
+            loaiDip.setValue("Hoc sinh gioi");
         });
 
 

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="434.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.login.themNguoiNhanThuongController">
+   <children>
+      <Text layoutX="114.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Thêm người nhận thưởng">
+         <font>
+            <Font name="Microsoft Tai Le" size="20.0" />
+         </font>
+      </Text>
+      <Button fx:id="btnGuiThongTin" layoutX="115.0" layoutY="358.0" mnemonicParsing="false" onMouseClicked="#guiThongTinClicked" prefHeight="28.0" prefWidth="89.0" style="-fx-background-color: #3F2B63;" text="Gửi thông tin" textFill="WHITE" />
+      <Button fx:id="btnHuy" layoutX="227.0" layoutY="358.0" mnemonicParsing="false" onMouseClicked="#huyClicked" prefHeight="28.0" prefWidth="90.0" style="-fx-background-color: #3F2B63;" text="Hủy" textFill="WHITE" />
+      <Text layoutX="12.0" layoutY="169.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tên sự kiện" wrappingWidth="89.0">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <Text layoutX="13.0" layoutY="123.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID " wrappingWidth="49.294559478759766">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <TextField fx:id="ten" layoutX="173.0" layoutY="149.0" prefHeight="26.0" prefWidth="247.0" />
+      <TextField fx:id="id" layoutX="173.0" layoutY="103.0" prefHeight="26.0" prefWidth="247.0" />
+      <Text layoutX="13.0" layoutY="253.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Thành tích(nếu có)" wrappingWidth="139.0000366210936">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <TextField fx:id="thanhTich" layoutX="175.0" layoutY="234.0" prefHeight="26.0" prefWidth="247.0" />
+      <TextField fx:id="minhChung" layoutX="175.0" layoutY="271.0" prefHeight="26.0" prefWidth="247.0" />
+      <Text layoutX="13.0" layoutY="290.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Minh chứng" wrappingWidth="100.00003662109361">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <Text layoutX="12.0" layoutY="210.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Người nhận" wrappingWidth="116.00003662109361">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <ChoiceBox fx:id="nguoNhan" layoutX="175.0" layoutY="191.0" prefHeight="25.0" prefWidth="247.0" />
+   </children>
+</AnchorPane>

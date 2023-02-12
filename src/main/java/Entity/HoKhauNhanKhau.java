@@ -3,7 +3,7 @@ package Entity;
 public class HoKhauNhanKhau {
     private Integer idHoKhau;
     private Integer idNhanKhau;
-    private String quanHeVoiChuHo;
+    private String quanHeChuHo;
 
     public String getHoTen() {
         return hoTen;
@@ -23,10 +23,10 @@ public class HoKhauNhanKhau {
 
     private String hoTen;
     private String cmnd_cccd;
-    public HoKhauNhanKhau(Integer idHoKhau, Integer idNhanKhau, String hoTen, String cmnd_cccd,String quanHeVoiChuHo) {
+    public HoKhauNhanKhau(Integer idHoKhau, Integer idNhanKhau, String hoTen, String cmnd_cccd,String quanHeChuHo) {
         this.idHoKhau = idHoKhau;
         this.idNhanKhau = idNhanKhau;
-        this.quanHeVoiChuHo = quanHeVoiChuHo;
+        this.quanHeChuHo = quanHeChuHo;
         this.hoTen=hoTen;
         this.cmnd_cccd=cmnd_cccd;
     }
@@ -47,11 +47,11 @@ public class HoKhauNhanKhau {
         this.idNhanKhau = idNhanKhau;
     }
 
-    public String getQuanHeVoiChuHo() {
-        return quanHeVoiChuHo;
+    public String getQuanHeChuHo() {
+        return quanHeChuHo;
     }
 
-    public void setQuanHeVoiChuHo(String quanHeVoiChuHo) {
-        this.quanHeVoiChuHo = quanHeVoiChuHo;
+    public void setQuanHeChuHo(String quanHeChuHo) {
+        this.quanHeChuHo = quanHeChuHo;
     }
 }

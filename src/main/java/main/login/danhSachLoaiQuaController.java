@@ -9,6 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -54,6 +55,9 @@ public class danhSachLoaiQuaController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        tbQua.getSelectionModel().setSelectionMode(
+                SelectionMode.MULTIPLE
+        );
         ObservableList<PhanThuong> phanThuongs = Services.queryTatcaPhanThuong();
         tbQua.setItems(phanThuongs);
         tbID.setCellValueFactory(new PropertyValueFactory<>("id"));

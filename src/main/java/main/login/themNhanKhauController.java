@@ -1,30 +1,42 @@
 package main.login;
+import Entity.HoKhauNhanKhau;
+import Service.Services;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import Entity.NhanKhau;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.control.Alert;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
 import java.time.LocalDate;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class themNhanKhauController implements Initializable {
+    private String quyen;
+
+    public void setQuyen(String quyen) {
+        this.quyen = quyen;
+    }
+
+    public void setIdNhanKhau(int idNhanKhau) {
+        this.idNhanKhau = idNhanKhau;
+    }
+
+    private int idNhanKhau;
     @FXML
     private HBox barNK;
 
@@ -119,8 +131,12 @@ public class themNhanKhauController implements Initializable {
     private StackPane tuongTacChinhNK;
 
     @FXML
-    void dangXuatClicked(MouseEvent event) {
-
+    void dangXuatClicked(MouseEvent event) throws IOException {
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        Scene scene = new Scene(FXMLLoader.load(getClass().getResource("login.fxml")));
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
@@ -129,7 +145,7 @@ public class themNhanKhauController implements Initializable {
         try {
             Connection conn = MyConnection.conDB();
             String query = "INSERT INTO NhanKhau(hoTen, biDanh, ngaySinh, noiSinh, gioiTinh, nguyenQuan, danToc, tonGiao, quocTich, ngheNghiep, noiLamViec, cmnd_cccd, chuyenDenNgay, noiThuongTruTruoc, trangThai)\n" +
-                    "\tVALUES\t(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, N'Thuong tru');\n ";
+                    "\tVALUES\t(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, N'Thường trú_Chờ duyệt');\n ";
             PreparedStatement pstmt = conn.prepareStatement(query);
 
             String hoTenStr = hoTen.getText().toString();
@@ -175,15 +191,57 @@ public class themNhanKhauController implements Initializable {
             pstmt.setDate(13, Date.valueOf(ngayChuyenDenDate));
             pstmt.setString(14, noiThuongTruTruocStr);
             pstmt.execute();
+            String query1="INSERT INTO nhankhauthem(idNhanKhau,ngayThem,ghiChu,trangThai) VALUES(?,?,?,'Chờ duyệt') ";
+            PreparedStatement pstmt1= conn.prepareStatement(query1);
+            pstmt1.setInt(1,Services.queryNhanKhau(hoTenStr,Date.valueOf(ngaySinhDate),cmndCccdStr).intValue());
+            pstmt1.setDate(2,Date.valueOf(LocalDate.now()));
+            pstmt1.setString(3,"");
+            pstmt1.execute();
+            Integer idNhanKhau = Services.queryNhanKhau(hoTenStr,Date.valueOf(ngaySinhDate),cmndCccdStr);
+            if (!quyen.equals("Tổ trưởng")) {
+                String quanHeVoiChuHoStr=quanHeVoiChuHo.getText();
+                HoKhauNhanKhau hknk = new HoKhauNhanKhau(Services.queryIdHoKhauCuaNhanKhau(idNhanKhau), idNhanKhau, hoTenStr, cmndCccdStr,quanHeVoiChuHoStr );
+                Services.themVaoBangNhanKhauHoKhau(hknk);
+            }
+            String query2 = "INSERT INTO taikhoan(idNhanKhau,taiKhoan,matKhau,quyen) VALUES (?,?,?,?)";
+            PreparedStatement pstmt2=conn.prepareStatement(query2);
+            pstmt2.setInt(1,idNhanKhau);
+            String taiKhoanStr=Services.covertToString(hoTenStr)+idNhanKhau.toString();
+            pstmt2.setString(2,taiKhoanStr.replaceAll("\\s+", ""));
+            pstmt2.setString(3,cmndCccdStr);
+            if (quyen.equals("Tổ trưởng")) {
+                Alert alert2 = new Alert(Alert.AlertType.CONFIRMATION);
+                alert2.setTitle("Cấp quyền");
+                alert2.setHeaderText("Bạn muốn cấp quyền cho nhân khẩu này là tổ trưởng ?");
+                alert2.setContentText("Nếu là tổ trưởng, tài khoản này sẽ có quyền chỉnh sửa thông tin");
+                Optional<ButtonType> option = alert2.showAndWait();
+                if (option.get() == ButtonType.OK) {
+                    pstmt2.setString(4, "Tổ trưởng");
+                } else {
+                    pstmt2.setString(4, "Người dân");
+                }
+            }
+            else pstmt2.setString(4,"Người dân");
+            pstmt2.execute();
             System.out.println("them thanh cong!");
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setHeaderText(null);
             alert.setContentText("Thêm thành công");
             alert.showAndWait();
             Node node = (Node) event.getSource();
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/main/login/mainNhanKhau.fxml"));
+            Parent mainNK = null;
+            try {
+                mainNK = loader.load();
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+            mainNhanKhauController controller = loader.getController();
+            controller.setQuyen(quyen);
+            controller.setIdNhanKhau(idNhanKhau);
             Stage stage = (Stage) node.getScene().getWindow();
-            Scene scene = new Scene(FXMLLoader.load(getClass().getResource("mainNhanKhau.fxml")));
-            stage.setScene(scene);
+            stage.setScene(new Scene(mainNK));
             stage.show();
         } catch(Exception e){
             System.err.println(e.getMessage());
@@ -198,9 +256,19 @@ public class themNhanKhauController implements Initializable {
     @FXML
     void hoKhauClicked(MouseEvent event) throws IOException {
         Node node = (Node) event.getSource();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/main/login/mainHoKhau.fxml"));
+        Parent mainHK = null;
+        try {
+             mainHK = loader.load();
+        } catch (IOException ex) {
+            throw new RuntimeException(ex);
+        }
+        mainHoKhauController controller = loader.getController();
+        controller.setQuyen(quyen);
+        controller.setIdNhanKhau(idNhanKhau);
         Stage stage = (Stage) node.getScene().getWindow();
-        Scene scene = new Scene(FXMLLoader.load(getClass().getResource("mainHoKhau.fxml")));
-        stage.setScene(scene);
+        stage.setScene(new Scene(mainHK));
         stage.show();
     }
 
@@ -216,27 +284,57 @@ public class themNhanKhauController implements Initializable {
     @FXML
     void nhanKhauClicked(MouseEvent event) throws IOException {
         Node node = (Node) event.getSource();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/main/login/mainNhanKhau.fxml"));
+        Parent mainNK = null;
+        try {
+            mainNK = loader.load();
+        } catch (IOException ex) {
+            throw new RuntimeException(ex);
+        }
+        mainNhanKhauController controller = loader.getController();
+        controller.setQuyen(quyen);
+        controller.setIdNhanKhau(idNhanKhau);
         Stage stage = (Stage) node.getScene().getWindow();
-        Scene scene = new Scene(FXMLLoader.load(getClass().getResource("mainNhanKhau.fxml")));
-        stage.setScene(scene);
+        stage.setScene(new Scene(mainNK));
         stage.show();
     }
 
     @FXML
     void phanThuongClicked(MouseEvent event) throws IOException {
         Node node = (Node) event.getSource();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/main/login/mainPhanThuong.fxml"));
+        Parent mainPT = null;
+        try {
+            mainPT = loader.load();
+        } catch (IOException ex) {
+            throw new RuntimeException(ex);
+        }
+        mainPhanThuongController controller = loader.getController();
+        controller.setQuyen(quyen);
+        controller.setIdNhanKhau(idNhanKhau);
         Stage stage = (Stage) node.getScene().getWindow();
-        Scene scene = new Scene(FXMLLoader.load(getClass().getResource("mainPhanThuong.fxml")));
-        stage.setScene(scene);
+        stage.setScene(new Scene(mainPT));
         stage.show();
     }
 
     @FXML
     void quayLai(MouseEvent event) throws IOException {
         Node node = (Node) event.getSource();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/main/login/mainNhanKhau.fxml"));
+        Parent mainNK = null;
+        try {
+            mainNK = loader.load();
+        } catch (IOException ex) {
+            throw new RuntimeException(ex);
+        }
+        mainNhanKhauController controller = loader.getController();
+        controller.setQuyen(quyen);
+        controller.setIdNhanKhau(idNhanKhau);
         Stage stage = (Stage) node.getScene().getWindow();
-        Scene scene = new Scene(FXMLLoader.load(getClass().getResource("mainNhanKhau.fxml")));
-        stage.setScene(scene);
+        stage.setScene(new Scene(mainNK));
         stage.show();
 
     }
@@ -247,15 +345,27 @@ public class themNhanKhauController implements Initializable {
 
     @FXML
     void themNhanKhauClicked(MouseEvent event) {
+
     }
 
     @FXML
     void thongKeClicked(MouseEvent event) {
 
     }
+    @FXML
+    private TextField quanHeVoiChuHo;
+    @FXML
+    private Text textQHVCH;
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        gioiTinh.getItems().add("Nam");
-        gioiTinh.getItems().add("Nữ");
+        Platform.runLater(()->{
+            gioiTinh.getItems().add("Nam");
+            gioiTinh.getItems().add("Nữ");
+            gioiTinh.setValue("Nam");
+            if (quyen.equals("Tổ trưởng")){
+                quanHeVoiChuHo.setVisible(false);
+                textQHVCH.setVisible(false);
+            }
+        });
     }
 
 }

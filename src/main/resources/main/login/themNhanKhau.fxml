@@ -105,21 +105,6 @@
                         <Font size="10.0" />
                      </font>
                   </Button>
-                  <Button fx:id="btnKhaiTu" mnemonicParsing="false" onMouseClicked="#khaiTuClicked" prefHeight="28.0" prefWidth="102.0" style="-fx-background-color: #3F2B63; -fx-font-size: 12;" text="Khai tử" textFill="WHITE">
-                     <font>
-                        <Font size="10.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="btnTamTru" mnemonicParsing="false" prefHeight="28.0" prefWidth="102.0" style="-fx-background-color: #3F2B63; -fx-font-size: 12;" text="Tạm trú" textFill="WHITE">
-                     <font>
-                        <Font size="10.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="btnXoa" mnemonicParsing="false" prefHeight="28.0" prefWidth="102.0" style="-fx-background-color: #3F2B63; -fx-font-size: 12;" text="Xóa" textFill="WHITE">
-                     <font>
-                        <Font size="10.0" />
-                     </font>
-                  </Button>
                </children>
             </HBox>
          </children>

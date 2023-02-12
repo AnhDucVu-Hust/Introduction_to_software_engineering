@@ -1,5 +1,7 @@
 package Entity;
 
+import javafx.scene.control.Button;
+
 import java.sql.Date;
 
 public class NhanKhau {
@@ -37,7 +39,18 @@ public class NhanKhau {
         this.ngayChuyenDen = ngayChuyenDen;
         this.noiThuongTruTruoc = noiThuongTruTruoc;
         this.trangThai = trangThai;
+        //if (trangThai.contains("Chờ duyệt"))
     }
+
+    public Button getDuyet() {
+        return duyet;
+    }
+
+    public void setDuyet(Button duyet) {
+        this.duyet = duyet;
+    }
+
+    private Button duyet;
 
     public Integer getId() {
         return id;
