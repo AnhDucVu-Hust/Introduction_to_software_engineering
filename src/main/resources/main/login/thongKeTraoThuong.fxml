@@ -91,21 +91,21 @@
                   <Font size="32.0" />
                </font>
             </Label>
-            <Text fx:id="loginID" layoutX="343.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID:" wrappingWidth="220.0">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Text>
-            <Text fx:id="loginTen" layoutX="343.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tên:" wrappingWidth="220.0">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Text>
-            <Text fx:id="loginQuyen" layoutX="343.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quyền:" wrappingWidth="220.0">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Text>
+             <Text fx:id="loginID" fill="#000000" layoutX="287.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID:" wrappingWidth="220.0">
+                 <font>
+                     <Font size="16.0" />
+                 </font>
+             </Text>
+             <Text fx:id="loginTen" fill="#000000" layoutX="287.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tên:" wrappingWidth="220.0">
+                 <font>
+                     <Font size="16.0" />
+                 </font>
+             </Text>
+             <Text fx:id="loginQuyen" fill="#000000" layoutX="287.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quyền:" wrappingWidth="220.0">
+                 <font>
+                     <Font size="16.0" />
+                 </font>
+             </Text>
          </children>
       </Pane>
       <Button fx:id="thongKeNKHK" layoutX="267.0" layoutY="103.0" mnemonicParsing="false" onMouseClicked="#thongKeNKHKClicked" style="-fx-background-color: #1AAD00;" text="Nhân khẩu - hộ khẩu" textFill="BLACK" />

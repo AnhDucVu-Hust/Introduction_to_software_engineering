@@ -166,7 +166,7 @@ public class mainHoKhauController implements Initializable {
             Parent suaHoKhau = loader.load();
             suaHoKhauController controller = loader.getController();
             controller.set_hokhau(hk);
-            controller.setIdNhanKhauAccount(idNhanKhau);
+            controller.setIdNhanKhau(idNhanKhau);
             controller.setQuyen(quyen);
             Stage stage = (Stage) node.getScene().getWindow();
             stage.setScene(new Scene(suaHoKhau));
@@ -187,7 +187,7 @@ public class mainHoKhauController implements Initializable {
         loader.setLocation(getClass().getResource("/main/login/themHoKhau.fxml"));
         Parent themHoKhau = loader.load();
         themHoKhauController controller = loader.getController();
-        controller.setIdNhanKhauAccount(idNhanKhau);
+        controller.setIdNhanKhau(idNhanKhau);
         controller.setQuyen(quyen);
         Stage stage = (Stage) node.getScene().getWindow();
         stage.setScene(new Scene(themHoKhau));
@@ -267,7 +267,7 @@ public class mainHoKhauController implements Initializable {
             xemChiTietHoKhauController controller = loader.getController();
             controller.set_hk(hk);
             controller.setQuyen(quyen);
-            controller.setIdNhanKhauAccount(idNhanKhau);
+            controller.setIdNhanKhau(idNhanKhau);
             Stage stage = (Stage) node.getScene().getWindow();
             stage.setScene(new Scene(xemChiTiet));
             stage.show();
@@ -289,7 +289,7 @@ public class mainHoKhauController implements Initializable {
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                 alert.setTitle("Xóa hộ khẩu");
                 alert.setHeaderText("Bạn có thực sự muốn xóa hộ khẩu này ?");
-                alert.setContentText("Việc xóa hộ khẩu sẽ làm mất tất cả các dữ liệu liên quan đến hộ khẩu.");
+                alert.setContentText("Việc này sẽ làm mất tất cả các dữ liệu liên quan đến hộ khẩu.");
                 Optional<ButtonType> option = alert.showAndWait();
 
                 if (option.get() == null) {
@@ -366,5 +366,4 @@ public class mainHoKhauController implements Initializable {
             loginQuyen.setText("Quyền: "+quyen);
         });
     }
-
 }

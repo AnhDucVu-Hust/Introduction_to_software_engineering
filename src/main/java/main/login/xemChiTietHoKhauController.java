@@ -17,8 +17,8 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.net.URL;
@@ -38,7 +38,19 @@ public class xemChiTietHoKhauController implements Initializable {
         this.idNhanKhauAccount = idNhanKhauAccount;
     }
 
+
     private String quyen;
+
+    public void setIdNhanKhau(int idNhanKhau) {
+        this.idNhanKhau = idNhanKhau;
+    }
+    private int idNhanKhau;
+    @FXML
+    private javafx.scene.text.Text loginID;
+    @FXML
+    private javafx.scene.text.Text loginTen;
+    @FXML
+    private Text loginQuyen;
     private int idNhanKhauAccount;
 
     private HoKhau hokhau;
@@ -138,7 +150,7 @@ public class xemChiTietHoKhauController implements Initializable {
         }
         mainNhanKhauController controller = loader.getController();
         controller.setQuyen(quyen);
-        controller.setIdNhanKhau(idNhanKhauAccount);
+        controller.setIdNhanKhau(idNhanKhau);
         Stage stage = (Stage) node.getScene().getWindow();
         stage.setScene(new Scene(mainNK));
         stage.show();
@@ -156,7 +168,7 @@ public class xemChiTietHoKhauController implements Initializable {
         }
         mainHoKhauController controller = loader.getController();
         controller.setQuyen(quyen);
-        controller.setIdNhanKhau(idNhanKhauAccount);
+        controller.setIdNhanKhau(idNhanKhau);
         Stage stage = (Stage) node.getScene().getWindow();
         stage.setScene(new Scene(mainHK));
         stage.show();
@@ -168,15 +180,29 @@ public class xemChiTietHoKhauController implements Initializable {
         loader.setLocation(getClass().getResource("/main/login/mainPhanThuong.fxml"));
         Parent mainPT = loader.load();
         mainPhanThuongController controller = loader.getController();
-        controller.setIdNhanKhau(idNhanKhauAccount);
+        controller.setIdNhanKhau(idNhanKhau);
         controller.setQuyen(quyen);
         Stage stage = (Stage) node.getScene().getWindow();
         stage.setScene(new Scene(mainPT));
         stage.show();
     }
     @FXML
-    void thongKeClicked(MouseEvent event) {
-
+    void thongKeClicked(MouseEvent event) throws IOException {
+        Node node = (Node) event.getSource();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/main/login/mainThongKe.fxml"));
+        Parent mainPT = null;
+        try {
+            mainPT = loader.load();
+        } catch (IOException ex) {
+            throw new RuntimeException(ex);
+        }
+        mainThongKeController controller = loader.getController();
+        controller.setQuyen(quyen);
+        controller.setIdNhanKhau(idNhanKhau);
+        Stage stage = (Stage) node.getScene().getWindow();
+        stage.setScene(new Scene(mainPT));
+        stage.show();
     }
     @FXML
     void suaClicked(MouseEvent event) {
@@ -190,7 +216,7 @@ public class xemChiTietHoKhauController implements Initializable {
         loader.setLocation(getClass().getResource("/main/login/themHoKhau.fxml"));
         Parent themHoKhau = loader.load();
         themHoKhauController controller = loader.getController();
-        controller.setIdNhanKhauAccount(idNhanKhauAccount);
+        controller.setIdNhanKhau(idNhanKhau);
         controller.setQuyen(quyen);
         Stage stage = (Stage) node.getScene().getWindow();
         stage.setScene(new Scene(themHoKhau));
@@ -268,7 +294,7 @@ public class xemChiTietHoKhauController implements Initializable {
         loader.setLocation(getClass().getResource("/main/login/mainHoKhau.fxml"));
         Parent mainHK = loader.load();
         mainHoKhauController controller = loader.getController();
-        controller.setIdNhanKhau(idNhanKhauAccount);
+        controller.setIdNhanKhau(idNhanKhau);
         controller.setQuyen(quyen);
         Stage stage = (Stage) node.getScene().getWindow();
         stage.setScene(new Scene(mainHK));
@@ -308,7 +334,7 @@ public class xemChiTietHoKhauController implements Initializable {
             loader.setLocation(getClass().getResource("/main/login/themNhanKhauVaoHoKhau.fxml"));
             Parent mainHK = loader.load();
             themNhanKhauVaoHoKhauController controller = loader.getController();
-            controller.setIdNhanKhau(idNhanKhauAccount);
+            controller.setIdNhanKhau(idNhanKhau);
             controller.setQuyen(quyen);
             controller.setHk(hokhau);
             Stage stage = (Stage) node.getScene().getWindow();
@@ -333,6 +359,9 @@ public class xemChiTietHoKhauController implements Initializable {
             hoTenChuHo.setText(Services.queryNhanKhauTheoId(hokhau.getIdChuHo()).getHoTen());
             String diachi= hokhau.getTinhThanhPho()+"-"+hokhau.getQuanHuyen()+"-"+hokhau.getPhuongXa()+hokhau.getDiaChi();
             diaChi.setText(diachi);
+            loginID.setText("ID: "+idNhanKhau);
+            loginTen.setText("Tên: "+ Services.queryNhanKhauTheoId(idNhanKhau).getHoTen());
+            loginQuyen.setText("Quyền: "+quyen);
 
         });
         }

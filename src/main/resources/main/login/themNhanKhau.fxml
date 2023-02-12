@@ -160,6 +160,21 @@
                   <Font size="32.0" />
                </font>
             </Label>
+            <Text fx:id="loginID" fill="#000000" layoutX="287.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID:" wrappingWidth="220.0">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Text>
+            <Text fx:id="loginTen" fill="#000000" layoutX="287.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tên:" wrappingWidth="220.0">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Text>
+            <Text fx:id="loginQuyen" fill="#000000" layoutX="287.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quyền:" wrappingWidth="220.0">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Text>
          </children>
       </Pane>
    </children>

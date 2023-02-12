@@ -26,16 +26,22 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class themNhanKhauController implements Initializable {
-    private String quyen;
-
     public void setQuyen(String quyen) {
         this.quyen = quyen;
     }
+
+    private String quyen;
 
     public void setIdNhanKhau(int idNhanKhau) {
         this.idNhanKhau = idNhanKhau;
     }
 
+    @FXML
+    private javafx.scene.text.Text loginID;
+    @FXML
+    private javafx.scene.text.Text loginTen;
+    @FXML
+    private Text loginQuyen;
     private int idNhanKhau;
     @FXML
     private HBox barNK;
@@ -374,8 +380,22 @@ public class themNhanKhauController implements Initializable {
     }
 
     @FXML
-    void thongKeClicked(MouseEvent event) {
-
+    void thongKeClicked(MouseEvent event) throws IOException {
+        Node node = (Node) event.getSource();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/main/login/mainThongKe.fxml"));
+        Parent mainPT = null;
+        try {
+            mainPT = loader.load();
+        } catch (IOException ex) {
+            throw new RuntimeException(ex);
+        }
+        mainThongKeController controller = loader.getController();
+        controller.setQuyen(quyen);
+        controller.setIdNhanKhau(idNhanKhau);
+        Stage stage = (Stage) node.getScene().getWindow();
+        stage.setScene(new Scene(mainPT));
+        stage.show();
     }
     @FXML
     private TextField quanHeVoiChuHo;
@@ -386,9 +406,12 @@ public class themNhanKhauController implements Initializable {
             gioiTinh.getItems().add("Nam");
             gioiTinh.getItems().add("Nữ");
             gioiTinh.setValue("Nam");
+            loginID.setText("ID: "+idNhanKhau);
+            loginTen.setText("Tên: "+ Services.queryNhanKhauTheoId(idNhanKhau).getHoTen());
+            loginQuyen.setText("Quyền: "+quyen);
             if (quyen.equals("Tổ trưởng")){
-                quanHeVoiChuHo.setVisible(false);
-                textQHVCH.setVisible(false);
+//                quanHeVoiChuHo.setVisible(false);
+//                textQHVCH.setVisible(false);
             }
         });
     }

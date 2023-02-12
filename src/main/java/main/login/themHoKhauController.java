@@ -1,5 +1,6 @@
 package main.login;
 
+import Service.Services;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -27,13 +28,24 @@ public class themHoKhauController implements Initializable {
     public void setIdNhanKhauAccount(int idNhanKhauAccount) {
         this.idNhanKhauAccount = idNhanKhauAccount;
     }
-
+    private String quyen;
     public void setQuyen(String quyen) {
         this.quyen = quyen;
     }
 
     private int idNhanKhauAccount;
-    private String quyen;
+
+    private int idNhanKhau;
+    public void setIdNhanKhau(int idNhanKhau) {
+        this.idNhanKhau = idNhanKhau;
+    }
+
+    @FXML
+    private Text loginID;
+    @FXML
+    private Text loginTen;
+    @FXML
+    private Text loginQuyen;
 
     @FXML
     private Text idhktxt;
@@ -201,7 +213,7 @@ public class themHoKhauController implements Initializable {
         loader.setLocation(getClass().getResource("/main/login/mainNhanKhau.fxml"));
         Parent mainNK = loader.load();
         mainNhanKhauController controller = loader.getController();
-        controller.setIdNhanKhau(idNhanKhauAccount);
+        controller.setIdNhanKhau(idNhanKhau);
         controller.setQuyen(quyen);
         Stage stage = (Stage) node.getScene().getWindow();
         stage.setScene(new Scene(mainNK));
@@ -215,7 +227,7 @@ public class themHoKhauController implements Initializable {
         loader.setLocation(getClass().getResource("/main/login/mainPhanThuong.fxml"));
         Parent mainPT = loader.load();
         mainPhanThuongController controller = loader.getController();
-        controller.setIdNhanKhau(idNhanKhauAccount);
+        controller.setIdNhanKhau(idNhanKhau);
         controller.setQuyen(quyen);
         Stage stage = (Stage) node.getScene().getWindow();
         stage.setScene(new Scene(mainPT));
@@ -234,7 +246,7 @@ public class themHoKhauController implements Initializable {
         loader.setLocation(getClass().getResource("/main/login/mainHoKhau.fxml"));
         Parent mainHK = loader.load();
         mainHoKhauController controller = loader.getController();
-        controller.setIdNhanKhau(idNhanKhauAccount);
+        controller.setIdNhanKhau(idNhanKhau);
         controller.setQuyen(quyen);
         Stage stage = (Stage) node.getScene().getWindow();
         stage.setScene(new Scene(mainHK));
@@ -251,6 +263,9 @@ public class themHoKhauController implements Initializable {
         Platform.runLater(()->{
             idHoKhau.setVisible(false);
             idhktxt.setVisible(false);
+            loginID.setText("ID: "+idNhanKhau);
+            loginTen.setText("Tên: "+ Services.queryNhanKhauTheoId(idNhanKhau).getHoTen());
+            loginQuyen.setText("Quyền: "+quyen);
         });
     }
 }
