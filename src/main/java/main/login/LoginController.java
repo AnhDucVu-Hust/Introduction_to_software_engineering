@@ -1,6 +1,7 @@
 package main.login;
 
 import javafx.fxml.FXML;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -17,6 +18,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class LoginController {
+    private int idNhanKhau;
+    private String quyen;
     @FXML
     private TextField txtUser;
     @FXML
@@ -30,12 +33,19 @@ public class LoginController {
         if (event.getSource() == btnLogin){
             if (logIN()=="Success") {
                 Node node = (Node) event.getSource();
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(getClass().getResource("/main/login/mainNhanKhau.fxml"));
+                Parent mainNK = null;
+                try {
+                    mainNK = loader.load();
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+                mainNhanKhauController controller = loader.getController();
+                controller.setQuyen(quyen);
+                controller.setIdNhanKhau(idNhanKhau);
                 Stage stage = (Stage) node.getScene().getWindow();
-                //stage.setMaximized(true);
-                stage.close();
-                stage.setTitle("Danh sách tài khoản");
-                Scene scene = new Scene(FXMLLoader.load(getClass().getResource("mainNhanKhau.fxml")));
-                stage.setScene(scene);
+                stage.setScene(new Scene(mainNK));
                 stage.show();
             }
         }
@@ -68,7 +78,9 @@ public class LoginController {
                     System.out.println("Login Fail!");
                     status = "Error";
                 } else {
+                    quyen=resultSet.getString("quyen");
                     System.out.println("Login Success!");
+                    idNhanKhau=resultSet.getInt("idNhanKhau");
                 }
             } catch (SQLException ex) {
                 System.err.println(ex.getMessage());

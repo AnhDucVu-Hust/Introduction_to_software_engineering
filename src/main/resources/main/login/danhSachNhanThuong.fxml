@@ -64,9 +64,9 @@
                      <columns>
                         <TableColumn fx:id="tbID" prefWidth="58.4000244140625" text="ID" />
                         <TableColumn fx:id="tbTen" prefWidth="149.60003662109375" text="Tên" />
-                        <TableColumn fx:id="tbTrangThai" minWidth="0.0" prefWidth="96.0" text="Trạng thái" />
                         <TableColumn fx:id="tbQua" prefWidth="82.39999389648438" text="Quà" />
-                        <TableColumn fx:id="tbThanhTich" prefWidth="97.60003662109375" text="Thành tích" />
+                        <TableColumn fx:id="tbThanhTich" prefWidth="93.0" text="Thành tích" />
+                        <TableColumn fx:id="tbTrangThai" minWidth="0.0" prefWidth="96.0" text="Trạng thái" />
                      </columns>
                   </TableView>
                   <TableView fx:id="tbPhanThuong" prefHeight="200.0" prefWidth="200.0" visible="false">
@@ -80,29 +80,19 @@
                </children>
             </StackPane>
             <TextField prefHeight="26.0" prefWidth="553.0" promptText="Search" GridPane.rowIndex="1" />
-            <HBox fx:id="barNK" prefHeight="66.0" prefWidth="474.0" spacing="10.0">
+            <HBox fx:id="barNK" prefHeight="66.0" prefWidth="474.0" spacing="10.0" />
+            <VBox alignment="BASELINE_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <children>
-                  <Button fx:id="btnChonQua" mnemonicParsing="false" onMouseClicked="#chonQuaClicked" prefHeight="28.0" prefWidth="146.0" style="-fx-background-color: #830136FF; -fx-font-size: 12; -fx-line-spacing: 10;" text="Chọn quà" textFill="WHITE">
-                     <font>
-                        <Font size="10.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="btnThemLoaiQua" mnemonicParsing="false" onMouseClicked="#themLoaiQua" prefHeight="28.0" prefWidth="146.0" style="-fx-background-color: #830136FF; -fx-font-size: 12; -fx-line-spacing: 10;" text="Thêm loại quà" textFill="WHITE">
-                     <font>
-                        <Font size="10.0" />
-                     </font>
-                  </Button>
                   <Button fx:id="btnDuyet" mnemonicParsing="false" onMouseClicked="#duyetClicked" prefHeight="28.0" prefWidth="146.0" style="-fx-background-color: #830136FF; -fx-font-size: 12; -fx-line-spacing: 10;" text="Duyệt" textFill="WHITE">
                      <font>
                         <Font size="10.0" />
                      </font>
                   </Button>
-               </children>
-            </HBox>
-            <VBox alignment="BASELINE_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
-               <children>
-                  <Button fx:id="btnQua" mnemonicParsing="false" onMouseClicked="#dsQuaClicked" prefHeight="26.0" prefWidth="118.0" style="-fx-background-color: #830136FF;" text="Danh sách quà" textAlignment="CENTER" textFill="WHITE" />
-                  <Button fx:id="btnDacBiet" mnemonicParsing="false" onMouseClicked="#dsThuongClicked" prefHeight="26.0" prefWidth="118.0" style="-fx-background-color: #000000;" text="Danh sách thưởng" textFill="WHITE" />
+                  <Button fx:id="btnChonQua" mnemonicParsing="false" onMouseClicked="#chonQuaClicked" prefHeight="28.0" prefWidth="146.0" style="-fx-background-color: #830136FF; -fx-font-size: 12; -fx-line-spacing: 10;" text="Chọn quà" textFill="WHITE">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Button>
                </children>
             </VBox>
          </children>

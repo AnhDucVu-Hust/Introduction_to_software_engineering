@@ -1,8 +1,11 @@
 package main.login;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
@@ -13,11 +16,23 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.Optional;
+import java.util.ResourceBundle;
 
-public class themHoKhauController {
+public class themHoKhauController implements Initializable {
+    public void setIdNhanKhauAccount(int idNhanKhauAccount) {
+        this.idNhanKhauAccount = idNhanKhauAccount;
+    }
+
+    public void setQuyen(String quyen) {
+        this.quyen = quyen;
+    }
+
+    private int idNhanKhauAccount;
+    private String quyen;
 
     @FXML
     private HBox barHK;
@@ -93,8 +108,12 @@ public class themHoKhauController {
     private StackPane tuongTacChinhNK;
 
     @FXML
-    void dangXuatClicked(MouseEvent event) {
-
+    void dangXuatClicked(MouseEvent event) throws IOException{
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        Scene scene = new Scene(FXMLLoader.load(getClass().getResource("login.fxml")));
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
@@ -112,7 +131,7 @@ public class themHoKhauController {
             } else if (option.get() == ButtonType.OK) {
                 Connection conn = MyConnection.conDB();
                 String query = "INSERT INTO hokhau(idHoKhau,idChuHo,tinhThanhPho,quanHuyen,phuongXa,diaChi,ngayCap,trangThai)\n" +
-                        "\tVALUES\t(?,?,?,?,?,?,?,N'Binh thuong');\n";
+                        "\tVALUES\t(?,?,?,?,?,?,?,N'Bình thường');\n";
                 PreparedStatement pstmt = conn.prepareStatement(query);
 
                 String idHoKhauStr = idHoKhau.getText().toString();
@@ -132,6 +151,11 @@ public class themHoKhauController {
                 pstmt.setDate(7, Date.valueOf(ngayCapDate));
                 pstmt.execute();
                 System.out.println("them thanh cong!");
+                Alert alert1 = new Alert(Alert.AlertType.WARNING);
+                alert1.setHeaderText(null);
+                alert1.setContentText("Thêm thành công");
+                alert1.showAndWait();
+
             }
         } catch(Exception e){
                 System.err.println(e.getMessage());
@@ -159,34 +183,56 @@ public class themHoKhauController {
     @FXML
     void nhanKhauClicked(MouseEvent event) throws IOException {
         Node node = (Node) event.getSource();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/main/login/mainNhanKhau.fxml"));
+        Parent mainNK = loader.load();
+        mainNhanKhauController controller = loader.getController();
+        controller.setIdNhanKhau(idNhanKhauAccount);
+        controller.setQuyen(quyen);
         Stage stage = (Stage) node.getScene().getWindow();
-        Scene scene = new Scene(FXMLLoader.load(getClass().getResource("mainNhanKhau.fxml")));
-        stage.setScene(scene);
+        stage.setScene(new Scene(mainNK));
         stage.show();
     }
 
     @FXML
-    void phanThuongClicked(MouseEvent event) {
-
-    }
-
-    @FXML
-    void quayLaiClicked(MouseEvent event) throws IOException{
+    void phanThuongClicked(MouseEvent event) throws IOException {
         Node node = (Node) event.getSource();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/main/login/mainPhanThuong.fxml"));
+        Parent mainPT = loader.load();
+        mainPhanThuongController controller = loader.getController();
+        controller.setIdNhanKhau(idNhanKhauAccount);
+        controller.setQuyen(quyen);
         Stage stage = (Stage) node.getScene().getWindow();
-        Scene scene = new Scene(FXMLLoader.load(getClass().getResource("mainHoKhau.fxml")));
-        stage.setScene(scene);
+        stage.setScene(new Scene(mainPT));
         stage.show();
     }
+
 
     @FXML
     void themHoKhauClicked(MouseEvent event) {
 
     }
-
+    @FXML
+    void quayLaiThemNKClicked(MouseEvent event) throws IOException{
+        Node node = (Node) event.getSource();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/main/login/mainHoKhau.fxml"));
+        Parent mainHK = loader.load();
+        mainHoKhauController controller = loader.getController();
+        controller.setIdNhanKhau(idNhanKhauAccount);
+        controller.setQuyen(quyen);
+        Stage stage = (Stage) node.getScene().getWindow();
+        stage.setScene(new Scene(mainHK));
+        stage.show();
+    }
     @FXML
     void thongKeClicked(MouseEvent event) {
 
     }
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        Platform.runLater(()->{});
+    }
 }

@@ -99,9 +99,9 @@
                   </Pane>
                   <TableView fx:id="tableNhanKhau" prefHeight="374.0" prefWidth="608.0" style="-fx-background-color: #3;">
                     <columns>
-                      <TableColumn prefWidth="75.0" text="ID" />
-                      <TableColumn prefWidth="222.4000244140625" text="Họ và tên" />
-                        <TableColumn minWidth="0.0" prefWidth="113.5999755859375" text="Trạng thái" />
+                      <TableColumn prefWidth="84.80000305175781" text="ID" />
+                      <TableColumn prefWidth="204.00006103515625" text="Họ và tên" />
+                        <TableColumn minWidth="0.0" prefWidth="123.99990844726562" text="Trạng thái" />
                         <TableColumn minWidth="0.0" prefWidth="197.5999755859375" text="Ghi chú" />
                     </columns>
                   </TableView>

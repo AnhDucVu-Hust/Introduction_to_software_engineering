@@ -17,6 +17,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="549.0" prefWidth="790.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.login.mainNhanKhauController">
    <children>
@@ -104,17 +105,32 @@
          <children>
             <StackPane fx:id="tuongTacChinhNK" prefHeight="76.0" prefWidth="616.0" GridPane.rowIndex="2">
                <children>
-                  <TableView fx:id="tbNhanKhau" prefHeight="374.0" prefWidth="608.0" style="-fx-background-color: #3;">
+                  <TableView fx:id="tbNhanKhau" onMouseClicked="#xemChiTiet" prefHeight="366.0" prefWidth="577.0" style="-fx-background-color: #3;">
                      <columns>
-                        <TableColumn fx:id="tbID" prefWidth="75.0" text="ID" />
-                        <TableColumn fx:id="tbTen" prefWidth="222.4000244140625" text="Họ và tên" />
-                        <TableColumn fx:id="tbCCCD" minWidth="0.0" prefWidth="175.20004272460938" text="CMND/CCCD" />
-                        <TableColumn fx:id="tbTrangThai" minWidth="0.0" prefWidth="136.0" text="Trạng thái" />
+                        <TableColumn fx:id="tbID" prefWidth="38.333343505859375" text="ID" />
+                        <TableColumn fx:id="tbTen" prefWidth="219.66665649414062" text="Họ và tên" />
+                        <TableColumn fx:id="tbGioiTinh" minWidth="0.0" prefWidth="76.66668701171875" text="Giới tính" />
+                        <TableColumn fx:id="tbNgaySinh" minWidth="0.0" prefWidth="139.0" text="Ngày sinh" />
+                        <TableColumn fx:id="tbTrangThai" prefWidth="134.0" text="Trạng thái" />
                      </columns>
                   </TableView>
                </children>
             </StackPane>
-            <TextField fx:id="search" onKeyPressed="#timKiem" prefHeight="26.0" prefWidth="608.0" promptText="Search" GridPane.rowIndex="1" />
+            <HBox spacing="10.0" GridPane.rowIndex="1">
+               <children>
+                  <TextField fx:id="search" onKeyPressed="#timKiem" prefHeight="26.0" prefWidth="348.0" promptText="Search" />
+                  <Button fx:id="btnDuyet" mnemonicParsing="false" onMouseClicked="#duyetClicked" prefHeight="28.0" prefWidth="102.0" style="-fx-background-color: #3F2B63; -fx-font-size: 12;" text="Duyệt" textFill="WHITE">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btnLamMoi" mnemonicParsing="false" onMouseClicked="#lamMoiClicked" prefHeight="28.0" prefWidth="102.0" style="-fx-background-color: #3F2B63; -fx-font-size: 12;" text="Làm mới" textFill="WHITE">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
             <HBox fx:id="barNK" prefHeight="51.0" prefWidth="608.0" spacing="10.0">
                <children>
                   <Button fx:id="btnThemNK" mnemonicParsing="false" onMouseClicked="#themNhanKhauClicked" prefHeight="28.0" prefWidth="102.0" style="-fx-background-color: #3F2B63; -fx-font-size: 12;" text="Thêm mới" textFill="WHITE">
@@ -137,6 +153,11 @@
                         <Font size="10.0" />
                      </font>
                   </Button>
+                  <Button fx:id="btnChuyenDi" mnemonicParsing="false" onMouseClicked="#chuyenDiClicked" prefHeight="28.0" prefWidth="102.0" style="-fx-background-color: #3F2B63; -fx-font-size: 12;" text="Chuyển đi" textFill="WHITE">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Button>
                   <Button fx:id="btnXoa" mnemonicParsing="false" onMouseClicked="#xoaClicked" prefHeight="28.0" prefWidth="102.0" style="-fx-background-color: #3F2B63; -fx-font-size: 12;" text="Xóa" textFill="WHITE">
                      <font>
                         <Font size="10.0" />
@@ -153,6 +174,21 @@
                   <Font size="32.0" />
                </font>
             </Label>
+            <Text fx:id="loginID" fill="#fcfcfc" layoutX="287.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID:" wrappingWidth="220.0">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Text>
+            <Text fx:id="loginTen" fill="#fcfcfc" layoutX="287.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tên:" wrappingWidth="220.0">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Text>
+            <Text fx:id="loginQuyen" fill="#fcfcfc" layoutX="287.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quyền:" wrappingWidth="220.0">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Text>
          </children>
       </Pane>
    </children>

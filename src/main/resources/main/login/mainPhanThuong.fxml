@@ -109,6 +109,14 @@
                         <TableColumn fx:id="tbNgay" minWidth="0.0" prefWidth="238.39999389648438" text="Ngày trao thưởng" />
                      </columns>
                   </TableView>
+                  <TableView fx:id="tbQua" prefHeight="200.0" prefWidth="200.0" visible="false">
+                     <columns>
+                        <TableColumn fx:id="tbIDQua" prefWidth="75.0" text="ID" />
+                        <TableColumn fx:id="tbTenQua" prefWidth="162.39996337890625" text="Tên" />
+                        <TableColumn fx:id="tbGiaTri" prefWidth="152.80007934570312" text="Giá trị" />
+                        <TableColumn fx:id="tbGhiChu" prefWidth="90.4000244140625" text="Ghi chú" />
+                     </columns>
+                  </TableView>
                </children>
             </StackPane>
             <TextField prefHeight="26.0" prefWidth="553.0" promptText="Search" GridPane.rowIndex="1" />
@@ -135,6 +143,7 @@
                <children>
                   <Button fx:id="btnDipHSG" mnemonicParsing="false" onMouseClicked="#dipHSGClicked" prefHeight="28.0" prefWidth="110.0" style="-fx-background-color: #000000;" text="Dịp học sinh giỏi" textAlignment="CENTER" textFill="WHITE" />
                   <Button fx:id="btnDacBiet" mnemonicParsing="false" onMouseClicked="#DacBietClicked" prefHeight="28.0" prefWidth="111.0" style="-fx-background-color: #830136FF;" text="Dịp đặc biệt" textFill="WHITE" />
+                  <Button fx:id="btnQua" mnemonicParsing="false" onMouseClicked="#dsQuaClicked" prefHeight="26.0" prefWidth="118.0" style="-fx-background-color: #830136FF;" text="Danh sách quà" textAlignment="CENTER" textFill="WHITE" />
                </children>
                <GridPane.margin>
                   <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />

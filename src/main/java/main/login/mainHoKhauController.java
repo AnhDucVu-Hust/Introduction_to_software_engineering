@@ -2,6 +2,8 @@ package main.login;
 
 import Entity.HoKhau;
 import Entity.NhanKhau;
+import Service.Services;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -17,6 +19,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -30,6 +33,17 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class mainHoKhauController implements Initializable {
+    public void setQuyen(String quyen) {
+        this.quyen = quyen;
+    }
+    private int idNhanKhau;
+    public void setIdNhanKhau(int idNhanKhau) {
+        this.idNhanKhau = idNhanKhau;
+    }
+
+    private String quyen;
+
+
 
     @FXML
     private HBox barHK;
@@ -80,8 +94,12 @@ public class mainHoKhauController implements Initializable {
     @FXML
     private TableColumn<HoKhau,Integer> tbIDHoKhau;
     @FXML
-    void dangXuatClicked(MouseEvent event) {
-
+    void dangXuatClicked(MouseEvent event) throws IOException {
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        Scene scene = new Scene(FXMLLoader.load(getClass().getResource("login.fxml")));
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
@@ -91,19 +109,41 @@ public class mainHoKhauController implements Initializable {
 
     @FXML
     void nhanKhauClicked(MouseEvent event) throws IOException {
+        System.out.println("Ho khau"+ quyen);
         Node node = (Node) event.getSource();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/main/login/mainNhanKhau.fxml"));
+        Parent mainNK = null;
+        try {
+            mainNK = loader.load();
+        } catch (IOException ex) {
+            throw new RuntimeException(ex);
+        }
+        mainNhanKhauController controller = loader.getController();
+        controller.setQuyen(quyen);
+        controller.setIdNhanKhau(idNhanKhau);
+        System.out.println(idNhanKhau);
         Stage stage = (Stage) node.getScene().getWindow();
-        Scene scene = new Scene(FXMLLoader.load(getClass().getResource("mainNhanKhau.fxml")));
-        stage.setScene(scene);
+        stage.setScene(new Scene(mainNK));
         stage.show();
     }
 
     @FXML
     void phanThuongClicked(MouseEvent event) throws  IOException {
         Node node = (Node) event.getSource();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/main/login/mainPhanThuong.fxml"));
+        Parent mainPT = null;
+        try {
+            mainPT = loader.load();
+        } catch (IOException ex) {
+            throw new RuntimeException(ex);
+        }
+        mainPhanThuongController controller = loader.getController();
+        controller.setQuyen(quyen);
+        controller.setIdNhanKhau(idNhanKhau);
         Stage stage = (Stage) node.getScene().getWindow();
-        Scene scene = new Scene(FXMLLoader.load(getClass().getResource("mainPhanThuong.fxml")));
-        stage.setScene(scene);
+        stage.setScene(new Scene(mainPT));
         stage.show();
     }
 
@@ -117,6 +157,8 @@ public class mainHoKhauController implements Initializable {
             Parent suaHoKhau = loader.load();
             suaHoKhauController controller = loader.getController();
             controller.set_hokhau(hk);
+            controller.setIdNhanKhauAccount(idNhanKhau);
+            controller.setQuyen(quyen);
             Stage stage = (Stage) node.getScene().getWindow();
             stage.setScene(new Scene(suaHoKhau));
             stage.show();
@@ -132,15 +174,34 @@ public class mainHoKhauController implements Initializable {
     @FXML
     void themHoKhauClicked(MouseEvent event) throws IOException {
         Node node = (Node) event.getSource();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/main/login/themHoKhau.fxml"));
+        Parent themHoKhau = loader.load();
+        themHoKhauController controller = loader.getController();
+        controller.setIdNhanKhauAccount(idNhanKhau);
+        controller.setQuyen(quyen);
         Stage stage = (Stage) node.getScene().getWindow();
-        Scene scene = new Scene(FXMLLoader.load(getClass().getResource("themHoKhau.fxml")));
-        stage.setScene(scene);
+        stage.setScene(new Scene(themHoKhau));
         stage.show();
     }
 
     @FXML
-    void thongKeClicked(MouseEvent event) {
-
+    void thongKeClicked(MouseEvent event) throws IOException {
+        Node node = (Node) event.getSource();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/main/login/mainThongKe.fxml"));
+        Parent mainPT = null;
+        try {
+            mainPT = loader.load();
+        } catch (IOException ex) {
+            throw new RuntimeException(ex);
+        }
+        mainThongKeController controller = loader.getController();
+        controller.setQuyen(quyen);
+        controller.setIdNhanKhau(idNhanKhau);
+        Stage stage = (Stage) node.getScene().getWindow();
+        stage.setScene(new Scene(mainPT));
+        stage.show();
     }
     @FXML
     private TextField search;
@@ -153,6 +214,10 @@ public class mainHoKhauController implements Initializable {
                     System.out.println(tuKhoa);
                     Connection conn = MyConnection.conDB();
                     String query = "SELECT * FROM `hokhau`\n" +
+                            "WHERE idHoKhau=" + tuKhoa + "\n" +
+                            "OR idChuHo=" + tuKhoa + "\n" +
+                            "OR ngayTao=" + tuKhoa;
+                    if (quyen=="To truong") query="SELECT * FROM `hokhau`\n" +
                             "WHERE idHoKhau=" + tuKhoa + "\n" +
                             "OR idChuHo=" + tuKhoa + "\n" +
                             "OR ngayTao=" + tuKhoa;
@@ -189,11 +254,13 @@ public class mainHoKhauController implements Initializable {
             Node node = (Node) event.getSource();
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/main/login/xemChiTietHoKhau.fxml"));
-            Parent suaHoKhau = loader.load();
+            Parent xemChiTiet = loader.load();
             xemChiTietHoKhauController controller = loader.getController();
             controller.set_hk(hk);
+            controller.setQuyen(quyen);
+            controller.setIdNhanKhauAccount(idNhanKhau);
             Stage stage = (Stage) node.getScene().getWindow();
-            stage.setScene(new Scene(suaHoKhau));
+            stage.setScene(new Scene(xemChiTiet));
             stage.show();
         }
         else {
@@ -208,35 +275,48 @@ public class mainHoKhauController implements Initializable {
     @FXML
     void xoaClicked(MouseEvent event) {
         try {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Xóa hộ khẩu");
-            alert.setHeaderText("Bạn có thực sự muốn xóa hộ khẩu này ?");
-            alert.setContentText("Việc xóa hộ khẩu sẽ làm mất tất cả các dữ liệu liên quan đến hộ khẩu.");
-            Optional<ButtonType> option = alert.showAndWait();
+            HoKhau hk = tbHoKhau.getSelectionModel().getSelectedItem();
+            if(hk!=null) {
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Xóa hộ khẩu");
+                alert.setHeaderText("Bạn có thực sự muốn xóa hộ khẩu này ?");
+                alert.setContentText("Việc xóa hộ khẩu sẽ làm mất tất cả các dữ liệu liên quan đến hộ khẩu.");
+                Optional<ButtonType> option = alert.showAndWait();
 
-            if (option.get() == null) {
+                if (option.get() == null) {
 
-            } else if (option.get() == ButtonType.OK) {
-                HoKhau hk = tbHoKhau.getSelectionModel().getSelectedItem();
-                Connection conn = MyConnection.conDB();
-                String query = "DELETE from `hokhau` WHERE idHoKhau=" + hk.getIdHoKhau();
-                PreparedStatement preparedStatement = conn.prepareStatement(query);
-                preparedStatement.execute();
-                refreshTable();
-                tbIDHoKhau.setCellValueFactory(new PropertyValueFactory<>("idHoKhau"));
-                tbIDChuHo.setCellValueFactory(new PropertyValueFactory<>("idChuHo"));
-                tbNgayTao.setCellValueFactory(new PropertyValueFactory<>("ngayCap"));
-                tbDiaChi.setCellValueFactory(new PropertyValueFactory<>("diaChi"));
-            } else if (option.get() == ButtonType.CANCEL) {
+                } else if (option.get() == ButtonType.OK) {
+                    Connection conn = MyConnection.conDB();
+                    String query = "DELETE from `hokhau` WHERE idHoKhau=" + hk.getIdHoKhau();
+                    PreparedStatement preparedStatement = conn.prepareStatement(query);
+                    preparedStatement.execute();
+                    refreshTable();
+                    tbIDHoKhau.setCellValueFactory(new PropertyValueFactory<>("idHoKhau"));
+                    tbIDChuHo.setCellValueFactory(new PropertyValueFactory<>("idChuHo"));
+                    tbNgayTao.setCellValueFactory(new PropertyValueFactory<>("ngayCap"));
+                    tbDiaChi.setCellValueFactory(new PropertyValueFactory<>("diaChi"));
+                } else if (option.get() == ButtonType.CANCEL) {
 
+                }
+            } else{
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setHeaderText(null);
+                alert.setContentText("Chưa hộ khẩu nào được chọn để xóa!");
+                alert.showAndWait();
             }
         } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
             //Logger.getLogger(themNhanKhauController.class.getName()).log(Level.SEVERE,null,ex);
         }
     }
     private void refreshTable() {
         Connection conn = MyConnection.conDB();
-        String query = "SELECT * from `hoKhau`";
+        String query;
+        if(quyen.equals("Tổ trưởng"))  query = "SELECT * from `hoKhau`";
+        else {
+            query="SELECT * FROM hokhau where idHoKhau=" +Services.queryIdHoKhauCuaNhanKhau(idNhanKhau);;
+        }
+
         try {
             PreparedStatement pstmt = conn.prepareStatement(query);
             ResultSet resultSet = pstmt.executeQuery();
@@ -259,12 +339,23 @@ public class mainHoKhauController implements Initializable {
         } catch (SQLException ex) {
         }
     }
+    @FXML
+    private Text loginID;
+    @FXML
+    private Text loginTen;
+    @FXML
+    private Text loginQuyen;
     public void initialize(URL url, ResourceBundle resourceBundle){
-        refreshTable();
-        tbIDHoKhau.setCellValueFactory(new PropertyValueFactory<>("idHoKhau"));
-        tbIDChuHo.setCellValueFactory(new PropertyValueFactory<>("idChuHo"));
-        tbDiaChi.setCellValueFactory(new PropertyValueFactory<>("diaChi"));
-        tbNgayTao.setCellValueFactory(new PropertyValueFactory<>("ngayTao"));
+        Platform.runLater(()->{
+            refreshTable();
+            tbIDHoKhau.setCellValueFactory(new PropertyValueFactory<>("idHoKhau"));
+            tbIDChuHo.setCellValueFactory(new PropertyValueFactory<>("idChuHo"));
+            tbDiaChi.setCellValueFactory(new PropertyValueFactory<>("diaChi"));
+            tbNgayTao.setCellValueFactory(new PropertyValueFactory<>("ngayTao"));
+            loginID.setText("ID: "+idNhanKhau);
+            loginTen.setText("Tên: "+Services.queryNhanKhauTheoId(idNhanKhau).getHoTen());
+            loginQuyen.setText("Quyền: "+quyen);
+        });
     }
 
 }

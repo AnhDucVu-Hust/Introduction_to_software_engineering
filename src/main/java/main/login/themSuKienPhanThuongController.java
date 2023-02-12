@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
@@ -22,7 +23,15 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class themSuKienPhanThuongController implements Initializable {
+    public void setQuyen(String quyen) {
+        this.quyen = quyen;
+    }
+    private int idNhanKhau;
+    public void setIdNhanKhau(int idNhanKhau) {
+        this.idNhanKhau = idNhanKhau;
+    }
 
+    private String quyen;
     @FXML
     private HBox barNK;
 
@@ -82,8 +91,8 @@ public class themSuKienPhanThuongController implements Initializable {
         boolean success=false;
         try {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Thêm hộ khẩu");
-            alert.setHeaderText("Bạn muốn thêm hộ khẩu này?");
+            alert.setTitle("Thêm sự kiện");
+            alert.setHeaderText("Bạn muốn thêm sự kiện này?");
             Optional<ButtonType> option = alert.showAndWait();
 
             if (option.get() == null) {
@@ -118,9 +127,20 @@ public class themSuKienPhanThuongController implements Initializable {
     @FXML
     void hoKhauClicked(MouseEvent event) throws IOException {
         Node node = (Node) event.getSource();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/main/login/mainHoKhau.fxml"));
+        Parent mainHK = null;
+        try {
+            mainHK = loader.load();
+        } catch (IOException ex) {
+            throw new RuntimeException(ex);
+        }
+        mainHoKhauController controller = loader.getController();
+        controller.setQuyen(quyen);
+        controller.setIdNhanKhau(idNhanKhau);
+        System.out.println(idNhanKhau);
         Stage stage = (Stage) node.getScene().getWindow();
-        Scene scene = new Scene(FXMLLoader.load(getClass().getResource("mainHoKhau.fxml")));
-        stage.setScene(scene);
+        stage.setScene(new Scene(mainHK));
         stage.show();
     }
 
@@ -158,7 +178,8 @@ public class themSuKienPhanThuongController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        loaiDip.getItems().add("Hoc sinh gioi");
-        loaiDip.getItems().add("Dac biet");
+        loaiDip.getItems().add("Cuối năm học");
+        loaiDip.setValue("Dịp đặc biệt");
+        loaiDip.getItems().add("Dịp đặc biệt");
     }
 }
