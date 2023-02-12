@@ -5,12 +5,30 @@ public class PhanThuong {
     private String ten;
     private Integer giaTri;
     private String ghiChu;
+    private Integer soLuong;
 
     public PhanThuong(Integer id, String ten, Integer giaTri, String ghiChu) {
         this.id = id;
         this.ten = ten;
         this.giaTri = giaTri;
         this.ghiChu = ghiChu;
+        this.soLuong = soLuong;
+    }
+
+    public Integer getSoLuong() {
+        return soLuong;
+    }
+
+    public void setSoLuong(Integer soLuong) {
+        this.soLuong = soLuong;
+    }
+
+    public PhanThuong(Integer id, String ten, Integer giaTri, String ghiChu, Integer soLuong) {
+        this.id = id;
+        this.ten = ten;
+        this.giaTri = giaTri;
+        this.ghiChu = ghiChu;
+        this.soLuong = soLuong;
     }
 
     public Integer getId() {
