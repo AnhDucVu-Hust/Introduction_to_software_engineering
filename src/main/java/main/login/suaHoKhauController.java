@@ -210,11 +210,16 @@ public class suaHoKhauController implements Initializable {
     }
 
     @FXML
-    void quayLaiClicked(MouseEvent event) throws IOException {
+    void quayLaiClicked(MouseEvent event) throws  IOException{
         Node node = (Node) event.getSource();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/main/login/mainHoKhau.fxml"));
+        Parent mainHK = loader.load();
+        mainHoKhauController controller = loader.getController();
+        controller.setIdNhanKhau(idNhanKhauAccount);
+        controller.setQuyen(quyen);
         Stage stage = (Stage) node.getScene().getWindow();
-        Scene scene = new Scene(FXMLLoader.load(getClass().getResource("mainHoKhau.fxml")));
-        stage.setScene(scene);
+        stage.setScene(new Scene(mainHK));
         stage.show();
     }
 

@@ -164,7 +164,7 @@ public class mainHoKhauController implements Initializable {
             stage.show();
         }
         else {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setHeaderText(null);
             alert.setContentText("Chưa hộ khẩu nào được chọn để sửa");
             alert.showAndWait();
@@ -250,7 +250,7 @@ public class mainHoKhauController implements Initializable {
             stage.show();
         }
         else {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setHeaderText(null);
             alert.setContentText("Chưa hộ khẩu nào được chọn để xem");
             alert.showAndWait();
@@ -285,7 +285,7 @@ public class mainHoKhauController implements Initializable {
 
                 }
             } else{
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setHeaderText(null);
                 alert.setContentText("Chưa hộ khẩu nào được chọn để xóa!");
                 alert.showAndWait();

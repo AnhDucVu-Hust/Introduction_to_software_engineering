@@ -249,9 +249,9 @@ public class mainNhanKhauController implements Initializable {
 
                 }
             }else {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("");
-                alert.setHeaderText("Chưa nhân khẩu nào được chọn để xóa!");
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setHeaderText(null);
+                alert.setContentText("Chưa nhân khẩu nào được chọn để xóa!");
                 alert.showAndWait();
             }
         } catch (SQLException ex) {
