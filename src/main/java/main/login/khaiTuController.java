@@ -23,6 +23,7 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+
 public class khaiTuController implements Initializable{
     public void setNhanKhau(NhanKhau nhanKhau) {
         this.nhanKhau = nhanKhau;
@@ -49,6 +50,19 @@ public class khaiTuController implements Initializable{
     private TextField tenNguoiMat;
     @FXML
     private TextField ghiChu;
+
+    public static boolean isStringInteger(String stringToCheck, int radix) {
+        if(stringToCheck.isEmpty()) return false;           //Check if the string is empty
+        for(int i = 0; i < stringToCheck.length(); i++) {
+            if(i == 0 && stringToCheck.charAt(i) == '-') {     //Check for negative Integers
+                if(stringToCheck.length() == 1) return false;
+                else continue;
+            }
+            if(Character.digit(stringToCheck.charAt(i),radix) < 0) return false;
+        }
+        return true;
+    }
+
     @FXML
     void guiThongTinClicked(MouseEvent event) {
         try {
@@ -56,6 +70,13 @@ public class khaiTuController implements Initializable{
             alert.setTitle("Khai tử");
             alert.setHeaderText("Bạn chắc chắn khai tử cho nhân khẩu này?");
             Optional<ButtonType> option = alert.showAndWait();
+            if(!isStringInteger(idNguoiKhai.getText(), 10)){
+                alert = new Alert(Alert.AlertType.WARNING);
+                alert.setHeaderText(null);
+                alert.setContentText("ID người khai chưa nhập hoặc nhập sai định dạng!");
+                alert.showAndWait();
+                return;
+            }
             Integer idNguoiKhaiInt = Integer.parseInt(idNguoiKhai.getText());
             LocalDate ngayBaoTuDate = ngayBaoTu.getValue();
             String ghiChuStr=ghiChu.getText().toString();
@@ -71,6 +92,13 @@ public class khaiTuController implements Initializable{
                 pstmt=conn.prepareStatement(query1);
                 pstmt.setInt(1,nhanKhau.getId());
                 pstmt.setInt(2,idNguoiKhaiInt);
+                if(ngayBaoTu.getValue()==null){
+                    alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setHeaderText(null);
+                    alert.setContentText("Chưa nhập ngày mất!");
+                    alert.showAndWait();
+                    return;
+                }
                 pstmt.setDate(3, Date.valueOf(LocalDate.now()));
                 pstmt.setDate(4,Date.valueOf(ngayBaoTuDate));
                 pstmt.setString(5,ghiChuStr);

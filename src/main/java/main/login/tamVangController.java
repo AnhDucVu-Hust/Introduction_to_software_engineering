@@ -60,6 +60,13 @@ public class tamVangController implements Initializable {
             alert.setHeaderText("Bạn chắc chắn khai báo tạm vắng cho nhân khẩu này?");
             Optional<ButtonType> option = alert.showAndWait();
             Integer idNguoiKhaiInt = Integer.parseInt(id.getText());
+            if(ngayVe.getValue()==null || ngayDi.getValue()==null){
+                alert = new Alert(Alert.AlertType.WARNING);
+                alert.setHeaderText(null);
+                alert.setContentText("Bạn hãy điền đầy đủ thông tin!");
+                alert.showAndWait();
+                return;
+            }
             Date ngayVeDate=Date.valueOf(ngayVe.getValue());
             Date ngayDiDate=Date.valueOf(ngayDi.getValue());
             String noiTamTrustr=noiTamTru.getText().toString();

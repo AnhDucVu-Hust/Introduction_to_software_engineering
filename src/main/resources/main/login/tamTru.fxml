@@ -7,7 +7,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="434.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.login.tamTruController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="434.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.login.tamTruController">
    <children>
       <Text layoutX="186.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tạm trú">
          <font>
@@ -26,7 +26,7 @@
             <Font size="16.0" />
          </font>
       </Text>
-      <Text layoutX="13.0" layoutY="166.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ngày đến" wrappingWidth="68.73046875">
+      <Text layoutX="12.0" layoutY="166.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ngày đến (*)" wrappingWidth="100.00003951787949">
          <font>
             <Font size="16.0" />
          </font>
@@ -46,7 +46,7 @@
       </Text>
       <TextField fx:id="noiTamTru" layoutX="123.0" layoutY="276.0" prefHeight="26.0" prefWidth="298.0" />
       <DatePicker fx:id="ngayDen" layoutX="124.0" layoutY="147.0" prefHeight="26.0" prefWidth="132.0" />
-      <Text layoutX="13.0" layoutY="209.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ngày đi" wrappingWidth="90.39999999999986">
+      <Text layoutX="13.0" layoutY="209.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ngày đi (*)" wrappingWidth="90.39999999999986">
          <font>
             <Font size="16.0" />
          </font>
@@ -58,5 +58,6 @@
             <Font size="16.0" />
          </font>
       </Text>
+      <Text layoutX="104.0" layoutY="352.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Các trường có dấu (*) là không được để trống!" />
    </children>
 </AnchorPane>

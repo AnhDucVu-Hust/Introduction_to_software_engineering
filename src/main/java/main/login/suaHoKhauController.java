@@ -148,16 +148,7 @@ public class suaHoKhauController implements Initializable {
 
         } else if (option.get() == ButtonType.OK){
             Services.suaHoKhau(hk);
-            Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
-            alert1.setTitle("Sửa hộ khẩu");
-            alert1.setHeaderText("Bạn muốn sửa hộ khẩu này?");
-            alert1.setContentText("Nếu bạn sửa, tất cả thông tin cũ của hộ khẩu sẽ mất");
-            alert1.showAndWait();
-            Node node = (Node) event.getSource();
-            Stage stage = (Stage) node.getScene().getWindow();
-            Scene scene = new Scene(FXMLLoader.load(getClass().getResource("mainHoKhau.fxml")));
-            stage.setScene(scene);
-            stage.show();
+            quayLaiClicked(event);
         }
     }
 

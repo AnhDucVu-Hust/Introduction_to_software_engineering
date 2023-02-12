@@ -80,12 +80,21 @@ public class tamTruController implements Initializable {
             alert.setHeaderText("Bạn chắc chắn khai báo tạm vắng cho nhân khẩu này?");
             Optional<ButtonType> option = alert.showAndWait();
             Integer idNguoiKhaiInt = Integer.parseInt(id.getText());
+            if(ngayDen.getValue()==null || ngayDi.getValue()==null){
+                alert = new Alert(Alert.AlertType.WARNING);
+                alert.setHeaderText(null);
+                alert.setContentText("Bạn hãy điền đầy đủ thông tin!");
+                alert.showAndWait();
+                return;
+            }
             Date ngayDenDate=Date.valueOf(ngayDen.getValue());
             Date ngayDiDate=Date.valueOf(ngayDi.getValue());
             String noiTamTrustr=noiTamTru.getText().toString();
             String lidoStr=liDo.getText().toString();
             Integer idHoKhauInt= Services.queryIdHoKhauCuaNhanKhau(nk.getId());
             String noiThuongTruStr=noiThuongTru.getText().toString();
+
+
             if (option.get() == null) {
 
             } else if (option.get() == ButtonType.OK) {
@@ -114,6 +123,7 @@ public class tamTruController implements Initializable {
 
             }
         } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
             Logger.getLogger(themNhanKhauController.class.getName()).log(Level.SEVERE,null,ex);
         }
     }

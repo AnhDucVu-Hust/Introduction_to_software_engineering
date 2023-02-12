@@ -114,16 +114,16 @@
                         <Text layoutX="14.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ngày sinh (*)" />
                         <DatePicker fx:id="ngaySinh" layoutX="94.0" layoutY="49.0" prefHeight="25.0" prefWidth="199.0" promptText="2023-01-01" />
                         <Text layoutX="312.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Giới tính (*)" />
-                        <Text layoutX="14.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nơi sinh (*)" />
+                        <Text layoutX="14.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nơi sinh" />
                         <TextField fx:id="noiSinh" layoutX="94.0" layoutY="81.0" prefHeight="25.0" prefWidth="199.0" promptText="Hà Nội" />
-                        <Text layoutX="312.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nguyên quán (*)" />
+                        <Text layoutX="312.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nguyên quán" />
                         <TextField fx:id="nguyenQuan" layoutX="412.0" layoutY="81.0" prefHeight="25.0" prefWidth="182.0" promptText="Lào Cai" />
-                        <Text layoutX="15.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dân tộc (*)" />
+                        <Text layoutX="15.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dân tộc" />
                         <TextField fx:id="danToc" layoutX="94.0" layoutY="113.0" prefHeight="25.0" prefWidth="199.0" promptText="Kinh" />
                         <ChoiceBox fx:id="gioiTinh" layoutX="412.0" layoutY="49.0" prefHeight="25.0" prefWidth="182.0" />
-                        <Text layoutX="312.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tôn giáo (*)" />
+                        <Text layoutX="312.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tôn giáo" />
                         <TextField fx:id="tonGiao" layoutX="412.0" layoutY="113.0" prefHeight="25.0" prefWidth="182.0" promptText="Phật Giáo" />
-                        <Text layoutX="15.0" layoutY="161.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quốc tịch (*)" />
+                        <Text layoutX="15.0" layoutY="161.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quốc tịch" />
                         <TextField fx:id="quocTich" layoutX="94.0" layoutY="144.0" prefHeight="25.0" prefWidth="199.0" promptText="Việt Nam" />
                         <Text layoutX="312.0" layoutY="161.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CMND/CCCD" />
                         <TextField fx:id="cmndCccd" layoutX="412.0" layoutY="144.0" prefHeight="25.0" prefWidth="182.0" promptText="012345678901" />

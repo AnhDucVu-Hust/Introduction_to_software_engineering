@@ -13,6 +13,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -33,6 +34,9 @@ public class themHoKhauController implements Initializable {
 
     private int idNhanKhauAccount;
     private String quyen;
+
+    @FXML
+    private Text idhktxt;
 
     @FXML
     private HBox barHK;
@@ -139,11 +143,11 @@ public class themHoKhauController implements Initializable {
 
             } else if (option.get() == ButtonType.OK) {
                 Connection conn = MyConnection.conDB();
-                String query = "INSERT INTO hokhau(idHoKhau,idChuHo,tinhThanhPho,quanHuyen,phuongXa,diaChi,ngayCap,trangThai)\n" +
-                        "\tVALUES\t(?,?,?,?,?,?,?,N'Bình thường');\n";
+                String query = "INSERT INTO hokhau(idChuHo,tinhThanhPho,quanHuyen,phuongXa,diaChi,ngayCap,trangThai)\n" +
+                        "\tVALUES\t(?,?,?,?,?,?,N'Bình thường');\n";
                 PreparedStatement pstmt = conn.prepareStatement(query);
 
-                String idHoKhauStr = idHoKhau.getText().toString();
+//                String idHoKhauStr = idHoKhau.getText().toString();
                 String idChuHoStr = idChuHo.getText().toString();
                 String tinhThanhPhoStr = tinhThanhPho.getText().toString();
                 String quanHuyenStr = quanHuyen.getText().toString();
@@ -151,18 +155,23 @@ public class themHoKhauController implements Initializable {
                 String diaChiStr = diaChi.getText().toString();
                 LocalDate ngayCapDate = ngayCap.getValue();
 
-                pstmt.setString(1, idHoKhauStr);
-                pstmt.setString(2, idChuHoStr);
-                pstmt.setString(3, tinhThanhPhoStr);
-                pstmt.setString(4, quanHuyenStr);
-                pstmt.setString(5, phuongXaStr);
-                pstmt.setString(6, diaChiStr);
-                pstmt.setDate(7, Date.valueOf(ngayCapDate));
+                if(idChuHoStr.equals("")||tinhThanhPhoStr.equals("")||quanHuyenStr.equals("")
+                    ||phuongXaStr.equals("")||diaChiStr.equals("")||ngayCap.getValue().equals("")){
+                    throw new Exception();
+                }
+
+//                pstmt.setString(1, idHoKhauStr);
+                pstmt.setString(1, idChuHoStr);
+                pstmt.setString(2, tinhThanhPhoStr);
+                pstmt.setString(3, quanHuyenStr);
+                pstmt.setString(4, phuongXaStr);
+                pstmt.setString(5, diaChiStr);
+                pstmt.setDate(6, Date.valueOf(ngayCapDate));
                 pstmt.execute();
                 System.out.println("them thanh cong!");
-                Alert alert1 = new Alert(Alert.AlertType.WARNING);
+                Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
                 alert1.setHeaderText(null);
-                alert1.setContentText("Thêm thành công");
+                alert1.setContentText("Thêm thành công!");
                 alert1.showAndWait();
 
             }
@@ -236,8 +245,12 @@ public class themHoKhauController implements Initializable {
 
     }
 
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        Platform.runLater(()->{});
+        Platform.runLater(()->{
+            idHoKhau.setVisible(false);
+            idhktxt.setVisible(false);
+        });
     }
 }

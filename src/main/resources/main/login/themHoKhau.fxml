@@ -114,7 +114,7 @@
                         <Text layoutX="177.0" layoutY="315.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Các trường có dấu (*) là không được để trống!" />
                         <Button fx:id="quayLai" layoutX="312.0" layoutY="324.0" mnemonicParsing="false" onMouseClicked="#quayLaiThemNKClicked" prefHeight="28.0" prefWidth="96.0" style="-fx-background-color: #35BEFD; -fx-font-size: 12;" text="Quay lại" textFill="BLACK" />
                         <TextField fx:id="idHoKhau" layoutX="412.0" layoutY="89.0" prefHeight="25.0" prefWidth="182.0" promptText="012345678901" />
-                        <Text layoutX="312.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID Hộ khẩu(*)" />
+                        <Text fx:id="idhktxt" layoutX="312.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID Hộ khẩu(*)" />
                         <Text layoutX="310.0" layoutY="175.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quận/Huyện(*)" />
                         <TextField fx:id="quanHuyen" layoutX="410.0" layoutY="158.0" prefHeight="25.0" prefWidth="182.0" promptText="Hai Bà Trưng" />
                         <Text layoutX="-2.0" layoutY="242.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phường/Xã(*)" />

@@ -7,15 +7,15 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="434.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.login.khaiTuController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="472.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.login.khaiTuController">
    <children>
-      <Text layoutX="186.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Khai tử">
+      <Text layoutX="213.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Khai tử">
          <font>
             <Font name="Microsoft Tai Le" size="20.0" />
          </font>
       </Text>
-      <Button fx:id="btnGuiThongTin" layoutX="115.0" layoutY="358.0" mnemonicParsing="false" onMouseClicked="#guiThongTinClicked" prefHeight="28.0" prefWidth="89.0" style="-fx-background-color: #B9A6D8;" text="Gửi thông tin" textFill="BLACK" />
-      <Button fx:id="btnHuy" layoutX="227.0" layoutY="358.0" mnemonicParsing="false" onMouseClicked="#huyClicked" prefHeight="28.0" prefWidth="90.0" style="-fx-background-color: #B9A6D8;" text="Hủy" textFill="BLACK" />
+      <Button fx:id="btnGuiThongTin" layoutX="147.0" layoutY="358.0" mnemonicParsing="false" onMouseClicked="#guiThongTinClicked" prefHeight="28.0" prefWidth="89.0" style="-fx-background-color: #B9A6D8;" text="Gửi thông tin" textFill="BLACK" />
+      <Button fx:id="btnHuy" layoutX="259.0" layoutY="358.0" mnemonicParsing="false" onMouseClicked="#huyClicked" prefHeight="28.0" prefWidth="90.0" style="-fx-background-color: #B9A6D8;" text="Hủy" textFill="BLACK" />
       <Text layoutX="13.0" layoutY="145.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tên" wrappingWidth="49.294559478759766">
          <font>
             <Font size="16.0" />
@@ -26,25 +26,26 @@
             <Font size="16.0" />
          </font>
       </Text>
-      <Text layoutX="13.0" layoutY="197.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ngày báo tử" wrappingWidth="90.39999999999986">
+      <Text layoutX="13.0" layoutY="197.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ngày mất (*)" wrappingWidth="90.39999999999986">
          <font>
             <Font size="16.0" />
          </font>
       </Text>
-      <TextField fx:id="tenNguoiMat" layoutX="115.0" layoutY="126.0" prefHeight="26.0" prefWidth="306.0" />
-      <TextField fx:id="idNguoiMat" layoutX="115.0" layoutY="79.0" prefHeight="26.0" prefWidth="306.0" />
+      <TextField fx:id="tenNguoiMat" layoutX="145.0" layoutY="126.0" prefHeight="26.0" prefWidth="306.0" />
+      <TextField fx:id="idNguoiMat" layoutX="145.0" layoutY="79.0" prefHeight="26.0" prefWidth="306.0" />
       <Text layoutX="12.0" layoutY="244.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lý do" wrappingWidth="90.39999999999986">
          <font>
             <Font size="16.0" />
          </font>
       </Text>
-      <TextField fx:id="ghiChu" layoutX="114.0" layoutY="225.0" prefHeight="26.0" prefWidth="306.0" />
-      <Text layoutX="12.0" layoutY="291.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID Người khai" wrappingWidth="100.00003662109361">
+      <TextField fx:id="ghiChu" layoutX="145.0" layoutY="225.0" prefHeight="26.0" prefWidth="306.0" />
+      <Text layoutX="14.0" layoutY="291.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID Người khai (*)" wrappingWidth="122.00003662109361">
          <font>
             <Font size="16.0" />
          </font>
       </Text>
-      <TextField fx:id="idNguoiKhai" layoutX="114.0" layoutY="272.0" prefHeight="26.0" prefWidth="306.0" />
-      <DatePicker fx:id="ngayBaoTu" layoutX="114.0" layoutY="177.0" prefHeight="26.0" prefWidth="306.0" />
+      <TextField fx:id="idNguoiKhai" layoutX="145.0" layoutY="272.0" prefHeight="26.0" prefWidth="306.0" />
+      <DatePicker fx:id="ngayBaoTu" layoutX="145.0" layoutY="177.0" prefHeight="26.0" prefWidth="306.0" />
+      <Text layoutX="121.0" layoutY="342.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Các trường có dấu (*) là không được để trống!" />
    </children>
 </AnchorPane>
