@@ -20,9 +20,9 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="549.0" prefWidth="790.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.login.mainHoKhauController">
    <children>
-      <VBox fx:id="menuPane" prefHeight="549.0" prefWidth="176.0" style="-fx-background-color: #024969;">
+      <VBox fx:id="menuPane" prefHeight="549.0" prefWidth="176.0" style="-fx-background-color:#35BEFD;">
          <children>
-            <Button fx:id="nhanKhau" alignment="BASELINE_LEFT" mnemonicParsing="false" onMouseClicked="#nhanKhauClicked" prefHeight="106.0" prefWidth="176.0" style="-fx-background-color: #024969;" text="Nhân khẩu" textFill="WHITE">
+            <Button fx:id="nhanKhau" alignment="BASELINE_LEFT" mnemonicParsing="false" onMouseClicked="#nhanKhauClicked" prefHeight="106.0" prefWidth="176.0" style="-fx-background-color:#35BEFD;" text="Nhân khẩu" textFill="BLACK">
                <graphic>
                   <ImageView fitHeight="64.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true" scaleX="0.5" scaleY="0.5">
                      <image>
@@ -37,7 +37,7 @@
                   <Insets left="-5.0" />
                </padding>
             </Button>
-            <Button fx:id="hoKhau" alignment="BASELINE_LEFT" mnemonicParsing="false" onMouseClicked="#hoKhauClicked" prefHeight="106.0" prefWidth="176.0" style="-fx-background-color: #000000;" text="Hộ khẩu" textFill="WHITE">
+            <Button fx:id="hoKhau" alignment="BASELINE_LEFT" mnemonicParsing="false" onMouseClicked="#hoKhauClicked" prefHeight="106.0" prefWidth="176.0" style="-fx-background-color: #02A6F2;" text="Hộ khẩu" textFill="BLACK">
                <graphic>
                   <ImageView fitHeight="64.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true" scaleX="0.7" scaleY="0.7" translateX="-15.0">
                      <image>
@@ -52,7 +52,7 @@
                   <Insets />
                </opaqueInsets>
             </Button>
-            <Button fx:id="phanThuong" alignment="BASELINE_LEFT" mnemonicParsing="false" onMouseClicked="#phanThuongClicked" prefHeight="106.0" prefWidth="176.0" style="-fx-background-color: #024969;" text="Thưởng" textFill="WHITE">
+            <Button fx:id="phanThuong" alignment="BASELINE_LEFT" mnemonicParsing="false" onMouseClicked="#phanThuongClicked" prefHeight="106.0" prefWidth="176.0" style="-fx-background-color:#35BEFD;" text="Thưởng" textFill="BLACK">
                <graphic>
                   <ImageView fitHeight="64.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true" scaleX="0.9" scaleY="0.9" translateX="-25.0">
                      <image>
@@ -67,7 +67,7 @@
                   <Insets left="30.0" />
                </padding>
             </Button>
-            <Button fx:id="thongKe" alignment="BASELINE_LEFT" mnemonicParsing="false" onMouseClicked="#thongKeClicked" prefHeight="106.0" prefWidth="176.0" style="-fx-background-color: #024969;" text="Thống kê" textFill="WHITE">
+            <Button fx:id="thongKe" alignment="BASELINE_LEFT" mnemonicParsing="false" onMouseClicked="#thongKeClicked" prefHeight="106.0" prefWidth="176.0" style="-fx-background-color:#35BEFD;" text="Thống kê" textFill="BLACK">
                <graphic>
                   <ImageView fitHeight="64.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true" scaleX="0.7" scaleY="0.7">
                      <image>
@@ -102,22 +102,22 @@
             <TextField fx:id="search" onKeyPressed="#timKiem" prefHeight="26.0" prefWidth="608.0" promptText="Search" GridPane.rowIndex="1" />
             <HBox fx:id="barHK" prefHeight="51.0" prefWidth="608.0" spacing="10.0">
                <children>
-                  <Button fx:id="btnThem" mnemonicParsing="false" onMouseClicked="#themHoKhauClicked" prefHeight="28.0" prefWidth="102.0" style="-fx-background-color: #024969; -fx-font-size: 12;" text="Thêm mới" textFill="WHITE">
+                  <Button fx:id="btnThem" mnemonicParsing="false" onMouseClicked="#themHoKhauClicked" prefHeight="28.0" prefWidth="102.0" style="-fx-background-color:#35BEFD; -fx-font-size: 12;" text="Thêm mới" textFill="BLACK">
                      <font>
                         <Font size="10.0" />
                      </font>
                   </Button>
-                  <Button fx:id="btnSua" mnemonicParsing="false" onMouseClicked="#suaClicked" prefHeight="28.0" prefWidth="102.0" style="-fx-background-color: #024969; -fx-font-size: 12;" text="Sửa" textFill="WHITE">
+                  <Button fx:id="btnSua" mnemonicParsing="false" onMouseClicked="#suaClicked" prefHeight="28.0" prefWidth="102.0" style="-fx-background-color:#35BEFD; -fx-font-size: 12;" text="Sửa" textFill="BLACK">
                      <font>
                         <Font size="10.0" />
                      </font>
                   </Button>
-                  <Button fx:id="btnXoa" mnemonicParsing="false" onMouseClicked="#xoaClicked" prefHeight="28.0" prefWidth="102.0" style="-fx-background-color: #024969; -fx-font-size: 12;" text="Xóa" textFill="WHITE">
+                  <Button fx:id="btnXoa" mnemonicParsing="false" onMouseClicked="#xoaClicked" prefHeight="28.0" prefWidth="102.0" style="-fx-background-color:#35BEFD; -fx-font-size: 12;" text="Xóa" textFill="BLACK">
                      <font>
                         <Font size="10.0" />
                      </font>
                   </Button>
-                  <Button fx:id="btnChiTiet" mnemonicParsing="false" onMouseClicked="#xemChiTietClicked" prefHeight="28.0" prefWidth="102.0" style="-fx-background-color: #024969; -fx-font-size: 12;" text="Xem chi tiết" textFill="WHITE">
+                  <Button fx:id="btnChiTiet" mnemonicParsing="false" onMouseClicked="#xemChiTietClicked" prefHeight="28.0" prefWidth="102.0" style="-fx-background-color:#35BEFD; -fx-font-size: 12;" text="Xem chi tiết" textFill="BLACK">
                      <font>
                         <Font size="10.0" />
                      </font>
@@ -134,24 +134,24 @@
             </TableView>
          </children>
       </GridPane>
-      <Pane fx:id="pgnBackground" layoutX="176.0" layoutY="22.0" prefHeight="70.0" prefWidth="617.0" style="-fx-background-color: #024969;">
+      <Pane fx:id="pgnBackground" layoutX="176.0" layoutY="22.0" prefHeight="70.0" prefWidth="617.0" style="-fx-background-color:#35BEFD;">
          <children>
-            <Label fx:id="title" layoutX="14.0" layoutY="12.0" prefHeight="47.0" prefWidth="220.0" text="Hộ khẩu" textFill="WHITE">
+            <Label fx:id="title" layoutX="14.0" layoutY="12.0" prefHeight="47.0" prefWidth="220.0" text="Hộ khẩu" textFill="BLACK">
                <font>
-                  <Font size="23.0" />
+                  <Font size="32.0" />
                </font>
             </Label>
-            <Text fx:id="loginID" fill="#fcfcfc" layoutX="290.0" layoutY="17.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID:" wrappingWidth="220.0">
+            <Text fx:id="loginID" layoutX="290.0" layoutY="17.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID:" wrappingWidth="220.0">
                <font>
                   <Font size="16.0" />
                </font>
             </Text>
-            <Text fx:id="loginTen" fill="#fcfcfc" layoutX="290.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tên:" wrappingWidth="220.0">
+            <Text fx:id="loginTen" layoutX="290.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tên:" wrappingWidth="220.0">
                <font>
                   <Font size="16.0" />
                </font>
             </Text>
-            <Text fx:id="loginQuyen" fill="#fcfcfc" layoutX="290.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quyền:" wrappingWidth="220.0">
+            <Text fx:id="loginQuyen" layoutX="290.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quyền:" wrappingWidth="220.0">
                <font>
                   <Font size="16.0" />
                </font>

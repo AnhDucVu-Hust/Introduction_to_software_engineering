@@ -1,23 +1,29 @@
 package main.login;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.Node;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.fxml.FXMLLoader;
 import java.io.IOException;
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ResourceBundle;
 
-public class LoginController {
+public class LoginController implements Initializable {
     private int idNhanKhau;
     private String quyen;
     @FXML
@@ -91,4 +97,31 @@ public class LoginController {
         return status;
     }
 
+    @FXML
+    public void dangNhapEntered(KeyEvent event){
+        if(event.getCode().equals(KeyCode.ENTER)){
+            if (logIN()=="Success") {
+                Node node = (Node) event.getSource();
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(getClass().getResource("/main/login/mainNhanKhau.fxml"));
+                Parent mainNK = null;
+                try {
+                    mainNK = loader.load();
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+                mainNhanKhauController controller = loader.getController();
+                controller.setQuyen(quyen);
+                controller.setIdNhanKhau(idNhanKhau);
+                Stage stage = (Stage) node.getScene().getWindow();
+                stage.setScene(new Scene(mainNK));
+                stage.show();
+            }
+        }
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+    }
 }

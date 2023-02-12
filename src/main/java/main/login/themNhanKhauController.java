@@ -163,6 +163,13 @@ public class themNhanKhauController implements Initializable {
             LocalDate ngayChuyenDenDate = ngayChuyenDen.getValue();
             String noiThuongTruTruocStr = noiThuongTruTruoc.getText().toString();
 
+            if(cmndCccdStr!=null && cmndCccdStr.length()!=9 && cmndCccdStr.length()!=12){
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setHeaderText(null);
+                alert.setContentText("CMND/CCCD không đúng định dạng!");
+                alert.showAndWait();
+            }
+
             pstmt.setString(1, hoTenStr);
             if(biDanhStr != "")
                 pstmt.setString(2, biDanhStr);
@@ -246,9 +253,9 @@ public class themNhanKhauController implements Initializable {
         } catch(Exception e){
             System.err.println(e.getMessage());
             Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setHeaderText(null);
-                alert.setContentText("Hãy điền đầy đủ thông tin");
-                alert.showAndWait();
+            alert.setHeaderText(null);
+            alert.setContentText("Hãy điền đầy đủ thông tin");
+            alert.showAndWait();
         }
 
     }
