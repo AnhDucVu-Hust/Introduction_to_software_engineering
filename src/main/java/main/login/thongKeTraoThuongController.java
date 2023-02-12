@@ -12,9 +12,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
@@ -29,6 +27,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class thongKeTraoThuongController implements Initializable {
@@ -114,14 +113,22 @@ public class thongKeTraoThuongController implements Initializable {
 
 
     @FXML
-    void dangXuatClicked(MouseEvent event) throws  IOException{
-        Node node = (Node) event.getSource();
-        Stage stage = (Stage) node.getScene().getWindow();
-        Scene scene = new Scene(FXMLLoader.load(getClass().getResource("login.fxml")));
-        stage.setScene(scene);
-        stage.show();
-    }
+    void dangXuatClicked(MouseEvent event) throws  IOException {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Đăng xuất");
+        alert.setHeaderText("Bạn có thực sự muốn đăng xuất?");
+        Optional<ButtonType> option = alert.showAndWait();
 
+        if (option.get() == null) {
+
+        } else if (option.get() == ButtonType.OK) {
+            Node node = (Node) event.getSource();
+            Stage stage = (Stage) node.getScene().getWindow();
+            Scene scene = new Scene(FXMLLoader.load(getClass().getResource("login.fxml")));
+            stage.setScene(scene);
+            stage.show();
+        }
+    }
 
     @FXML
     void hoKhauClicked(MouseEvent event) throws IOException {

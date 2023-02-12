@@ -149,7 +149,7 @@
       </GridPane>
       <Pane layoutX="176.0" layoutY="22.0" prefHeight="70.0" prefWidth="617.0" style="-fx-background-color:#35BEFD;">
          <children>
-            <Label layoutX="14.0" layoutY="12.0" prefHeight="47.0" prefWidth="220.0" text="Hộ Khẩu" textFill="BLACK">
+            <Label layoutX="14.0" layoutY="12.0" prefHeight="47.0" prefWidth="220.0" text="Hộ khẩu" textFill="BLACK">
                <font>
                   <Font size="32.0" />
                </font>

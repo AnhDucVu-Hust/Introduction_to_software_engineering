@@ -88,7 +88,7 @@
          <children>
             <Label layoutX="14.0" layoutY="13.0" prefHeight="47.0" prefWidth="220.0" text="Thống kê" textFill="BLACK">
                <font>
-                  <Font size="23.0" />
+                  <Font size="32.0" />
                </font>
             </Label>
             <Text fx:id="loginID" layoutX="343.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID:" wrappingWidth="220.0">
