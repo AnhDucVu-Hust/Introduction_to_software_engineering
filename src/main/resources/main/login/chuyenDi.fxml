@@ -7,15 +7,15 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="434.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.login.chuyenDiController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="434.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.login.chuyenDiController">
    <children>
       <Text layoutX="186.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Chuyển đi">
          <font>
             <Font name="Microsoft Tai Le" size="20.0" />
          </font>
       </Text>
-      <Button fx:id="btnGuiThongTin" layoutX="115.0" layoutY="358.0" mnemonicParsing="false" onMouseClicked="#guiThongTinClicked" prefHeight="28.0" prefWidth="89.0" style="-fx-background-color: #3F2B63;" text="Gửi thông tin" textFill="WHITE" />
-      <Button fx:id="btnHuy" layoutX="227.0" layoutY="358.0" mnemonicParsing="false" onMouseClicked="#huyClicked" prefHeight="28.0" prefWidth="90.0" style="-fx-background-color: #3F2B63;" text="Hủy" textFill="WHITE" />
+      <Button fx:id="btnGuiThongTin" layoutX="115.0" layoutY="358.0" mnemonicParsing="false" onMouseClicked="#guiThongTinClicked" prefHeight="28.0" prefWidth="89.0" style="-fx-background-color: #B9A6D8;" text="Gửi thông tin" textFill="BLACK" />
+      <Button fx:id="btnHuy" layoutX="227.0" layoutY="358.0" mnemonicParsing="false" onMouseClicked="#huyClicked" prefHeight="28.0" prefWidth="90.0" style="-fx-background-color: #B9A6D8;" text="Hủy" textFill="BLACK" />
       <Text layoutX="13.0" layoutY="169.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tên" wrappingWidth="49.294559478759766">
          <font>
             <Font size="16.0" />
@@ -41,7 +41,7 @@
             <Font size="16.0" />
          </font>
       </Text>
-      <Text layoutX="12.0" layoutY="210.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ngày chuyển" wrappingWidth="116.00003662109361">
+      <Text layoutX="12.0" layoutY="210.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ngày chuyển (*)" wrappingWidth="116.00003662109361">
          <font>
             <Font size="16.0" />
          </font>

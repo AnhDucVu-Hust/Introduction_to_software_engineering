@@ -26,16 +26,22 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class themNhanKhauController implements Initializable {
-    private String quyen;
-
     public void setQuyen(String quyen) {
         this.quyen = quyen;
     }
+
+    private String quyen;
 
     public void setIdNhanKhau(int idNhanKhau) {
         this.idNhanKhau = idNhanKhau;
     }
 
+    @FXML
+    private javafx.scene.text.Text loginID;
+    @FXML
+    private javafx.scene.text.Text loginTen;
+    @FXML
+    private Text loginQuyen;
     private int idNhanKhau;
     @FXML
     private HBox barNK;
@@ -131,12 +137,21 @@ public class themNhanKhauController implements Initializable {
     private StackPane tuongTacChinhNK;
 
     @FXML
-    void dangXuatClicked(MouseEvent event) throws IOException {
-        Node node = (Node) event.getSource();
-        Stage stage = (Stage) node.getScene().getWindow();
-        Scene scene = new Scene(FXMLLoader.load(getClass().getResource("login.fxml")));
-        stage.setScene(scene);
-        stage.show();
+    void dangXuatClicked(MouseEvent event) throws  IOException {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Đăng xuất");
+        alert.setHeaderText("Bạn có thực sự muốn đăng xuất?");
+        Optional<ButtonType> option = alert.showAndWait();
+
+        if (option.get() == null) {
+
+        } else if (option.get() == ButtonType.OK) {
+            Node node = (Node) event.getSource();
+            Stage stage = (Stage) node.getScene().getWindow();
+            Scene scene = new Scene(FXMLLoader.load(getClass().getResource("login.fxml")));
+            stage.setScene(scene);
+            stage.show();
+        }
     }
 
     @FXML
@@ -162,6 +177,22 @@ public class themNhanKhauController implements Initializable {
             String noiLamViecStr = noiLamViec.getText().toString();
             LocalDate ngayChuyenDenDate = ngayChuyenDen.getValue();
             String noiThuongTruTruocStr = noiThuongTruTruoc.getText().toString();
+
+            if(cmndCccdStr.length()!=0 && cmndCccdStr.length()!=9 && cmndCccdStr.length()!=12){
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setHeaderText(null);
+                alert.setContentText("CMND/CCCD không đúng định dạng!");
+                alert.showAndWait();
+                return;
+            }
+
+            if(hoTenStr.length()==0){
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setHeaderText(null);
+                alert.setContentText("Chưa nhập họ tên!");
+                alert.showAndWait();
+                return;
+            }
 
             pstmt.setString(1, hoTenStr);
             if(biDanhStr != "")
@@ -246,9 +277,9 @@ public class themNhanKhauController implements Initializable {
         } catch(Exception e){
             System.err.println(e.getMessage());
             Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setHeaderText(null);
-                alert.setContentText("Hãy điền đầy đủ thông tin");
-                alert.showAndWait();
+            alert.setHeaderText(null);
+            alert.setContentText("Bạn hãy điền đầy đủ thông tin!");
+            alert.showAndWait();
         }
 
     }
@@ -349,8 +380,22 @@ public class themNhanKhauController implements Initializable {
     }
 
     @FXML
-    void thongKeClicked(MouseEvent event) {
-
+    void thongKeClicked(MouseEvent event) throws IOException {
+        Node node = (Node) event.getSource();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/main/login/mainThongKe.fxml"));
+        Parent mainPT = null;
+        try {
+            mainPT = loader.load();
+        } catch (IOException ex) {
+            throw new RuntimeException(ex);
+        }
+        mainThongKeController controller = loader.getController();
+        controller.setQuyen(quyen);
+        controller.setIdNhanKhau(idNhanKhau);
+        Stage stage = (Stage) node.getScene().getWindow();
+        stage.setScene(new Scene(mainPT));
+        stage.show();
     }
     @FXML
     private TextField quanHeVoiChuHo;
@@ -361,9 +406,12 @@ public class themNhanKhauController implements Initializable {
             gioiTinh.getItems().add("Nam");
             gioiTinh.getItems().add("Nữ");
             gioiTinh.setValue("Nam");
+            loginID.setText("ID: "+idNhanKhau);
+            loginTen.setText("Tên: "+ Services.queryNhanKhauTheoId(idNhanKhau).getHoTen());
+            loginQuyen.setText("Quyền: "+quyen);
             if (quyen.equals("Tổ trưởng")){
-                quanHeVoiChuHo.setVisible(false);
-                textQHVCH.setVisible(false);
+//                quanHeVoiChuHo.setVisible(false);
+//                textQHVCH.setVisible(false);
             }
         });
     }
