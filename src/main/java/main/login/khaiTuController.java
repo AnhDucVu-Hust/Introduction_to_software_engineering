@@ -23,6 +23,7 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+
 public class khaiTuController implements Initializable{
     public void setNhanKhau(NhanKhau nhanKhau) {
         this.nhanKhau = nhanKhau;
@@ -49,6 +50,19 @@ public class khaiTuController implements Initializable{
     private TextField tenNguoiMat;
     @FXML
     private TextField ghiChu;
+
+    public static boolean isStringInteger(String stringToCheck, int radix) {
+        if(stringToCheck.isEmpty()) return false;           //Check if the string is empty
+        for(int i = 0; i < stringToCheck.length(); i++) {
+            if(i == 0 && stringToCheck.charAt(i) == '-') {     //Check for negative Integers
+                if(stringToCheck.length() == 1) return false;
+                else continue;
+            }
+            if(Character.digit(stringToCheck.charAt(i),radix) < 0) return false;
+        }
+        return true;
+    }
+
     @FXML
     void guiThongTinClicked(MouseEvent event) {
         try {
@@ -56,6 +70,13 @@ public class khaiTuController implements Initializable{
             alert.setTitle("Khai tử");
             alert.setHeaderText("Bạn chắc chắn khai tử cho nhân khẩu này?");
             Optional<ButtonType> option = alert.showAndWait();
+            if(!isStringInteger(idNguoiKhai.getText(), 10)){
+                alert = new Alert(Alert.AlertType.WARNING);
+                alert.setHeaderText(null);
+                alert.setContentText("ID người khai chưa nhập hoặc nhập sai định dạng!");
+                alert.showAndWait();
+                return;
+            }
             Integer idNguoiKhaiInt = Integer.parseInt(idNguoiKhai.getText());
             LocalDate ngayBaoTuDate = ngayBaoTu.getValue();
             String ghiChuStr=ghiChu.getText().toString();
@@ -63,22 +84,42 @@ public class khaiTuController implements Initializable{
 
             } else if (option.get() == ButtonType.OK) {
                 Connection conn = MyConnection.conDB();
-                String query = "UPDATE `nhankhau` SET trangThai='Qua doi' WHERE idNhanKhau = ?;\n" +
-                        "INSERT INTO `nhankhauquadoi`\n" +
-                        "VALUES (?,?,?,?,?,?) ";
+                String query = "UPDATE `nhankhau` SET trangThai=N'Qua đời_Chờ duyệt' WHERE idNhanKhau = ?";
+                String query1="INSERT INTO NhanKhauQuaDoi(idNhanKhau, idNguoiKhai, ngayKhai, ngayMat, ghiChu, trangThai) VALUES (?,?,?,?,?,?)";
                 PreparedStatement pstmt = conn.prepareStatement(query);
                 pstmt.setInt(1, nhanKhau.getId());
-                pstmt.setInt(2,nhanKhau.getId());
-                pstmt.setInt(3,idNguoiKhaiInt);
-                pstmt.setDate(4, Date.valueOf(LocalDate.now()));
-                pstmt.setDate(5,Date.valueOf(ngayBaoTuDate));
-                pstmt.setString(6,ghiChuStr);
-                pstmt.setString(7,"Qua doi");
                 pstmt.execute();
+                pstmt=conn.prepareStatement(query1);
+                pstmt.setInt(1,nhanKhau.getId());
+                pstmt.setInt(2,idNguoiKhaiInt);
+                if(ngayBaoTu.getValue()==null){
+                    alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setHeaderText(null);
+                    alert.setContentText("Chưa nhập ngày mất!");
+                    alert.showAndWait();
+                    return;
+                }
+                pstmt.setDate(3, Date.valueOf(LocalDate.now()));
+                pstmt.setDate(4,Date.valueOf(ngayBaoTuDate));
+                pstmt.setString(5,ghiChuStr);
+                pstmt.setString(6,"Chờ duyệt");
+                pstmt.execute();
+                Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
+                alert1.setHeaderText(null);
+                alert1.setContentText("Đã khai tử thành công");
+                alert1.showAndWait();
+                Node node = (Node) event.getSource();
+                Stage stage = (Stage) node.getScene().getWindow();
+                stage.close();
             } else if (option.get() == ButtonType.CANCEL) {
 
             }
         } catch (SQLException ex) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText(null);
+            alert.setContentText("Điền thông tin thiếu hoặc không tồn tại ID người khai");
+            alert.showAndWait();
+            System.out.println(ex.getMessage());
             Logger.getLogger(themNhanKhauController.class.getName()).log(Level.SEVERE,null,ex);
         }
     }

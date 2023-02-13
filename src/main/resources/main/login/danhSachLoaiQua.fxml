@@ -23,7 +23,7 @@
             <Font name="Microsoft Tai Le" size="20.0" />
          </font>
       </Text>
-      <Button fx:id="btnGuiThongTin" layoutX="115.0" layoutY="358.0" mnemonicParsing="false" onMouseClicked="#guiThongTinClicked" prefHeight="28.0" prefWidth="89.0" style="-fx-background-color: #830136FF; -fx-font-size: 12;" text="Gửi thông tin" textFill="WHITE" />
-      <Button fx:id="btnHuy" layoutX="227.0" layoutY="358.0" mnemonicParsing="false" onMouseClicked="#huyClicked" prefHeight="28.0" prefWidth="90.0" style="-fx-background-color: #830136FF; -fx-font-size: 12;" text="Hủy" textFill="WHITE" />
+      <Button fx:id="btnGuiThongTin" layoutX="115.0" layoutY="358.0" mnemonicParsing="false" onMouseClicked="#guiThongTinClicked" prefHeight="28.0" prefWidth="89.0" style="-fx-background-color:  #F99C85; -fx-font-size: 12;" text="Gửi thông tin" textFill="BLACK" />
+      <Button fx:id="btnHuy" layoutX="227.0" layoutY="358.0" mnemonicParsing="false" onMouseClicked="#huyClicked" prefHeight="28.0" prefWidth="90.0" style="-fx-background-color:  #F99C85; -fx-font-size: 12;" text="Hủy" textFill="BLACK" />
    </children>
 </AnchorPane>
