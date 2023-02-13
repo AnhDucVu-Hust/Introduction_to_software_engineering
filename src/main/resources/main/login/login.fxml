@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#dangNhapEntered" prefHeight="549.0" prefWidth="790.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.login.LoginController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#dangNhapEntered" prefHeight="549.0" prefWidth="790.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.login.LoginController">
    <left>
       <AnchorPane prefHeight="400.0" prefWidth="298.0" style="-fx-background-color: #B9A6D8;" BorderPane.alignment="CENTER">
          <children>
@@ -25,9 +25,14 @@
    <center>
       <AnchorPane prefHeight="550.0" prefWidth="490.0" style="-fx-background-color: transparent; -fx-border-color: #0598ff;" BorderPane.alignment="CENTER">
          <children>
+            <Button layoutX="211.0" layoutY="360.0" mnemonicParsing="false" onMouseClicked="#doiMatKhauClicked" prefHeight="30.0" prefWidth="102.0" style="-fx-background-color: -transparent;" text="Đổi mật khẩu" textFill="#5020d3">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
             <TextField fx:id="txtUser" layoutX="59.0" layoutY="139.0" prefHeight="40.0" prefWidth="405.0" promptText="Tên đăng nhập" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
             <PasswordField fx:id="txtPass" layoutX="59.0" layoutY="216.0" prefHeight="40.0" prefWidth="405.0" promptText="Mật khẩu" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
-            <Button id="logininto" fx:id="btnLogin" layoutX="213.0" layoutY="300.0" mnemonicParsing="false" onMouseClicked="#handleButtonAction" prefHeight="30.0" prefWidth="97.0" text="Đăng nhập" />
+            <Button id="logininto" fx:id="btnLogin" layoutX="213.0" layoutY="309.0" mnemonicParsing="false" onMouseClicked="#handleButtonAction" prefHeight="30.0" prefWidth="97.0" text="Đăng nhập" />
             <Label fx:id="iblError" layoutX="68.0" layoutY="349.0" prefHeight="17.0" prefWidth="388.0" textAlignment="CENTER" textFill="#f21010" />
          </children>
       </AnchorPane>

@@ -124,4 +124,12 @@ public class LoginController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
     }
+    @FXML
+    public void doiMatKhauClicked(MouseEvent event) throws IOException{
+        Node node = (Node) event.getSource();
+        Stage stage = new Stage();
+        Scene scene = new Scene(FXMLLoader.load(getClass().getResource("doiMatKhau.fxml")));
+        stage.setScene(scene);
+        stage.show();
+    }
 }
