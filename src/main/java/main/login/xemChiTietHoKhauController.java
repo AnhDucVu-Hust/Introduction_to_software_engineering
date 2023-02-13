@@ -249,11 +249,6 @@ public class xemChiTietHoKhauController implements Initializable {
                     String query = "DELETE from `nhankhau_hokhau` WHERE idHoKhau=" + nk.getIdHoKhau() + " AND idNhanKhau="+ nk.getIdNhanKhau();
                     PreparedStatement preparedStatement = conn.prepareStatement(query);
                     preparedStatement.execute();
-                    refreshTable();
-                    tbID.setCellValueFactory(new PropertyValueFactory<>("idNhanKhau"));
-                    tbHoTen.setCellValueFactory(new PropertyValueFactory<>("hoTen"));
-                    tbCccd.setCellValueFactory(new PropertyValueFactory<>("cmnd_cccd"));
-                    tbQuanHeChuHo.setCellValueFactory(new PropertyValueFactory<>("quanHeChuHo"));
                 } else if (option.get() == ButtonType.CANCEL) {
 
                 }
@@ -340,6 +335,15 @@ public class xemChiTietHoKhauController implements Initializable {
         stage.setScene(new Scene(mainHK));
         stage.show();
     }
+
+    @FXML
+    public void lamMoiClicked(MouseEvent e){
+        refreshTable();
+        tbID.setCellValueFactory(new PropertyValueFactory<>("idNhanKhau"));
+        tbHoTen.setCellValueFactory(new PropertyValueFactory<>("hoTen"));
+        tbCccd.setCellValueFactory(new PropertyValueFactory<>("cmnd_cccd"));
+        tbQuanHeChuHo.setCellValueFactory(new PropertyValueFactory<>("quanHeChuHo"));
+    }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Platform.runLater(()-> {
@@ -358,9 +362,7 @@ public class xemChiTietHoKhauController implements Initializable {
             loginID.setText("ID: "+idNhanKhau);
             loginTen.setText("Tên: "+ Services.queryNhanKhauTheoId(idNhanKhau).getHoTen());
             loginQuyen.setText("Quyền: "+quyen);
-
         });
-        }
-
+    }
 }
 

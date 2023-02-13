@@ -112,9 +112,25 @@ public class mainHoKhauController implements Initializable {
     }
 
     @FXML
-    void hoKhauClicked(MouseEvent event) {
-
+    void hoKhauClicked(MouseEvent event) throws IOException {
+        Node node = (Node) event.getSource();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/main/login/mainHoKhau.fxml"));
+        Parent mainHK = null;
+        try {
+            mainHK = loader.load();
+        } catch (IOException ex) {
+            throw new RuntimeException(ex);
+        }
+        mainHoKhauController controller = loader.getController();
+        controller.setQuyen(quyen);
+        controller.setIdNhanKhau(idNhanKhau);
+        System.out.println(idNhanKhau);
+        Stage stage = (Stage) node.getScene().getWindow();
+        stage.setScene(new Scene(mainHK));
+        stage.show();
     }
+
 
     @FXML
     void nhanKhauClicked(MouseEvent event) throws IOException {
@@ -302,8 +318,13 @@ public class mainHoKhauController implements Initializable {
                     refreshTable();
                     tbIDHoKhau.setCellValueFactory(new PropertyValueFactory<>("idHoKhau"));
                     tbIDChuHo.setCellValueFactory(new PropertyValueFactory<>("idChuHo"));
-                    tbNgayTao.setCellValueFactory(new PropertyValueFactory<>("ngayCap"));
                     tbDiaChi.setCellValueFactory(new PropertyValueFactory<>("diaChi"));
+                    tbNgayTao.setCellValueFactory(new PropertyValueFactory<>("ngayTao"));
+
+                    Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
+                    alert1.setTitle(null);
+                    alert1.setHeaderText("Đã xóa hộ khẩu thành công!");
+                    alert1.showAndWait();
                 } else if (option.get() == ButtonType.CANCEL) {
 
                 }

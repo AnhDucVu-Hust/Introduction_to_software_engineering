@@ -9,15 +9,13 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.net.URL;
 import java.sql.Date;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class chuyenKhauController implements Initializable {
@@ -47,13 +45,17 @@ public class chuyenKhauController implements Initializable {
     private TextField ghiChu;
     @FXML
     void guiThongTinClicked(MouseEvent event) {
+        if(ngayChuyen.getValue() == null||hoKhauChuyen.getValue() == null){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setHeaderText("Hãy điền đầy đủ thông tin!");
+            Optional<ButtonType> option = alert.showAndWait();
+        }
         Integer idHoKhauCu=nk.getIdHoKhau();
         Integer idNhanKhau=nk.getIdNhanKhau();
         Integer idHoKhauMoi=Integer.parseInt(hoKhauChuyen.getValue().split("_")[0]);
         Date ngayChuyenDate= Date.valueOf(ngayChuyen.getValue());
         String ghiChuStr=ghiChu.getText();
         Services.chuyenKhau(idNhanKhau,idHoKhauCu,idHoKhauMoi,ngayChuyenDate,ghiChuStr);
-
 
         Node node = (Node) event.getSource();
         Stage stage = (Stage) node.getScene().getWindow();

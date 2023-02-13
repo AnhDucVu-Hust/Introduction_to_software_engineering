@@ -21,6 +21,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class themNhanKhauVaoHoKhauController implements Initializable {
@@ -65,10 +66,20 @@ public class themNhanKhauVaoHoKhauController implements Initializable {
     void guiThongTinClicked(MouseEvent event) {
         NhanKhau nk = tbNhanKhau.getSelectionModel().getSelectedItem();
         if (nk!=null){
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setHeaderText("Bạn có chắc muốn thêm nhân khẩu này?");
+            Optional<ButtonType> option = alert.showAndWait();
+
             String quanHeVoiChuHo=quanHe.getText();
             HoKhauNhanKhau hknk = new HoKhauNhanKhau(hk.getIdHoKhau(),nk.getId(), nk.getHoTen(), nk.getCmnd_cccd(),quanHeVoiChuHo);
             Services.themVaoBangNhanKhauHoKhau(hknk);
-
+            Node node = (Node) event.getSource();
+            Stage stage = (Stage) node.getScene().getWindow();
+            stage.close();
+        } else{
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setHeaderText("Chưa chọn nhân khẩu nào để thêm!");
+            Optional<ButtonType> option = alert.showAndWait();
         }
     }
 

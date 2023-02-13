@@ -123,6 +123,11 @@
                         <Font size="10.0" />
                      </font>
                   </Button>
+                  <Button fx:id="btnQuayLai1" mnemonicParsing="false" onMouseClicked="#lamMoiClicked" prefHeight="28.0" prefWidth="120.0" style="-fx-background-color:#35BEFD; -fx-font-size: 12;" text="Làm mới" textFill="BLACK">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Button>
                </children>
             </HBox>
             <TableView fx:id="tbHoKhau" prefHeight="212.0" prefWidth="599.0" style="-fx-background-color: #3;" GridPane.rowIndex="2">

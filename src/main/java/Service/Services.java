@@ -107,14 +107,24 @@ public class Services {
 
     public static void themVaoBangNhanKhauHoKhau(HoKhauNhanKhau hknk) {
         try {
+            String q1 = "SELECT * FROM NhanKhau_HoKhau WHERE idNhanKhau = " + hknk.getIdNhanKhau();
+            PreparedStatement pstmt1 = Services.conn.prepareStatement(q1);
+            ResultSet rs1 = pstmt1.executeQuery();
+            if(rs1.next()){
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setHeaderText(null);
+                alert.setContentText("Nhân khẩu đã nằm trong một hộ khẩu!");
+                alert.showAndWait();
+                return;
+            }
+
             String query = "INSERT INTO NhanKhau_HoKhau(idHoKhau, idNhanKhau, quanHeChuHo) VALUES(?, ?, ?)";
             PreparedStatement pstmt = Services.conn.prepareStatement(query);
 
             pstmt.setInt(1, hknk.getIdHoKhau());
             pstmt.setInt(2, hknk.getIdNhanKhau());
             pstmt.setString(3, hknk.getQuanHeChuHo());
-
-            pstmt.executeQuery();
+            pstmt.executeUpdate();
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setHeaderText(null);
             alert.setContentText("Đã thêm thành công");
@@ -931,7 +941,7 @@ public class Services {
             alert.setTitle("Chuyển khẩu");
             alert.setHeaderText("Bạn chắc chắn muốn chuyển khẩu nhân khẩu này?");
             Optional<ButtonType> option = alert.showAndWait();
-            String query="UPDATE nhankhau_hokhau SET idHoKhau=? AND quanHeChuHo=? Where idNhanKhau=? AND idHoKhau=?";
+            String query="UPDATE nhankhau_hokhau SET idHoKhau=?, quanHeChuHo=? Where idNhanKhau=? AND idHoKhau=?";
             String query1="INSERT INTO nhankhauchuyenhokhau(idNhanKhau,idHoKhau,ngayChuyen,ghiChu,trangThai)\n" +
                     "VALUES (?, ?, ?, ?, ?)\n";
             PreparedStatement pstmt = Services.conn.prepareStatement(query);
@@ -942,16 +952,17 @@ public class Services {
             pstmt1.setString(4,ghiChu);
             pstmt1.setString(5,"Đã chuyển");
             pstmt.setInt(1,idHoKhauMoi);
-            pstmt.setInt(2,idNhanKhau);
-            pstmt.setInt(3,idHoKhauCu);
-            pstmt.setString(4,ghiChu);
-            pstmt.execute();
-            pstmt1.execute();
+            pstmt.setString(2,ghiChu);
+            pstmt.setInt(3,idNhanKhau);
+            pstmt.setInt(4,idHoKhauCu);
+            pstmt.executeUpdate();
+            pstmt1.executeUpdate();
             Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
             alert1.setTitle("Chuyển khẩu");
             alert1.setHeaderText("Đã chuyển khẩu thành công");
-            }
-        catch (SQLException ex){
+            alert1.showAndWait();
+        } catch (SQLException ex){
+            System.out.println(ex.getMessage());
         }
     }
     public static void duyetNhanThuong(Integer idNopMinhChung) {
