@@ -4,6 +4,7 @@ import Entity.HoKhau;
 import Entity.HoKhauNhanKhau;
 import Entity.NhanKhau;
 import Service.Services;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -80,46 +81,48 @@ public class themNhanKhauVaoHoKhauController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        idHoKhau.setText(hk.getIdHoKhau().toString());
-        Connection conn = MyConnection.conDB();
-        String query;
-        if (quyen.equals("Tổ trưởng"))  query = "SELECT * from `nhankhau`";
-        else {
-            query = "select * from nhankhau,nhankhau_hokhau\n" +
-                    "WHERE idHoKhau="+Services.queryIdHoKhauCuaNhanKhau(idNhanKhau)+ " and nhankhau.idNhanKhau=nhankhau_hokhau.idNhanKhau";
-        }
-        try {
-            PreparedStatement pstmt = conn.prepareStatement(query);
-            ResultSet resultSet = pstmt.executeQuery();
-            ObservableList<NhanKhau> nhanKhaus = FXCollections.observableArrayList();
-            while (resultSet.next()) {
-                nhanKhaus.add(new NhanKhau(resultSet.getInt("idNhanKhau"),
-                        resultSet.getString("hoTen"),
-                        resultSet.getDate("ngaySinh"),
-                        resultSet.getString("biDanh"),
-                        resultSet.getString("noiSinh"),
-                        resultSet.getString("gioiTinh"),
-                        resultSet.getString("nguyenQuan"),
-                        resultSet.getString("danToc"),
-                        resultSet.getString("tonGiao"),
-                        resultSet.getString("quocTich"),
-                        resultSet.getString("ngheNghiep"),
-                        resultSet.getString("noiLamViec"),
-                        resultSet.getString("cmnd_cccd"),
-                        resultSet.getDate("chuyenDenNgay"),
-                        resultSet.getString("noiThuongTruTruoc"),
-                        resultSet.getString("trangThai")
-                ));
-                tbNhanKhau.setItems(nhanKhaus);
+        Platform.runLater(()->{
+            idHoKhau.setText(hk.getIdHoKhau().toString());
+            Connection conn = MyConnection.conDB();
+            String query;
+            if (quyen.equals("Tổ trưởng"))  query = "SELECT * from `nhankhau`";
+            else {
+                query = "select * from nhankhau,nhankhau_hokhau\n" +
+                        "WHERE idHoKhau="+Services.queryIdHoKhauCuaNhanKhau(idNhanKhau)+ " and nhankhau.idNhanKhau=nhankhau_hokhau.idNhanKhau";
             }
-            pstmt.close();
-            resultSet.close();
-            tbID.setCellValueFactory(new PropertyValueFactory<>("id"));
-            tbTen.setCellValueFactory(new PropertyValueFactory<>("hoTen"));
-            tbCMND.setCellValueFactory(new PropertyValueFactory<>("cmnd_cccd"));
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-        }
+            try {
+                PreparedStatement pstmt = conn.prepareStatement(query);
+                ResultSet resultSet = pstmt.executeQuery();
+                ObservableList<NhanKhau> nhanKhaus = FXCollections.observableArrayList();
+                while (resultSet.next()) {
+                    nhanKhaus.add(new NhanKhau(resultSet.getInt("idNhanKhau"),
+                            resultSet.getString("hoTen"),
+                            resultSet.getDate("ngaySinh"),
+                            resultSet.getString("biDanh"),
+                            resultSet.getString("noiSinh"),
+                            resultSet.getString("gioiTinh"),
+                            resultSet.getString("nguyenQuan"),
+                            resultSet.getString("danToc"),
+                            resultSet.getString("tonGiao"),
+                            resultSet.getString("quocTich"),
+                            resultSet.getString("ngheNghiep"),
+                            resultSet.getString("noiLamViec"),
+                            resultSet.getString("cmnd_cccd"),
+                            resultSet.getDate("chuyenDenNgay"),
+                            resultSet.getString("noiThuongTruTruoc"),
+                            resultSet.getString("trangThai")
+                    ));
+                    tbNhanKhau.setItems(nhanKhaus);
+                }
+                pstmt.close();
+                resultSet.close();
+                tbID.setCellValueFactory(new PropertyValueFactory<>("id"));
+                tbTen.setCellValueFactory(new PropertyValueFactory<>("hoTen"));
+                tbCMND.setCellValueFactory(new PropertyValueFactory<>("cmnd_cccd"));
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
 
+        });
     }
 }

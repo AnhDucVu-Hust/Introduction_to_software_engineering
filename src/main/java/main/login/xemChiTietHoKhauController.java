@@ -328,21 +328,17 @@ public class xemChiTietHoKhauController implements Initializable {
     }
     @FXML
     void themNKClicked(MouseEvent e) throws IOException{
-        try {
-            Node node = (Node) e.getSource();
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/main/login/themNhanKhauVaoHoKhau.fxml"));
-            Parent them = loader.load();
-            themNhanKhauVaoHoKhauController controller = loader.getController();
-            controller.setIdNhanKhau(idNhanKhau);
-            controller.setQuyen(quyen);
-            controller.setHk(hokhau);
-            Stage stage = (Stage) node.getScene().getWindow();
-            stage.setScene(new Scene(them));
-            stage.show();
-        } catch(Exception ex){
-            System.out.println(ex.getMessage());
-        }
+        Node node = (Node) e.getSource();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/main/login/themNhanKhauVaoHoKhau.fxml"));
+        Parent mainHK = loader.load();
+        themNhanKhauVaoHoKhauController controller = loader.getController();
+        controller.setIdNhanKhau(idNhanKhau);
+        controller.setQuyen(quyen);
+        controller.setHk(hokhau);
+        Stage stage = new Stage();
+        stage.setScene(new Scene(mainHK));
+        stage.show();
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
