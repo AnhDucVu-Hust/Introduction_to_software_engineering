@@ -118,6 +118,7 @@ public class themNhanKhauVaoHoKhauController implements Initializable {
             tbTen.setCellValueFactory(new PropertyValueFactory<>("hoTen"));
             tbCMND.setCellValueFactory(new PropertyValueFactory<>("cmnd_cccd"));
         } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
         }
 
     }

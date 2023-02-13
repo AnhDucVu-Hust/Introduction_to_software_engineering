@@ -45,6 +45,6 @@
             <Font size="16.0" />
          </font>
       </Text>
-      <ChoiceBox fx:id="nguoNhan" layoutX="175.0" layoutY="191.0" prefHeight="25.0" prefWidth="247.0" />
+      <ChoiceBox fx:id="nguoiNhan" layoutX="175.0" layoutY="191.0" prefHeight="25.0" prefWidth="247.0" />
    </children>
 </AnchorPane>

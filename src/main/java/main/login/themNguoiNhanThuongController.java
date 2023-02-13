@@ -3,6 +3,7 @@ package main.login;
 import Entity.DipTraoThuong;
 import Entity.NopMinhChung;
 import Service.Services;
+import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -20,12 +21,20 @@ import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class themNguoiNhanThuongController implements Initializable {
-    public void setDipTraoThuong(DipTraoThuong dipTraoThuong) {
-        this.dipTraoThuong = dipTraoThuong;
+    public themNguoiNhanThuongController() {
     }
 
-    private DipTraoThuong dipTraoThuong;
+    public void setIdDipTraoThuong(Integer idDipTraoThuong) {
+        this.idDipTraoThuong = idDipTraoThuong;
+    }
 
+    private Integer idDipTraoThuong;
+
+    public void setTenDipTraoThuong(String tenDipTraoThuong) {
+        this.tenDipTraoThuong = tenDipTraoThuong;
+    }
+
+    private String tenDipTraoThuong;
     public void setIdNhanKhau(Integer idNhanKhau) {
         this.idNhanKhau = idNhanKhau;
     }
@@ -48,7 +57,6 @@ public class themNguoiNhanThuongController implements Initializable {
 
     @FXML
     private TextField minhChung;
-
     @FXML
     private ChoiceBox<String> nguoiNhan;
 
@@ -62,10 +70,9 @@ public class themNguoiNhanThuongController implements Initializable {
     void guiThongTinClicked(MouseEvent event) {
         Integer idNguoiNhan= Integer.parseInt(nguoiNhan.getValue().split("_")[0]);
         Integer idNguoiNop = idNhanKhau;
-        Integer idDip = dipTraoThuong.getIdDip();
         String linkMinhChungStr= minhChung.getText();
         String thanhTichStr= thanhTich.getText();
-        NopMinhChung nmc = new NopMinhChung(idNguoiNop,idDip,idNguoiNhan,linkMinhChungStr, Date.valueOf(LocalDate.now()),"Chờ duyệt",null,thanhTichStr);
+        NopMinhChung nmc = new NopMinhChung(idNguoiNop,idDipTraoThuong,idNguoiNhan,linkMinhChungStr, Date.valueOf(LocalDate.now()),"Chờ duyệt",null,thanhTichStr);
         Services.themVaoBangNguoiNopMinhChung(nmc);
     }
 
@@ -78,11 +85,13 @@ public class themNguoiNhanThuongController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        id.setText(dipTraoThuong.getIdDip().toString());
-        ten.setText(dipTraoThuong.getTenDip());
-        id.setEditable(false);
-        ten.setEditable(false);
-        ObservableList<String> danhSach = Services.queryTatCaNhanKhauDeNopMinhChung(quyen,idNhanKhau);
-        nguoiNhan.setItems(danhSach);
+        Platform.runLater(()->{
+            id.setText(idDipTraoThuong.toString());
+            ten.setText(tenDipTraoThuong);
+            id.setEditable(false);
+            ten.setEditable(false);
+            ObservableList<String> danhSach = Services.queryTatCaNhanKhauDeNopMinhChung(quyen,idNhanKhau);
+            nguoiNhan.setItems(danhSach);
+        });
     }
 }

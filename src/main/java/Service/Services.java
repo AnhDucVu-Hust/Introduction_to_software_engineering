@@ -292,7 +292,25 @@ public class Services {
         }
 
     }
+   public static void chonPhanThuong(NopMinhChung nmc,Integer idPhanThuong){
+        try{
+            String query = "UPDATE nguoinopminhchung SET idPhanThuong = "+idPhanThuong+" WHERE idNguoiNhan = ? and idDip = ?";
 
+            PreparedStatement pstmt = Services.conn.prepareStatement(query);
+
+            pstmt.setInt(1, nmc.getIdNguoiNhan());
+            pstmt.setInt(2, nmc.getIdDip());
+
+            pstmt.execute();
+            System.out.println("them thanh cong!");
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText(null);
+            alert.setContentText("Thêm thành công");
+            alert.showAndWait();
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+    }
     public static void themVaoBangPhanThuongDip(PhanThuongDipTrao ptdt){
         try {
             String query = "INSERT INTO PhanThuong_DipTraoThuong(idPhanThuong, idDipTraoThuong, ghiChu) VALUES (?, ?, ?)";
@@ -320,9 +338,10 @@ public class Services {
             pstmt.setString(4, nmc.getLinkMinhChung());
             pstmt.setDate(5, nmc.getNgayDangKy());
             pstmt.setString(6, nmc.getTrangThai());
-            pstmt.setInt(7, nmc.getIdPhanThuong());
+            if ( nmc.getIdPhanThuong()!= null ) pstmt.setInt(7, nmc.getIdPhanThuong());
+            else pstmt.setInt(7,7);
 
-            pstmt.executeQuery();
+            pstmt.execute();
             System.out.println("them thanh cong!");
         } catch (SQLException e) {
             System.err.println(e.getMessage());
@@ -810,7 +829,8 @@ public class Services {
         try{
             String query="SELECT tenPhanThuong FROM `phanthuong` WHERE id=?";
             PreparedStatement pstmt = Services.conn.prepareStatement(query);
-            pstmt.setInt(1, idPhanThuong);
+            if (idPhanThuong!=null) pstmt.setInt(1, idPhanThuong);
+            else return " ";
             ResultSet resultSet = pstmt.executeQuery();
             while (resultSet.next()){
                 return resultSet.getString("tenPhanThuong");
@@ -1038,8 +1058,8 @@ public class Services {
             while (resultSet.next()){
                 Integer id= resultSet.getInt("idNhanKhau");
                 String ten = resultSet.getString("hoTen");
-                String diaChi = resultSet.getString("noiThuongTru");
-                String info = id+"_"+ten+"_"+diaChi;
+                String diaChi = resultSet.getString("nguyenQuan");
+                String info = id.toString()+"_"+ten+"_"+diaChi;
                 result.add(info);
             }
             return result;

@@ -1,10 +1,7 @@
 package main.login;
 
-import Entity.NhanKhau;
-import Entity.PhanThuong;
+import Entity.*;
 import Service.Services;
-import Entity.NhanKhauNhanThuong;
-import Entity.NopMinhChung;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -18,6 +15,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -89,6 +87,8 @@ public class danhSachNhanThuongController implements Initializable {
 
     @FXML
     private TableColumn<NopMinhChung, String> tbTen;
+    @FXML
+    private TableColumn<NopMinhChung,String> tbMinhChung;
 
     @FXML
     private TableColumn<NhanKhauNhanThuong, String> tbTrangThai;
@@ -110,7 +110,22 @@ public class danhSachNhanThuongController implements Initializable {
 
     @FXML
     void chonQuaClicked(MouseEvent event) {
-
+        NopMinhChung nmc=tbDanhSach.getSelectionModel().getSelectedItem();
+        Node node = (Node) event.getSource();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/main/login/danhSachLoaiQua.fxml"));
+        Parent mainHK = null;
+        try {
+            mainHK = loader.load();
+        } catch (IOException ex) {
+            throw new RuntimeException(ex);
+        }
+        danhSachLoaiQuaController controller = loader.getController();
+        controller.setNmc(nmc);
+        controller.setQuyen(quyen);
+        Stage stage = new Stage();
+        stage.setScene(new Scene(mainHK));
+        stage.show();
     }
 
     @FXML
@@ -141,6 +156,14 @@ public class danhSachNhanThuongController implements Initializable {
     void duyetClicked(MouseEvent event) {
         NopMinhChung nguoiNopMinhChung= tbDanhSach.getSelectionModel().getSelectedItem();
         Services.duyetNhanThuong(nguoiNopMinhChung.getIdNguoiNop());
+        ObservableList<NopMinhChung> nopMinhChungs = Services.queryNguoiNhanThuong(idDip);
+        tbDanhSach.setItems(nopMinhChungs);
+        tbID.setCellValueFactory(new PropertyValueFactory<>("idNguoiNhan"));
+        tbTen.setCellValueFactory(new PropertyValueFactory<>("ten"));
+        tbQua.setCellValueFactory(new PropertyValueFactory<>("phanThuong"));
+        tbTrangThai.setCellValueFactory(new PropertyValueFactory<>("trangThai"));
+        tbThanhTich.setCellValueFactory(new PropertyValueFactory<>("thanhTich"));
+        tbMinhChung.setCellValueFactory(new PropertyValueFactory<>("linkMinhChung"));
     }
 
     @FXML
@@ -205,7 +228,31 @@ public class danhSachNhanThuongController implements Initializable {
     void thongKeClicked(MouseEvent event) {
 
     }
+    @FXML
+    void xemChiTiet(MouseEvent event){
+        tbDanhSach.setOnMousePressed((MouseEvent e) -> {
 
+            if (e.getClickCount()==2 && e.getButton()== MouseButton.PRIMARY){
+                NopMinhChung selectedNMC=tbDanhSach.getSelectionModel().getSelectedItem();
+                Node node = (Node) e.getSource();
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(getClass().getResource("/main/login/xemChiTietNguoiNhanThuong.fxml"));
+
+                Parent xemNT = null;
+                try {
+                    xemNT = loader.load();
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+                xemChiTietNguoiNhanThuongController controller = loader.getController();
+                controller.setNmc(selectedNMC);
+                System.out.println(selectedNMC.getTen());
+                Stage stage = new Stage();
+                stage.setScene(new Scene(xemNT));
+                stage.show();
+            }
+        });
+    }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Platform.runLater(() ->
@@ -217,6 +264,7 @@ public class danhSachNhanThuongController implements Initializable {
             tbQua.setCellValueFactory(new PropertyValueFactory<>("phanThuong"));
             tbTrangThai.setCellValueFactory(new PropertyValueFactory<>("trangThai"));
             tbThanhTich.setCellValueFactory(new PropertyValueFactory<>("thanhTich"));
+            tbMinhChung.setCellValueFactory(new PropertyValueFactory<>("linkMinhChung"));
             title.setText("ID:"+idDip.toString()+"\n"+tenDip);
         }
         );
@@ -230,16 +278,10 @@ public class danhSachNhanThuongController implements Initializable {
         themNguoiNhanThuongController controller = loader.getController();
         controller.setQuyen(quyen);
         controller.setIdNhanKhau(idNhanKhau);
+        controller.setIdDipTraoThuong(idDip);
+        controller.setTenDipTraoThuong(tenDip);
         Stage stage = new Stage();
         stage.setScene(new Scene(them));
-        stage.show();
-    }
-    @FXML
-    void themLoaiQuaClicked(MouseEvent e) throws  IOException{
-        Node node = (Node) e.getSource();
-        Stage stage = new Stage();
-        Scene scene = new Scene(FXMLLoader.load(getClass().getResource("danhSachLoaiQua.fxml")));
-        stage.setScene(scene);
         stage.show();
     }
 }

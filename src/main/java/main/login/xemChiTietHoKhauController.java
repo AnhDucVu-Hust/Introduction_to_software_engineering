@@ -293,13 +293,13 @@ public class xemChiTietHoKhauController implements Initializable {
             Node node = (Node) e.getSource();
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/main/login/themNhanKhauVaoHoKhau.fxml"));
-            Parent mainHK = loader.load();
+            Parent them = loader.load();
             themNhanKhauVaoHoKhauController controller = loader.getController();
             controller.setIdNhanKhau(idNhanKhauAccount);
             controller.setQuyen(quyen);
             controller.setHk(hokhau);
             Stage stage = (Stage) node.getScene().getWindow();
-            stage.setScene(new Scene(mainHK));
+            stage.setScene(new Scene(them));
             stage.show();
         } catch(Exception ex){
             System.out.println(ex.getMessage());

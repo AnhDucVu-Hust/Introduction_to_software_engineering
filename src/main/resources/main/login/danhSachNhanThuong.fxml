@@ -60,15 +60,6 @@
          <children>
             <StackPane prefHeight="76.0" prefWidth="616.0" GridPane.rowIndex="2">
                <children>
-                  <TableView fx:id="tbDanhSach" prefHeight="398.0" prefWidth="474.0" style="-fx-background-color: #3;">
-                     <columns>
-                        <TableColumn fx:id="tbID" prefWidth="58.4000244140625" text="ID" />
-                        <TableColumn fx:id="tbTen" prefWidth="149.60003662109375" text="Tên" />
-                        <TableColumn fx:id="tbQua" prefWidth="82.39999389648438" text="Quà" />
-                        <TableColumn fx:id="tbThanhTich" prefWidth="93.0" text="Thành tích" />
-                        <TableColumn fx:id="tbTrangThai" minWidth="0.0" prefWidth="96.0" text="Trạng thái" />
-                     </columns>
-                  </TableView>
                   <TableView fx:id="tbPhanThuong" prefHeight="200.0" prefWidth="200.0" visible="false">
                     <columns>
                       <TableColumn fx:id="tbIDQua" prefWidth="75.0" text="ID" />
@@ -76,6 +67,16 @@
                         <TableColumn fx:id="tbGiaTri" prefWidth="152.80007934570312" text="Giá trị" />
                         <TableColumn fx:id="tbGhiChu" prefWidth="90.4000244140625" text="Ghi chú" />
                     </columns>
+                  </TableView>
+                  <TableView fx:id="tbDanhSach" onMouseClicked="#xemChiTiet" prefHeight="398.0" prefWidth="474.0" style="-fx-background-color: #3;">
+                     <columns>
+                        <TableColumn fx:id="tbID" prefWidth="39.0" text="ID" />
+                        <TableColumn fx:id="tbTen" prefWidth="71.0" text="Tên" />
+                        <TableColumn fx:id="tbQua" prefWidth="78.0" text="Quà" />
+                        <TableColumn fx:id="tbThanhTich" prefWidth="133.0" text="Thành tích" />
+                        <TableColumn fx:id="tbTrangThai" minWidth="0.0" prefWidth="158.0" text="Trạng thái" />
+                        <TableColumn fx:id="tbMinhChung" minWidth="0.0" prefWidth="0.0" text="Minh chứng" />
+                     </columns>
                   </TableView>
                </children>
             </StackPane>
@@ -95,6 +96,11 @@
                   </Button>
                </children>
             </VBox>
+            <Button mnemonicParsing="false" onMouseClicked="#themNguoiClicked" prefHeight="28.0" prefWidth="184.0" style="-fx-background-color: #830136FF; -fx-font-size: 12; -fx-line-spacing: 10;" text="Thêm người nhận thưởng" textFill="WHITE">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Button>
          </children>
       </GridPane>
       <Pane layoutX="176.0" layoutY="22.0" prefHeight="70.0" prefWidth="617.0" style="-fx-background-color: #830136FF;">
