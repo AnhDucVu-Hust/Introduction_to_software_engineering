@@ -27,7 +27,7 @@
             <Font size="16.0" />
          </font>
       </Text>
-      <Text layoutX="9.0" layoutY="211.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ngày chuyển" wrappingWidth="100.00003662109361">
+      <Text layoutX="9.0" layoutY="212.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ngày chuyển (*)" wrappingWidth="123.39999045431614">
          <font>
             <Font size="16.0" />
          </font>
@@ -35,7 +35,7 @@
       <TextField fx:id="ten" layoutX="187.0" layoutY="139.0" prefHeight="26.0" prefWidth="287.0" />
       <TextField fx:id="id" layoutX="187.0" layoutY="90.0" prefHeight="26.0" prefWidth="287.0" />
       <DatePicker fx:id="ngayChuyen" layoutX="189.0" layoutY="193.0" prefHeight="26.0" prefWidth="132.0" />
-      <Text layoutX="9.0" layoutY="273.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hộ khẩu chuyển" wrappingWidth="123.39999999999986">
+      <Text layoutX="9.0" layoutY="273.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hộ khẩu chuyển (*)" wrappingWidth="150.7333129882811">
          <font>
             <Font size="16.0" />
          </font>

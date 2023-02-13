@@ -88,7 +88,7 @@
             </Button>
             <Pane prefHeight="72.0" prefWidth="235.0" style="-fx-border-color: #transparent;">
                <children>
-                  <Button fx:id="dangXuat" layoutX="54.0" layoutY="21.0" mnemonicParsing="false" onMouseClicked="#dangXuatClicked" style="-fx-background-color: #00000;" text="Đăng xuất" />
+                  <Button fx:id="dangXuat" layoutX="54.0" layoutY="21.0" mnemonicParsing="false" onMouseClicked="#dangXuatClicked" style="-fx-background-color: #FFFFFF;" text="Đăng xuất" />
                </children>
             </Pane>
          </children>
@@ -105,7 +105,7 @@
          <children>
             <StackPane fx:id="tuongTacChinhNK" prefHeight="76.0" prefWidth="616.0" GridPane.rowIndex="2">
                <children>
-                  <TableView fx:id="tbNhanKhau" onMouseClicked="#xemChiTiet" prefHeight="366.0" prefWidth="577.0" style="-fx-background-color: #3;">
+                  <TableView fx:id="tbNhanKhau" onMouseClicked="#xemChiTiet" prefHeight="366.0" prefWidth="577.0" style="-fx-background-color: #FFFFFF;">
                      <columns>
                         <TableColumn fx:id="tbID" prefWidth="38.333343505859375" text="ID" />
                         <TableColumn fx:id="tbTen" prefWidth="219.66665649414062" text="Họ và tên" />

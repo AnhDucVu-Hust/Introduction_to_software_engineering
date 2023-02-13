@@ -118,7 +118,7 @@ public class tamTruController implements Initializable {
                 pstmt.execute();
                 Node node = (Node) event.getSource();
                 Stage stage = (Stage) node.getScene().getWindow();
-                stage.close();;
+                stage.close();
             } else if (option.get() == ButtonType.CANCEL) {
 
             }

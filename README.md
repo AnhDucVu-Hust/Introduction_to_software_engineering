@@ -13,6 +13,7 @@
 	- Từ File -> Project Structure
 	- Trong cửa sổ Project Structure chọn dấu cộng ở phía bên phải
     - Tại cửa sổ hiện lên , chọn đường dẫn như trong hình 
+    - Chỉnh sửa tên database server, tên người dùng và mật khẩu trong file [MyConnection.java](src/main/java/main/login/MyConnection.java).
 
 ## Hướng dẫn sử dụng
 - Tại cửa sổ IntelliJ chọn folder chứa Project đã clone, mở file HelloApplication.Java như trong hình. Chọn nút “Run”.
