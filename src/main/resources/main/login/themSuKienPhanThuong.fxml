@@ -96,16 +96,16 @@
          </columnConstraints>
          <rowConstraints>
             <RowConstraints maxHeight="182.8" minHeight="10.0" prefHeight="33.6" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="182.8" minHeight="10.0" prefHeight="40.800000000000004" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="376.6000274658203" minHeight="10.0" prefHeight="365.3999938964844" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="182.8" minHeight="10.0" prefHeight="15.666671752929688" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="395.3333282470703" minHeight="10.0" prefHeight="391.3333282470703" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <StackPane prefHeight="76.0" prefWidth="616.0" GridPane.rowIndex="2">
+            <StackPane prefHeight="384.0" prefWidth="584.0" GridPane.rowIndex="2">
                <children>
-                  <Pane fx:id="themNhanKhau" prefHeight="151.0" prefWidth="608.0">
+                  <Pane fx:id="themNhanKhau" prefHeight="381.0" prefWidth="584.0">
                      <children>
                         <TextField fx:id="iD" layoutX="96.0" layoutY="46.0" prefHeight="25.0" prefWidth="487.0" promptText="192103" />
-                        <Text layoutX="2.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID(*)" />
+                        <Text fx:id="idtxt" layoutX="2.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID(*)" />
                         <Text layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tên dịp(*)" />
                         <TextField fx:id="tenDip" layoutX="96.0" layoutY="99.0" prefHeight="25.0" prefWidth="487.0" promptText="Phát quà rằm Trung Thu" />
                         <Text layoutX="1.0" layoutY="193.0" strokeType="OUTSIDE" strokeWidth="0.0" />

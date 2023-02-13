@@ -405,9 +405,9 @@ public class mainNhanKhauController implements Initializable {
     private Text loginQuyen;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
-            Platform.runLater(() -> {
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-                refreshTable();
+        Platform.runLater(() -> {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+            refreshTable();
             System.out.println(quyen);
             if(!quyen.equals("Tổ trưởng")){
                 btnDuyet.setVisible(false);
@@ -422,7 +422,7 @@ public class mainNhanKhauController implements Initializable {
             loginTen.setText("Tên: "+Services.queryNhanKhauTheoId(idNhanKhau).getHoTen());
             loginQuyen.setText("Quyền: "+quyen);
             }
-            );
+        );
     }
     @FXML
     TextField search;

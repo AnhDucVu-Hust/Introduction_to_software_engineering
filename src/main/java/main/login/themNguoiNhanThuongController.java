@@ -8,10 +8,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
@@ -68,6 +65,12 @@ public class themNguoiNhanThuongController implements Initializable {
 
     @FXML
     void guiThongTinClicked(MouseEvent event) {
+        if(nguoiNhan.getValue().equals("")){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle(null);
+            alert.setHeaderText("Hãy điền đầy đủ thông tin!");
+            return;
+        }
         Integer idNguoiNhan= Integer.parseInt(nguoiNhan.getValue().split("_")[0]);
         Integer idNguoiNop = idNhanKhau;
         String linkMinhChungStr= minhChung.getText();

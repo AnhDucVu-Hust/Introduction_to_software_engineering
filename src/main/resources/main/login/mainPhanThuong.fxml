@@ -5,7 +5,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -18,6 +17,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
+<?import javafx.scene.text.Text?>
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="549.0" prefWidth="790.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.login.mainPhanThuongController">
    <children>
       <VBox fx:id="menuPane" prefHeight="549.0" prefWidth="176.0" style="-fx-background-color: #F99C85;">
@@ -96,8 +96,8 @@
          </columnConstraints>
          <rowConstraints>
             <RowConstraints maxHeight="182.8" minHeight="10.0" prefHeight="39.000024414062494" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="182.8" minHeight="10.0" prefHeight="34.20000610351563" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="376.6000274658203" minHeight="10.0" prefHeight="365.3999938964844" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="182.8" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="401.0" minHeight="10.0" prefHeight="401.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
             <StackPane prefHeight="76.0" prefWidth="616.0" GridPane.rowIndex="2">
@@ -119,7 +119,6 @@
                   </TableView>
                </children>
             </StackPane>
-            <TextField prefHeight="26.0" prefWidth="553.0" promptText="Search" GridPane.rowIndex="1" />
             <HBox fx:id="barNK" prefHeight="51.0" prefWidth="608.0" spacing="10.0">
                <children>
                   <Button fx:id="btnThem" mnemonicParsing="false" onMouseClicked="#themSuKienClicked" prefHeight="28.0" prefWidth="128.0" style="-fx-background-color: #F99C85; -fx-font-size: 12; -fx-line-spacing: 10;" text="Thêm sự kiện" textFill="BLACK">
@@ -149,15 +148,6 @@
                   <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
                </GridPane.margin>
             </VBox>
-            <AnchorPane prefHeight="25.0" prefWidth="134.0" style="-fx-background-color: #F99C85;" GridPane.columnIndex="1" GridPane.rowIndex="1">
-               <children>
-                  <Label layoutX="47.0" layoutY="2.0" text="Xem" textFill="BLACK">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Label>
-               </children>
-            </AnchorPane>
          </children>
       </GridPane>
       <Pane layoutX="176.0" layoutY="22.0" prefHeight="70.0" prefWidth="617.0" style="-fx-background-color: #F99C85;">
@@ -167,6 +157,21 @@
                   <Font size="32.0" />
                </font>
             </Label>
+            <Text fx:id="loginID" fill="#000000" layoutX="287.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID:" wrappingWidth="220.0">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Text>
+            <Text fx:id="loginTen" fill="#000000" layoutX="287.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tên:" wrappingWidth="220.0">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Text>
+            <Text fx:id="loginQuyen" fill="#000000" layoutX="287.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quyền:" wrappingWidth="220.0">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Text>
          </children>
       </Pane>
    </children>

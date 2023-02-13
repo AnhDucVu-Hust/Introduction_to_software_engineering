@@ -64,6 +64,9 @@ public class danhSachLoaiQuaController implements Initializable {
         }
         else{
             Services.chonPhanThuong(nmc,loaiqua.getId());
+            Node node = (Node) event.getSource();
+            Stage stage = (Stage) node.getScene().getWindow();
+            stage.close();
             }
         }
         else {

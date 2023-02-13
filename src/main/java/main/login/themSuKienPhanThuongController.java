@@ -89,21 +89,29 @@ public class themSuKienPhanThuongController implements Initializable {
 
             } else if (option.get() == ButtonType.OK) {
                 Connection conn = MyConnection.conDB();
-                String query = "INSERT INTO `diptraothuong`(idDip,loaiDip,tenDip,ngayTraoThuong)\n" +
-                        "\tVALUES\t(?,?,?,?);\n";
+                String query = "INSERT INTO `diptraothuong`(loaiDip,tenDip,ngayTraoThuong)\n" +
+                        "\tVALUES\t(?,?,?);\n";
                 PreparedStatement pstmt = conn.prepareStatement(query);
 
+                if(tenDip.getText().equals("")){
+                    alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setHeaderText(null);
+                    alert.setContentText("Hãy điền đầy đủ thông tin hoặc thông tin bị nhập sai");
+                    alert.showAndWait();
+                    return;
+                }
                 String idDipStr=iD.getText().toString();
                 String loaiDipStr= loaiDip.getValue().toString();
                 String tenDipStr=tenDip.getText().toString();
                 LocalDate ngayTraoThuongDate=ngayTraoQua.getValue();
-                pstmt.setString(1, idDipStr);
-                pstmt.setString(2,loaiDipStr);
-                pstmt.setString(3,tenDipStr);
-                pstmt.setDate(4,Date.valueOf(ngayTraoThuongDate));
+//                pstmt.setString(1, idDipStr);
+                pstmt.setString(1,loaiDipStr);
+                pstmt.setString(2,tenDipStr);
+                pstmt.setDate(3,Date.valueOf(ngayTraoThuongDate));
 
                 pstmt.execute();
                 System.out.println("them thanh cong!");
+                quayLaiClicked(event);
             }
         } catch(Exception e){
             System.err.println(e.getMessage());
@@ -232,9 +240,13 @@ public class themSuKienPhanThuongController implements Initializable {
         phanThuongClicked(event);
     }
 
+    @FXML
+    private Text idtxt;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        iD.setVisible(false);
+        idtxt.setVisible(false);
         loaiDip.getItems().add("Cuối năm học");
         loaiDip.setValue("Dịp đặc biệt");
         loaiDip.getItems().add("Dịp đặc biệt");

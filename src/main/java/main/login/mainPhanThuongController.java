@@ -17,6 +17,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -87,6 +88,14 @@ public class mainPhanThuongController implements Initializable {
     private Button thongKe;
 
     @FXML
+    private Text loginID;
+    @FXML
+    private Text loginTen;
+    @FXML
+    private Text loginQuyen;
+
+
+    @FXML
     void DacBietClicked(MouseEvent event) {
         btnDipHSG.setStyle("-fx-background-color: #F99C85");
         btnDacBiet.setStyle("-fx-background-color: #F77150");
@@ -94,7 +103,7 @@ public class mainPhanThuongController implements Initializable {
         tbQua.setVisible(false);
         tbPhanThuong.setVisible(true);
         Connection conn = MyConnection.conDB();
-        String query = "SELECT * from diptraothuong where loaiDip='Dịp đặc biệt' ";
+        String query = "SELECT * from diptraothuong where loaiDip=N'Dịp đặc biệt' ";
         try {
             PreparedStatement pstmt = conn.prepareStatement(query);
             ResultSet resultSet = pstmt.executeQuery();
@@ -142,7 +151,7 @@ public class mainPhanThuongController implements Initializable {
         tbQua.setVisible(false);
         tbPhanThuong.setVisible(true);
         Connection conn = MyConnection.conDB();
-        String query = "SELECT * from diptraothuong where loaiDip='Cuối năm học' ";
+        String query = "SELECT * from diptraothuong where loaiDip=N'Cuối năm học' ";
         try {
             PreparedStatement pstmt = conn.prepareStatement(query);
             ResultSet resultSet = pstmt.executeQuery();
@@ -184,7 +193,7 @@ public class mainPhanThuongController implements Initializable {
         else {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setHeaderText(null);
-            alert.setContentText("Chưa dịp nào được chọn để sửa");
+            alert.setContentText("Chưa dịp nào được chọn để xem!");
             alert.showAndWait();
         }
 
@@ -339,6 +348,15 @@ public class mainPhanThuongController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Platform.runLater(()->{
+            loginID.setText("ID: "+idNhanKhau);
+            loginTen.setText("Tên: "+Services.queryNhanKhauTheoId(idNhanKhau).getHoTen());
+            loginQuyen.setText("Quyền: "+quyen);
+
+            if(!quyen.equals("Tổ trưởng")){
+                btnSua.setVisible(false);
+                btnThem.setVisible(false);
+            }
+
             Connection conn = MyConnection.conDB();
             String query = "SELECT * from `diptraothuong` where loaiDip='Cuối năm học' ";
             try {

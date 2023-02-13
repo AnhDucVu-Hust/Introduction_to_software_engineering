@@ -2507,12 +2507,13 @@ CREATE TABLE PhanThuong(
 );
 
 INSERT INTO PhanThuong(tenPhanThuong, giaTriPhanThuong, ghiChu)
-	VALUES	(N'Bánh kẹo', 50000, NULL),
-            (N'10 cuốn vở', 100000, NULL),
-            (N'7 cuốn vở', 70000, NULL),
-            (N'5 cuốn vở', 50000, NULL),
-            (N'Đồ chơi', 50000, NULL),
-            (N'Sách', 65000, NULL);
+	VALUES	(N'Bánh kẹo', 50000, N'Tặng dịp đặc biệt'),
+            (N'10 cuốn vở', 100000, N'Thưởng HSG'),
+            (N'7 cuốn vở', 70000, N'Thưởng HSTT'),
+            (N'5 cuốn vở', 50000, N'Thưởng HS'),
+            (N'Đồ chơi', 50000, N'Tặng dịp đặc biệt'),
+            (N'Sách', 65000, N'Tặng dịp đặc biệt'),
+            (N'Không tặng', 0, N'Không có quà');
 
 
 CREATE TABLE NguoiNopMinhChung(

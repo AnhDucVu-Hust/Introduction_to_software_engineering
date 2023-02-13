@@ -5,7 +5,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -96,8 +95,8 @@
          </columnConstraints>
          <rowConstraints>
             <RowConstraints maxHeight="182.8" minHeight="4.799990844726565" prefHeight="30.399981689453128" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="182.8" minHeight="0.8000015258788977" prefHeight="43.20001831054687" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="376.6000274658203" minHeight="10.0" prefHeight="365.3999938964844" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="182.8" minHeight="0.8000015258788977" prefHeight="7.3333282470703125" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="407.3333435058594" minHeight="10.0" prefHeight="402.6666717529297" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
             <StackPane prefHeight="76.0" prefWidth="616.0" GridPane.rowIndex="2">
@@ -122,7 +121,6 @@
                   </TableView>
                </children>
             </StackPane>
-            <TextField prefHeight="26.0" prefWidth="553.0" promptText="Search" GridPane.rowIndex="1" />
             <HBox fx:id="barNK" prefHeight="66.0" prefWidth="474.0" spacing="10.0" />
             <VBox alignment="BASELINE_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <children>
@@ -137,6 +135,11 @@
                      </font>
                   </Button>
                   <Button fx:id="btnQuayLai" mnemonicParsing="false" onMouseClicked="#phanThuongClicked" prefHeight="28.0" prefWidth="146.0" style="-fx-background-color: #F99C85; -fx-font-size: 12; -fx-line-spacing: 10;" text="Quay lại" textFill="BLACK">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btnLamMoi" mnemonicParsing="false" onMouseClicked="#lamMoiClicked" prefHeight="28.0" prefWidth="146.0" style="-fx-background-color: #F99C85; -fx-font-size: 12; -fx-line-spacing: 10;" text="Làm mới" textFill="BLACK">
                      <font>
                         <Font size="10.0" />
                      </font>
