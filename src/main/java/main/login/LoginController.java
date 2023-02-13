@@ -65,12 +65,12 @@ public class LoginController implements Initializable {
         ResultSet resultSet = null;
 
         if (email.isEmpty() || password.isEmpty()) {
-            iblError.setText("Empty credentials");
+            iblError.setText("Bạn chưa nhập đầy đủ thông tin!");
             status="Error";
         }
         else if (password.length() < 8){
             status="Error";
-            iblError.setText("Enter correct username/password");
+            iblError.setText("Sai tên đăng nhập hoặc mật khẩu!");
         }
         else {
             String sql = "SELECT * FROM taiKhoan WHERE taiKhoan = ? and matKhau = ?";

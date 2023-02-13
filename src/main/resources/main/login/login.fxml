@@ -28,7 +28,7 @@
             <TextField fx:id="txtUser" layoutX="59.0" layoutY="139.0" prefHeight="40.0" prefWidth="405.0" promptText="Tên đăng nhập" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
             <PasswordField fx:id="txtPass" layoutX="59.0" layoutY="216.0" prefHeight="40.0" prefWidth="405.0" promptText="Mật khẩu" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
             <Button id="logininto" fx:id="btnLogin" layoutX="213.0" layoutY="300.0" mnemonicParsing="false" onMouseClicked="#handleButtonAction" prefHeight="30.0" prefWidth="97.0" text="Đăng nhập" />
-            <Label fx:id="iblError" layoutX="180.0" layoutY="357.0" prefHeight="14.0" prefWidth="162.0" textAlignment="CENTER" textFill="#f21010" />
+            <Label fx:id="iblError" layoutX="68.0" layoutY="349.0" prefHeight="17.0" prefWidth="388.0" textAlignment="CENTER" textFill="#f21010" />
          </children>
       </AnchorPane>
    </center>

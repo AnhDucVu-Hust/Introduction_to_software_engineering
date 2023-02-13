@@ -88,9 +88,9 @@ public class mainPhanThuongController implements Initializable {
 
     @FXML
     void DacBietClicked(MouseEvent event) {
-        btnDipHSG.setStyle("-fx-background-color: #830136FF");
-        btnDacBiet.setStyle("-fx-background-color: #000000");
-        btnQua.setStyle("-fx-background-color: #830136FF");
+        btnDipHSG.setStyle("-fx-background-color: #F99C85");
+        btnDacBiet.setStyle("-fx-background-color: #F77150");
+        btnQua.setStyle("-fx-background-color: #F99C85");
         tbQua.setVisible(false);
         tbPhanThuong.setVisible(true);
         Connection conn = MyConnection.conDB();
@@ -136,9 +136,9 @@ public class mainPhanThuongController implements Initializable {
 
     @FXML
     void dipHSGClicked(MouseEvent event) {
-        btnDipHSG.setStyle("-fx-background-color: #000000");
-        btnDacBiet.setStyle("-fx-background-color: #830136FF");
-        btnQua.setStyle("-fx-background-color: #830136FF");
+        btnDipHSG.setStyle("-fx-background-color:  #F77150");
+        btnDacBiet.setStyle("-fx-background-color:  #F99C85");
+        btnQua.setStyle("-fx-background-color:  #F99C85");
         tbQua.setVisible(false);
         tbPhanThuong.setVisible(true);
         Connection conn = MyConnection.conDB();
@@ -276,9 +276,19 @@ public class mainPhanThuongController implements Initializable {
     @FXML
     void themSuKienClicked(MouseEvent event) throws IOException {
         Node node = (Node) event.getSource();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/main/login/themSuKienPhanThuong.fxml"));
+        Parent mainPT = null;
+        try {
+            mainPT = loader.load();
+        } catch (IOException ex) {
+            throw new RuntimeException(ex);
+        }
+        themSuKienPhanThuongController controller = loader.getController();
+        controller.setQuyen(quyen);
+        controller.setIdNhanKhau(idNhanKhau);
         Stage stage = (Stage) node.getScene().getWindow();
-        Scene scene = new Scene(FXMLLoader.load(getClass().getResource("themSuKienPhanThuong.fxml")));
-        stage.setScene(scene);
+        stage.setScene(new Scene(mainPT));
         stage.show();
     }
 
@@ -322,9 +332,9 @@ public class mainPhanThuongController implements Initializable {
         tbTenQua.setCellValueFactory(new PropertyValueFactory<>("ten"));
         tbGiaTri.setCellValueFactory(new PropertyValueFactory<>("giaTri"));
         tbGhiChu.setCellValueFactory(new PropertyValueFactory<>("ghiChu"));
-        btnDacBiet.setStyle("-fx-background-color:#830136FF");
-        btnQua.setStyle("-fx-background-color: #000000");
-        btnDipHSG.setStyle("-fx-background-color: #830136FF");
+        btnDacBiet.setStyle("-fx-background-color: #F99C85");
+        btnQua.setStyle("-fx-background-color:  #F77150");
+        btnDipHSG.setStyle("-fx-background-color:  #F99C85");
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

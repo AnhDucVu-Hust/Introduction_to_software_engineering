@@ -14,7 +14,7 @@
             <Font name="Microsoft Tai Le" size="20.0" />
          </font>
       </Text>
-      <Button fx:id="btnHuy" layoutX="172.0" layoutY="352.0" mnemonicParsing="false" onMouseClicked="#huyClicked" prefHeight="28.0" prefWidth="90.0" style="-fx-background-color: #3F2B63;" text="Hủy" textFill="WHITE" />
+      <Button fx:id="btnHuy" layoutX="172.0" layoutY="352.0" mnemonicParsing="false" onMouseClicked="#huyClicked" prefHeight="28.0" prefWidth="90.0" style="-fx-background-color:  #F99C85;" text="Hủy" textFill="BLACK" />
       <Text layoutX="15.0" layoutY="144.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ngày đăng ký" wrappingWidth="100.00003662109361">
          <font>
             <Font size="16.0" />
