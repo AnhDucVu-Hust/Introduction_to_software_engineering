@@ -975,6 +975,16 @@ public class Services {
             System.out.println(ex.getMessage());
         }
     }
+    public static void koDuyetNhanThuong(Integer idNopMinhChung) {
+        try {
+            String query = "UPDATE nguoinopminhchung SET trangThai = 'Không duyệt' WHERE idNguoiNop=" + idNopMinhChung;
+            PreparedStatement pstmt=conn.prepareStatement(query);
+            pstmt.execute();
+
+        } catch (SQLException ex){
+            System.out.println(ex.getMessage());
+        }
+    }
     public static String queryGhiChuNhanKhauChuyen(Integer idNhanKhau){
         try {
             String query = "SELECT noiChuyenDen,ghiChu FROM nhankhauchuyen Where idNhanKhau =" + idNhanKhau;

@@ -31,6 +31,12 @@ public class khaiTuController implements Initializable{
 
     private NhanKhau nhanKhau;
 
+    public void setIdNhanKhauLogin(Integer idNhanKhauLogin) {
+        this.idNhanKhauLogin = idNhanKhauLogin;
+    }
+
+    private  Integer idNhanKhauLogin;
+
     @FXML
     private Button btnGuiThongTin;
 
@@ -139,6 +145,8 @@ public class khaiTuController implements Initializable{
             tenNguoiMat.setText(nhanKhau.getHoTen());
             idNguoiMat.setEditable(false);
             tenNguoiMat.setEditable(false);
+            idNguoiKhai.setText(idNhanKhauLogin.toString());
+            idNguoiKhai.setEditable(false);
         });
     }
 }

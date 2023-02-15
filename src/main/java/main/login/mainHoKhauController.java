@@ -238,14 +238,13 @@ public class mainHoKhauController implements Initializable {
                     String tuKhoa = search.getText().toString();
                     System.out.println(tuKhoa);
                     Connection conn = MyConnection.conDB();
-                    String query = "SELECT * FROM `hokhau`\n" +
+                    String query;
+                    if (!tuKhoa.equals("")) query="SELECT * FROM `hokhau`\n" +
                             "WHERE idHoKhau=" + tuKhoa + "\n" +
-                            "OR idChuHo=" + tuKhoa + "\n" +
-                            "OR ngayTao=" + tuKhoa;
-                    if (quyen=="To truong") query="SELECT * FROM `hokhau`\n" +
-                            "WHERE idHoKhau=" + tuKhoa + "\n" +
-                            "OR idChuHo=" + tuKhoa + "\n" +
-                            "OR ngayTao=" + tuKhoa;
+                            " OR idChuHo=" + tuKhoa + "\n" +
+                            " OR ngayCap=" + tuKhoa;
+                    else query="SELECT * FROM `hokhau`";
+                    System.out.println(query);
                     PreparedStatement preparedStatement = conn.prepareStatement(query);
                     ResultSet resultSet = preparedStatement.executeQuery();
                     ObservableList<HoKhau> hoKhaus = FXCollections.observableArrayList();
@@ -261,6 +260,7 @@ public class mainHoKhauController implements Initializable {
                                 resultSet.getString("trangThai")
                         ));
                     }
+                    refreshTable();
                     tbHoKhau.setItems(hoKhaus);
                     tbIDHoKhau.setCellValueFactory(new PropertyValueFactory<>("idHoKhau"));
                     tbIDChuHo.setCellValueFactory(new PropertyValueFactory<>("idChuHo"));
@@ -268,7 +268,7 @@ public class mainHoKhauController implements Initializable {
                     tbNgayTao.setCellValueFactory(new PropertyValueFactory<>("ngayTao"));
                 }
             } catch (SQLException ex) {
-
+                System.out.println(ex.getMessage());
         }
         });
     }
@@ -378,6 +378,7 @@ public class mainHoKhauController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle){
         Platform.runLater(()->{
             refreshTable();
+            if (!quyen.equals("Tổ trưởng")) search.setVisible(false);
             tbIDHoKhau.setCellValueFactory(new PropertyValueFactory<>("idHoKhau"));
             tbIDChuHo.setCellValueFactory(new PropertyValueFactory<>("idChuHo"));
             tbDiaChi.setCellValueFactory(new PropertyValueFactory<>("diaChi"));

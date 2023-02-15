@@ -172,7 +172,19 @@ public class danhSachNhanThuongController implements Initializable {
         tbThanhTich.setCellValueFactory(new PropertyValueFactory<>("thanhTich"));
         tbMinhChung.setCellValueFactory(new PropertyValueFactory<>("linkMinhChung"));
     }
-
+    @FXML
+    void koDuyetClicked(MouseEvent event) {
+        NopMinhChung nguoiNopMinhChung= tbDanhSach.getSelectionModel().getSelectedItem();
+        Services.koDuyetNhanThuong(nguoiNopMinhChung.getIdNguoiNop());
+        ObservableList<NopMinhChung> nopMinhChungs = Services.queryNguoiNhanThuong(idDip);
+        tbDanhSach.setItems(nopMinhChungs);
+        tbID.setCellValueFactory(new PropertyValueFactory<>("idNguoiNhan"));
+        tbTen.setCellValueFactory(new PropertyValueFactory<>("ten"));
+        tbQua.setCellValueFactory(new PropertyValueFactory<>("phanThuong"));
+        tbTrangThai.setCellValueFactory(new PropertyValueFactory<>("trangThai"));
+        tbThanhTich.setCellValueFactory(new PropertyValueFactory<>("thanhTich"));
+        tbMinhChung.setCellValueFactory(new PropertyValueFactory<>("linkMinhChung"));
+    }
     @FXML
     void hoKhauClicked(MouseEvent event) throws IOException {
         Node node = (Node) event.getSource();

@@ -88,7 +88,7 @@
             </Button>
             <Pane prefHeight="72.0" prefWidth="235.0" style="-fx-border-color: #transparent;">
                <children>
-                  <Button fx:id="dangXuat" layoutX="54.0" layoutY="21.0" mnemonicParsing="false" onMouseClicked="#dangXuatClicked" style="-fx-background-color: #FFFFFF;" text="Đăng xuất" />
+                  <Button fx:id="dangXuat" layoutX="54.0" layoutY="21.0" mnemonicParsing="false" onMouseClicked="#dangXuatClicked" style="-fx-background-color: #00000;" text="Đăng xuất" />
                </children>
             </Pane>
          </children>

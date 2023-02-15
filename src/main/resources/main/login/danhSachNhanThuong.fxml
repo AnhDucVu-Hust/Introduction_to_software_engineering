@@ -129,6 +129,11 @@
                         <Font size="10.0" />
                      </font>
                   </Button>
+                  <Button mnemonicParsing="false" onMouseClicked="#koDuyetClicked" prefHeight="28.0" prefWidth="146.0" style="-fx-background-color: #F99C85; -fx-font-size: 12; -fx-line-spacing: 10;" text="Không duyệt" textFill="BLACK">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Button>
                   <Button fx:id="btnChonQua" mnemonicParsing="false" onMouseClicked="#chonQuaClicked" prefHeight="28.0" prefWidth="146.0" style="-fx-background-color: #F99C85; -fx-font-size: 12; -fx-line-spacing: 10;" text="Chọn quà" textFill="BLACK">
                      <font>
                         <Font size="10.0" />

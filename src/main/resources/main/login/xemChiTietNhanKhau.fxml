@@ -8,41 +8,42 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="401.0" prefWidth="646.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.login.xemChiTietNhanKhauController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="401.0" prefWidth="646.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.login.xemChiTietNhanKhauController">
    <children>
       <Pane fx:id="themNhanKhau" layoutX="10.0" layoutY="23.0" prefHeight="151.0" prefWidth="637.0">
          <children>
-            <TextField fx:id="hoTen" layoutX="94.0" layoutY="16.0" prefHeight="25.0" prefWidth="199.0" promptText="NGUYỄN VĂN A" />
+            <TextField fx:id="hoTen" layoutX="94.0" layoutY="16.0" prefHeight="25.0" prefWidth="199.0" />
             <Text layoutX="14.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Họ tên (*)" />
             <Text layoutX="312.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bí danh" />
-            <TextField fx:id="biDanh" layoutX="412.0" layoutY="16.0" prefHeight="25.0" prefWidth="182.0" promptText="A Sử" />
+            <TextField fx:id="biDanh" layoutX="412.0" layoutY="16.0" prefHeight="25.0" prefWidth="182.0" />
             <Text layoutX="14.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ngày sinh (*)" />
-            <DatePicker fx:id="ngaySinh" layoutX="94.0" layoutY="49.0" prefHeight="25.0" prefWidth="199.0" promptText="2023-01-01" />
+            <DatePicker fx:id="ngaySinh" layoutX="94.0" layoutY="49.0" prefHeight="25.0" prefWidth="199.0" />
             <Text layoutX="312.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Giới tính (*)" />
             <Text layoutX="14.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nơi sinh (*)" />
-            <TextField fx:id="noiSinh" layoutX="94.0" layoutY="81.0" prefHeight="25.0" prefWidth="199.0" promptText="Hà Nội" />
+            <TextField fx:id="noiSinh" layoutX="94.0" layoutY="81.0" prefHeight="25.0" prefWidth="199.0" />
             <Text layoutX="312.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nguyên quán (*)" />
-            <TextField fx:id="nguyenQuan" layoutX="412.0" layoutY="81.0" prefHeight="25.0" prefWidth="182.0" promptText="Lào Cai" />
+            <TextField fx:id="nguyenQuan" layoutX="412.0" layoutY="81.0" prefHeight="25.0" prefWidth="182.0" />
             <Text layoutX="15.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dân tộc (*)" />
-            <TextField fx:id="danToc" layoutX="94.0" layoutY="113.0" prefHeight="25.0" prefWidth="199.0" promptText="Kinh" />
+            <TextField fx:id="danToc" layoutX="94.0" layoutY="113.0" prefHeight="25.0" prefWidth="199.0" />
             <ChoiceBox fx:id="gioiTinh" layoutX="412.0" layoutY="49.0" prefHeight="25.0" prefWidth="182.0" />
             <Text layoutX="312.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tôn giáo (*)" />
-            <TextField fx:id="tonGiao" layoutX="412.0" layoutY="113.0" prefHeight="25.0" prefWidth="182.0" promptText="Phật Giáo" />
+            <TextField fx:id="tonGiao" layoutX="412.0" layoutY="113.0" prefHeight="25.0" prefWidth="182.0" />
             <Text layoutX="15.0" layoutY="161.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quốc tịch (*)" />
-            <TextField fx:id="quocTich" layoutX="94.0" layoutY="144.0" prefHeight="25.0" prefWidth="199.0" promptText="Việt Nam" />
+            <TextField fx:id="quocTich" layoutX="94.0" layoutY="144.0" prefHeight="25.0" prefWidth="199.0" />
             <Text layoutX="312.0" layoutY="161.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CMND/CCCD" />
-            <TextField fx:id="cmndCccd" layoutX="412.0" layoutY="144.0" prefHeight="25.0" prefWidth="182.0" promptText="012345678901" />
+            <TextField fx:id="cmndCccd" layoutX="412.0" layoutY="144.0" prefHeight="25.0" prefWidth="182.0" />
             <Text layoutX="15.0" layoutY="191.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nghề nghiệp" />
-            <TextField fx:id="ngheNghiep" layoutX="94.0" layoutY="174.0" prefHeight="25.0" prefWidth="502.0" promptText="Công chức" />
+            <TextField fx:id="ngheNghiep" layoutX="94.0" layoutY="174.0" prefHeight="25.0" prefWidth="502.0" />
             <Text layoutX="15.0" layoutY="220.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nơi làm việc" />
-            <TextField fx:id="noiLamViec" layoutX="94.0" layoutY="203.0" prefHeight="25.0" prefWidth="502.0" promptText="UBND phường Bách Khoa" />
+            <TextField fx:id="noiLamViec" layoutX="94.0" layoutY="203.0" prefHeight="25.0" prefWidth="502.0" />
             <Text layoutX="16.0" layoutY="284.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ngày chuyển đến (*)" />
-            <DatePicker fx:id="ngayChuyenDen" layoutX="155.0" layoutY="267.0" prefHeight="25.0" prefWidth="241.0" promptText="2023-01-01" />
+            <DatePicker fx:id="ngayChuyenDen" layoutX="155.0" layoutY="267.0" prefHeight="25.0" prefWidth="241.0" />
             <Text layoutX="14.0" layoutY="252.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nơi thưởng trú trước đây" />
-            <TextField fx:id="noiThuongTruTruoc" layoutX="155.0" layoutY="235.0" prefHeight="25.0" prefWidth="441.0" promptText="Tổ 6, phường Dịch Vọng Hậu, quận Cầu Giấy, Hà Nội" />
+            <TextField fx:id="noiThuongTruTruoc" layoutX="155.0" layoutY="235.0" prefHeight="25.0" prefWidth="441.0" />
          </children>
       </Pane>
-      <Button fx:id="quayLai" layoutX="269.0" layoutY="350.0" mnemonicParsing="false" onMouseClicked="#quayLaiClicked" prefHeight="28.0" prefWidth="96.0" style="-fx-background-color: #3F2B63; -fx-font-size: 12;" text="Đóng" textFill="WHITE" />
-      <Text layoutX="200.0" layoutY="339.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Các trường có dấu (*) là không được để trống!" />
+      <Button fx:id="quayLai" layoutX="269.0" layoutY="359.0" mnemonicParsing="false" onMouseClicked="#quayLaiClicked" prefHeight="28.0" prefWidth="96.0" style="-fx-background-color: #3F2B63; -fx-font-size: 12;" text="Đóng" textFill="WHITE" />
+      <Text layoutX="27.0" layoutY="344.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ghi chú" />
+      <TextField fx:id="ghiChu" layoutX="106.0" layoutY="327.0" prefHeight="25.0" prefWidth="502.0" />
    </children>
 </AnchorPane>

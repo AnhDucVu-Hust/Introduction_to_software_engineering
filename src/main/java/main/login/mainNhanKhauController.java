@@ -157,6 +157,7 @@ public class mainNhanKhauController implements Initializable {
             Parent khaiTu = loader.load();
             khaiTuController controller = loader.getController();
             controller.setNhanKhau(nk);
+            controller.setIdNhanKhauLogin(idNhanKhau);
             Stage stage = new Stage();
             stage.setScene(new Scene(khaiTu));
             stage.show();
