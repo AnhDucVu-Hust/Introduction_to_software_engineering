@@ -1040,7 +1040,7 @@ public class Services {
     }
     public static String queryGhiChuNhanKhauQuaDoi(Integer idNhanKhau){
         try {
-            String query = "SELECT ngayMat,ghiChu FROM nhankhautamvang Where idNhanKhau =" + idNhanKhau;
+            String query = "SELECT ngayMat,ghiChu FROM nhankhauquadoi Where idNhanKhau =" + idNhanKhau;
             PreparedStatement pstmt=conn.prepareStatement(query);
             ResultSet resultSet= pstmt.executeQuery();
             while (resultSet.next()){

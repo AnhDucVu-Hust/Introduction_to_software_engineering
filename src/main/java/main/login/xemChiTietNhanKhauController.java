@@ -152,7 +152,7 @@ public class xemChiTietNhanKhauController implements Initializable {
             ngayChuyenDen.setValue(nk.getNgayChuyenDen().toLocalDate());
             String trangThai=nk.getTrangThai();
             if (trangThai.contains("Đã chuyển")) ghiChu.setText(Services.queryGhiChuNhanKhauChuyen(nk.getId()));
-            else if (trangThai.contains("Đã mất")) ghiChu.setText(Services.queryGhiChuNhanKhauQuaDoi(nk.getId()));
+            else if (trangThai.contains("Qua đời")) ghiChu.setText(Services.queryGhiChuNhanKhauQuaDoi(nk.getId()));
             else if (trangThai.contains("Tạm trú")) ghiChu.setText(Services.queryGhiChuNhanKhauTamTru(nk.getId()));
             else if (trangThai.contains("Tạm vắng")) ghiChu.setText(Services.queryGhiChuNhanKhauTamVang(nk.getId()));
         });

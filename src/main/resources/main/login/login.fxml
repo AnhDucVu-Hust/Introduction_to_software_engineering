@@ -13,7 +13,7 @@
    <left>
       <AnchorPane prefHeight="400.0" prefWidth="298.0" style="-fx-background-color: #B9A6D8;" BorderPane.alignment="CENTER">
          <children>
-            <Text layoutX="12.0" layoutY="262.0" strokeType="OUTSIDE" strokeWidth="0.0" text="XIN CHÀO!" textAlignment="CENTER" wrappingWidth="274.7124328613281">
+            <Text layoutY="225.0" strokeType="OUTSIDE" strokeWidth="0.0" text="QUẢN LÝ NHÂN KHẨU" textAlignment="CENTER" wrappingWidth="310.0457763671875">
                <font>
                   <Font name="Cambria" size="54.0" />
                </font>
